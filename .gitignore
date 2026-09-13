@@ -9,3 +9,5 @@ research/sdk/node_modules/
 !evidence/testnet-*.log
 !evidence/showcase-output.txt
 !evidence/pdf-render.log
+
+!evidence/multi-round-validation.log

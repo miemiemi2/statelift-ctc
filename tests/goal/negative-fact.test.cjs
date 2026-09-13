@@ -339,6 +339,10 @@ test("two expired rounds keep their guarantees independent while the same goal r
   // still win normally.  No round's B was reused to settle another round.
   const goalBefore = await s.escrow.getGoal(s.g.goalId);
   assert.equal(goalBefore.state, 1n, "goal remains Open after both expiries");
+  // Advance the CTC clock past round 2's quoted window before opening the
+  // replacement. This keeps the matrix faithful to sequential relay timing
+  // while the two guarantees remain independently released.
+  await s.ctcTravelTo(e2.quote.payBy + 1);
   const e3 = await openE(s, 3);
   const filled3 = await s.fillAndProve({
     goal: s.g.ref,
@@ -354,7 +358,7 @@ test("two expired rounds keep their guarantees independent while the same goal r
   assert.equal(await s.escrow.capitalAvailable(s.guarantorAddress), DEMO_B * 3n);
   assert.equal((await s.escrow.getRound(e1.roundId)).state, 5n);
   assert.equal((await s.escrow.getRound(e2.roundId)).state, 5n);
-  assert.equal((await s.escrow.getRound(e3.roundId)).state, 4n, "winner paid");
+  assert.equal((await s.escrow.getRound(e3.roundId)).state, 2n, "winner paid from principal");
   await s.invariant();
 });
 

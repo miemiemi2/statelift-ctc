@@ -1,0 +1,561 @@
+{
+  "checkedAt": "2026-09-13T16:25:48.847Z",
+  "results": [
+    {
+      "act": "expiry",
+      "checkedAt": "2026-09-13T16:25:20.823Z",
+      "checks": [
+        {
+          "name": "creditcoin chain ID",
+          "ok": true
+        },
+        {
+          "name": "sepolia chain ID",
+          "ok": true
+        },
+        {
+          "name": "GoalRouter deployed code",
+          "ok": true
+        },
+        {
+          "name": "HeaderAnchor deployed code",
+          "ok": true
+        },
+        {
+          "name": "RootInbox deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateProofVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "GoalFillFactVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateLiftGoalEscrow deployed code",
+          "ok": true
+        },
+        {
+          "name": "Confirmed successful transaction",
+          "ok": true
+        },
+        {
+          "name": "Expected escrow destination",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Proof names this goal and a post-T block",
+          "ok": true
+        },
+        {
+          "name": "Round released; goal remains open",
+          "ok": true
+        },
+        {
+          "name": "Dedicated B moved locked → available",
+          "ok": true
+        },
+        {
+          "name": "Refund remains credited; release does not pay a winner",
+          "ok": true
+        },
+        {
+          "name": "Refund receipt successful",
+          "ok": true
+        },
+        {
+          "name": "Operator recovered round-1 R",
+          "ok": true
+        }
+      ],
+      "rows": [
+        {
+          "name": "Escrow balance",
+          "before": "200600000000000000",
+          "after": "200600000000000000"
+        },
+        {
+          "name": "Held principal R",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "name": "Available guarantee B",
+          "before": "0",
+          "after": "100000000000000000"
+        },
+        {
+          "name": "Locked guarantee B",
+          "before": "100000000000000000",
+          "after": "0"
+        },
+        {
+          "name": "Withdrawable credits",
+          "before": "100600000000000000",
+          "after": "100600000000000000"
+        }
+      ],
+      "scope": "Historical block-end states and on-chain verifier calls; RPC responses are trusted. Not a security audit.",
+      "hash": "0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6",
+      "goalId": "0x5d75afcbc79ee1478048b8b307a5cd2279ae8f41ede3fa7c60b9180b3bc0a170",
+      "block": 5481512,
+      "proof": {
+        "type": "Post-T storage non-membership",
+        "sourceHeight": "11696750",
+        "sourceTimestamp": "1789313112"
+      },
+      "refund": {
+        "hash": "0x41aade98016b222b63e8526dcbda706ba3e3f97ddf3c39df0d815ec78395b37b",
+        "block": 5481391,
+        "before": "0",
+        "after": "100000000000000000"
+      },
+      "current": {
+        "block": 5481695,
+        "buckets": [
+          "200600000000000000",
+          "0",
+          "100000000000000000",
+          "0",
+          "100600000000000000"
+        ]
+      },
+      "roundState": 5,
+      "goalState": 1,
+      "passed": true
+    },
+    {
+      "act": "normal",
+      "checkedAt": "2026-09-13T16:25:26.663Z",
+      "checks": [
+        {
+          "name": "creditcoin chain ID",
+          "ok": true
+        },
+        {
+          "name": "sepolia chain ID",
+          "ok": true
+        },
+        {
+          "name": "GoalRouter deployed code",
+          "ok": true
+        },
+        {
+          "name": "HeaderAnchor deployed code",
+          "ok": true
+        },
+        {
+          "name": "RootInbox deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateProofVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "GoalFillFactVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateLiftGoalEscrow deployed code",
+          "ok": true
+        },
+        {
+          "name": "Confirmed successful transaction",
+          "ok": true
+        },
+        {
+          "name": "Expected escrow destination",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Source winner and destination agree",
+          "ok": true
+        },
+        {
+          "name": "Round settled from correct bucket",
+          "ok": true
+        },
+        {
+          "name": "Winner credited exactly R",
+          "ok": true
+        },
+        {
+          "name": "R/B allocation matches deadline",
+          "ok": true
+        }
+      ],
+      "rows": [
+        {
+          "name": "Escrow balance",
+          "before": "1002400000000000000",
+          "after": "1002400000000000000"
+        },
+        {
+          "name": "Held principal R",
+          "before": "200000000000000000",
+          "after": "100000000000000000"
+        },
+        {
+          "name": "Available guarantee B",
+          "before": "200000000000000000",
+          "after": "300000000000000000"
+        },
+        {
+          "name": "Locked guarantee B",
+          "before": "400000000000000000",
+          "after": "300000000000000000"
+        },
+        {
+          "name": "Withdrawable credits",
+          "before": "202400000000000000",
+          "after": "302400000000000000"
+        },
+        {
+          "name": "Winner credit",
+          "before": "0",
+          "after": "100000000000000000"
+        }
+      ],
+      "scope": "Historical block-end states and on-chain verifier calls; RPC responses are trusted. Not a security audit.",
+      "hash": "0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9",
+      "goalId": "0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159",
+      "block": 5481035,
+      "proof": {
+        "type": "Payment receipt inclusion",
+        "sourceTimestamp": "1789306128"
+      },
+      "current": {
+        "block": 5481696,
+        "buckets": [
+          "200600000000000000",
+          "0",
+          "100000000000000000",
+          "0",
+          "100600000000000000"
+        ]
+      },
+      "roundState": 2,
+      "goalState": 2,
+      "passed": true
+    },
+    {
+      "act": "late",
+      "checkedAt": "2026-09-13T16:25:31.346Z",
+      "checks": [
+        {
+          "name": "creditcoin chain ID",
+          "ok": true
+        },
+        {
+          "name": "sepolia chain ID",
+          "ok": true
+        },
+        {
+          "name": "GoalRouter deployed code",
+          "ok": true
+        },
+        {
+          "name": "HeaderAnchor deployed code",
+          "ok": true
+        },
+        {
+          "name": "RootInbox deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateProofVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "GoalFillFactVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateLiftGoalEscrow deployed code",
+          "ok": true
+        },
+        {
+          "name": "Confirmed successful transaction",
+          "ok": true
+        },
+        {
+          "name": "Expected escrow destination",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Source winner and destination agree",
+          "ok": true
+        },
+        {
+          "name": "Round settled from correct bucket",
+          "ok": true
+        },
+        {
+          "name": "Winner credited exactly R",
+          "ok": true
+        },
+        {
+          "name": "R/B allocation matches deadline",
+          "ok": true
+        },
+        {
+          "name": "Refund receipt successful",
+          "ok": true
+        },
+        {
+          "name": "Operator recovered round-1 R",
+          "ok": true
+        }
+      ],
+      "rows": [
+        {
+          "name": "Escrow balance",
+          "before": "1002400000000000000",
+          "after": "1002400000000000000"
+        },
+        {
+          "name": "Held principal R",
+          "before": "100000000000000000",
+          "after": "100000000000000000"
+        },
+        {
+          "name": "Available guarantee B",
+          "before": "300000000000000000",
+          "after": "300000000000000000"
+        },
+        {
+          "name": "Locked guarantee B",
+          "before": "300000000000000000",
+          "after": "200000000000000000"
+        },
+        {
+          "name": "Withdrawable credits",
+          "before": "302400000000000000",
+          "after": "402400000000000000"
+        },
+        {
+          "name": "Winner credit",
+          "before": "100000000000000000",
+          "after": "200000000000000000"
+        }
+      ],
+      "scope": "Historical block-end states and on-chain verifier calls; RPC responses are trusted. Not a security audit.",
+      "hash": "0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20",
+      "goalId": "0xdc64d7605924fa72e1948b53145f86606f27f722f55bd623a68f88eaa1c0e985",
+      "block": 5481040,
+      "proof": {
+        "type": "Payment receipt inclusion",
+        "sourceTimestamp": "1789306296"
+      },
+      "refund": {
+        "hash": "0x2df4ffc2ee687972dc95603c40e2ca597d239d1ff5228a4a954e3ce0a24f7bf2",
+        "block": 5481019,
+        "before": "0",
+        "after": "100000000000000000"
+      },
+      "current": {
+        "block": 5481696,
+        "buckets": [
+          "200600000000000000",
+          "0",
+          "100000000000000000",
+          "0",
+          "100600000000000000"
+        ]
+      },
+      "roundState": 4,
+      "goalState": 2,
+      "passed": true
+    },
+    {
+      "act": "relay",
+      "checkedAt": "2026-09-13T16:25:38.223Z",
+      "checks": [
+        {
+          "name": "creditcoin chain ID",
+          "ok": true
+        },
+        {
+          "name": "sepolia chain ID",
+          "ok": true
+        },
+        {
+          "name": "GoalRouter deployed code",
+          "ok": true
+        },
+        {
+          "name": "HeaderAnchor deployed code",
+          "ok": true
+        },
+        {
+          "name": "RootInbox deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateProofVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "GoalFillFactVerifier deployed code",
+          "ok": true
+        },
+        {
+          "name": "StateLiftGoalEscrow deployed code",
+          "ok": true
+        },
+        {
+          "name": "Confirmed successful transaction",
+          "ok": true
+        },
+        {
+          "name": "Expected escrow destination",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Accounting: balance = held R + available B + locked B + credits",
+          "ok": true
+        },
+        {
+          "name": "Source winner and destination agree",
+          "ok": true
+        },
+        {
+          "name": "Round settled from correct bucket",
+          "ok": true
+        },
+        {
+          "name": "Winner credited exactly R",
+          "ok": true
+        },
+        {
+          "name": "R/B allocation matches deadline",
+          "ok": true
+        },
+        {
+          "name": "Refund receipt successful",
+          "ok": true
+        },
+        {
+          "name": "Operator recovered round-1 R",
+          "ok": true
+        },
+        {
+          "name": "Old guarantee release confirmed",
+          "ok": true
+        },
+        {
+          "name": "Old B released independently",
+          "ok": true
+        }
+      ],
+      "rows": [
+        {
+          "name": "Escrow balance",
+          "before": "1002400000000000000",
+          "after": "1002400000000000000"
+        },
+        {
+          "name": "Held principal R",
+          "before": "100000000000000000",
+          "after": "0"
+        },
+        {
+          "name": "Available guarantee B",
+          "before": "300000000000000000",
+          "after": "400000000000000000"
+        },
+        {
+          "name": "Locked guarantee B",
+          "before": "200000000000000000",
+          "after": "100000000000000000"
+        },
+        {
+          "name": "Withdrawable credits",
+          "before": "402400000000000000",
+          "after": "502400000000000000"
+        },
+        {
+          "name": "Winner credit",
+          "before": "0",
+          "after": "100000000000000000"
+        }
+      ],
+      "scope": "Historical block-end states and on-chain verifier calls; RPC responses are trusted. Not a security audit.",
+      "hash": "0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af",
+      "goalId": "0x8417c34b63a32d3f8ff31e133b7c08bf18191bdfaadfd4a3a191e86bbd83992a",
+      "block": 5481066,
+      "proof": {
+        "type": "Payment receipt inclusion",
+        "sourceTimestamp": "1789306728"
+      },
+      "refund": {
+        "hash": "0x90fcbfe042f69072e5d2bfd7a0133b72b4eaf6cbfe5e49084dce68a522ea5996",
+        "block": 5481026,
+        "before": "100000000000000000",
+        "after": "200000000000000000"
+      },
+      "oldRelease": {
+        "hash": "0x5e729bff9379e6b66d59330c6e35054099d76665fc13bbed4d29a5ea7b807970",
+        "before": [
+          "1002400000000000000",
+          "0",
+          "400000000000000000",
+          "100000000000000000",
+          "502400000000000000"
+        ],
+        "after": [
+          "1002400000000000000",
+          "0",
+          "500000000000000000",
+          "0",
+          "502400000000000000"
+        ]
+      },
+      "current": {
+        "block": 5481696,
+        "buckets": [
+          "200600000000000000",
+          "0",
+          "100000000000000000",
+          "0",
+          "100600000000000000"
+        ]
+      },
+      "roundState": 2,
+      "goalState": 2,
+      "passed": true
+    }
+  ],
+  "wrongGoalProofRejected": true
+}

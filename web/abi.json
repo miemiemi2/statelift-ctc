@@ -1,0 +1,1548 @@
+{
+  "StateLiftGoalEscrow": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "fillVerifier",
+          "type": "address"
+        },
+        { "internalType": "uint64", "name": "clearingWindow", "type": "uint64" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    { "inputs": [], "name": "BadSignature", "type": "error" },
+    { "inputs": [], "name": "DeadlinePassed", "type": "error" },
+    { "inputs": [], "name": "DeadlineWindowTooShort", "type": "error" },
+    { "inputs": [], "name": "FactDeadlineMismatch", "type": "error" },
+    { "inputs": [], "name": "FactGoalMismatch", "type": "error" },
+    { "inputs": [], "name": "FactRoundMismatch", "type": "error" },
+    { "inputs": [], "name": "FactTermsMismatch", "type": "error" },
+    { "inputs": [], "name": "GoalAlreadyPaid", "type": "error" },
+    { "inputs": [], "name": "GoalUnknown", "type": "error" },
+    { "inputs": [], "name": "InsufficientGuaranteeCapital", "type": "error" },
+    { "inputs": [], "name": "InvalidTerms", "type": "error" },
+    { "inputs": [], "name": "NonceUsed", "type": "error" },
+    { "inputs": [], "name": "NotYetClearingDeadline", "type": "error" },
+    { "inputs": [], "name": "NothingToWithdraw", "type": "error" },
+    { "inputs": [], "name": "PreviousRoundStillLive", "type": "error" },
+    { "inputs": [], "name": "QuoteExpired", "type": "error" },
+    { "inputs": [], "name": "Reentrancy", "type": "error" },
+    { "inputs": [], "name": "RoundCouldStillBeFilled", "type": "error" },
+    { "inputs": [], "name": "RoundNotPending", "type": "error" },
+    { "inputs": [], "name": "RoundUnknown", "type": "error" },
+    { "inputs": [], "name": "ThisRoundStillCouldWin", "type": "error" },
+    { "inputs": [], "name": "TooManyRounds", "type": "error" },
+    { "inputs": [], "name": "TransferFailed", "type": "error" },
+    { "inputs": [], "name": "Unauthorized", "type": "error" },
+    { "inputs": [], "name": "UnderCollateralised", "type": "error" },
+    { "inputs": [], "name": "WinnerAlreadyPaid", "type": "error" },
+    { "inputs": [], "name": "WrongPayment", "type": "error" },
+    { "inputs": [], "name": "WrongRoundNumber", "type": "error" },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "guarantor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "CapitalDeposited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "CreditWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "goalId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "businessRef",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "maxRounds",
+          "type": "uint32"
+        }
+      ],
+      "name": "GoalCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "roundId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "guarantor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "winningRound",
+          "type": "uint32"
+        }
+      ],
+      "name": "GuaranteeReleased",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "roundId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "PrincipalRefunded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "goalId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "roundId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint32",
+          "name": "roundNumber",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "guarantor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "principal",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "guarantee",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "premium",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "payBy",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "clearBy",
+          "type": "uint64"
+        }
+      ],
+      "name": "RoundOpened",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "roundId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "winner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "fromGuarantee",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "sourceTimestamp",
+          "type": "uint64"
+        }
+      ],
+      "name": "RoundSettled",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ROUND_QUOTE_TYPEHASH",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "name": "capitalAvailable",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "name": "capitalLocked",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "roundId", "type": "bytes32" }
+      ],
+      "name": "claimRefund",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "businessRef",
+              "type": "bytes32"
+            },
+            { "internalType": "address", "name": "token", "type": "address" },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.GoalTerms",
+          "name": "terms",
+          "type": "tuple"
+        },
+        { "internalType": "uint32", "name": "maxRounds", "type": "uint32" }
+      ],
+      "name": "createGoal",
+      "outputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "name": "credits",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "depositCapital",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" }
+      ],
+      "name": "getGoal",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "address", "name": "owner", "type": "address" },
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "businessRef",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "recipient",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct StateLiftGoalEscrow.GoalTerms",
+              "name": "terms",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint32",
+              "name": "roundCount",
+              "type": "uint32"
+            },
+            { "internalType": "uint32", "name": "maxRounds", "type": "uint32" },
+            {
+              "internalType": "enum StateLiftGoalEscrow.GoalState",
+              "name": "state",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint32",
+              "name": "filledRound",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "winnerPaid",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.Goal",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "roundId", "type": "bytes32" }
+      ],
+      "name": "getRound",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "guarantor",
+              "type": "address"
+            },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            { "internalType": "uint64", "name": "clearBy", "type": "uint64" },
+            {
+              "internalType": "uint256",
+              "name": "principal",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantee",
+              "type": "uint256"
+            },
+            { "internalType": "uint256", "name": "premium", "type": "uint256" },
+            {
+              "internalType": "enum StateLiftGoalEscrow.RoundState",
+              "name": "state",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "principalReturned",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.Round",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "owner", "type": "address" },
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "businessRef",
+              "type": "bytes32"
+            },
+            { "internalType": "address", "name": "token", "type": "address" },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.GoalTerms",
+          "name": "t",
+          "type": "tuple"
+        }
+      ],
+      "name": "goalIdOf",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "invariant",
+      "outputs": [
+        { "internalType": "uint256", "name": "balance", "type": "uint256" },
+        { "internalType": "uint256", "name": "held", "type": "uint256" },
+        { "internalType": "uint256", "name": "available", "type": "uint256" },
+        { "internalType": "uint256", "name": "locked", "type": "uint256" },
+        { "internalType": "uint256", "name": "creditsTotal", "type": "uint256" }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minClearingWindow",
+      "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "guarantor",
+              "type": "address"
+            },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            { "internalType": "uint64", "name": "clearBy", "type": "uint64" },
+            {
+              "internalType": "uint256",
+              "name": "principal",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantee",
+              "type": "uint256"
+            },
+            { "internalType": "uint256", "name": "premium", "type": "uint256" },
+            {
+              "internalType": "uint64",
+              "name": "acceptBefore",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantorNonce",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.RoundQuote",
+          "name": "q",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "guarantorSignature",
+          "type": "bytes"
+        }
+      ],
+      "name": "openRound",
+      "outputs": [
+        { "internalType": "bytes32", "name": "roundId", "type": "bytes32" }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "roundId", "type": "bytes32" },
+        { "internalType": "bytes", "name": "evidence", "type": "bytes" }
+      ],
+      "name": "releaseGuaranteeByExpiry",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "roundId", "type": "bytes32" },
+        { "internalType": "bytes", "name": "evidence", "type": "bytes" }
+      ],
+      "name": "releaseGuaranteeByWinner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+        { "internalType": "uint32", "name": "roundNumber", "type": "uint32" }
+      ],
+      "name": "roundIdOf",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "guarantor",
+              "type": "address"
+            },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            { "internalType": "uint64", "name": "clearBy", "type": "uint64" },
+            {
+              "internalType": "uint256",
+              "name": "principal",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantee",
+              "type": "uint256"
+            },
+            { "internalType": "uint256", "name": "premium", "type": "uint256" },
+            {
+              "internalType": "uint64",
+              "name": "acceptBefore",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantorNonce",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.RoundQuote",
+          "name": "q",
+          "type": "tuple"
+        }
+      ],
+      "name": "roundQuoteDigest",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "guarantor",
+              "type": "address"
+            },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            { "internalType": "uint64", "name": "clearBy", "type": "uint64" },
+            {
+              "internalType": "uint256",
+              "name": "principal",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantee",
+              "type": "uint256"
+            },
+            { "internalType": "uint256", "name": "premium", "type": "uint256" },
+            {
+              "internalType": "uint64",
+              "name": "acceptBefore",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guarantorNonce",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct StateLiftGoalEscrow.RoundQuote",
+          "name": "q",
+          "type": "tuple"
+        }
+      ],
+      "name": "roundQuoteHash",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "roundId", "type": "bytes32" },
+        { "internalType": "bytes", "name": "evidence", "type": "bytes" }
+      ],
+      "name": "settleRound",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalCapitalAvailable",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalCapitalLocked",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalCredits",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalPrincipalHeld",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "", "type": "address" },
+        { "internalType": "uint256", "name": "", "type": "uint256" }
+      ],
+      "name": "usedGuarantorNonce",
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "verifier",
+      "outputs": [
+        {
+          "internalType": "contract GoalFillFactVerifier",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address payable", "name": "to", "type": "address" }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "uint256", "name": "amount", "type": "uint256" }
+      ],
+      "name": "withdrawCapital",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "GoalRouter": [
+    { "inputs": [], "name": "AlreadyFilled", "type": "error" },
+    { "inputs": [], "name": "ExactAmountRequired", "type": "error" },
+    { "inputs": [], "name": "InvalidTerms", "type": "error" },
+    { "inputs": [], "name": "RoundExpired", "type": "error" },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "goalId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint32",
+          "name": "roundNumber",
+          "type": "uint32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "winner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "payer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "payBy",
+          "type": "uint64"
+        }
+      ],
+      "name": "GoalFilled",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "FILL_NONCE_DOMAIN",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "ctcChainId",
+              "type": "uint256"
+            },
+            { "internalType": "address", "name": "escrow", "type": "address" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            {
+              "internalType": "bytes32",
+              "name": "businessRef",
+              "type": "bytes32"
+            },
+            { "internalType": "address", "name": "token", "type": "address" },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "internalType": "struct GoalRouter.GoalRef",
+          "name": "g",
+          "type": "tuple"
+        },
+        { "internalType": "uint32", "name": "roundNumber", "type": "uint32" },
+        { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+        { "internalType": "address", "name": "winner", "type": "address" },
+        {
+          "components": [
+            { "internalType": "address", "name": "from", "type": "address" },
+            {
+              "internalType": "uint256",
+              "name": "validAfter",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "validBefore",
+              "type": "uint256"
+            },
+            { "internalType": "bytes", "name": "signature", "type": "bytes" }
+          ],
+          "internalType": "struct GoalRouter.Authorization",
+          "name": "auth",
+          "type": "tuple"
+        }
+      ],
+      "name": "fill",
+      "outputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+        { "internalType": "uint32", "name": "roundNumber", "type": "uint32" },
+        { "internalType": "address", "name": "winner", "type": "address" },
+        { "internalType": "uint64", "name": "payBy", "type": "uint64" }
+      ],
+      "name": "fillNonce",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" }
+      ],
+      "name": "fillOf",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            { "internalType": "uint64", "name": "filledAt", "type": "uint64" },
+            { "internalType": "address", "name": "winner", "type": "address" },
+            { "internalType": "address", "name": "payer", "type": "address" }
+          ],
+          "internalType": "struct GoalRouter.Fill",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "ctcChainId",
+              "type": "uint256"
+            },
+            { "internalType": "address", "name": "escrow", "type": "address" },
+            { "internalType": "address", "name": "owner", "type": "address" },
+            {
+              "internalType": "bytes32",
+              "name": "businessRef",
+              "type": "bytes32"
+            },
+            { "internalType": "address", "name": "token", "type": "address" },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "internalType": "struct GoalRouter.GoalRef",
+          "name": "g",
+          "type": "tuple"
+        }
+      ],
+      "name": "goalIdOf",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" }
+      ],
+      "name": "isFilled",
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "GoalFillFactVerifier": [
+    {
+      "inputs": [
+        { "internalType": "address", "name": "rootInbox", "type": "address" },
+        {
+          "internalType": "address",
+          "name": "genericStateVerifier",
+          "type": "address"
+        },
+        { "internalType": "address", "name": "goalRouter", "type": "address" },
+        {
+          "internalType": "bytes32",
+          "name": "expectedRouterCodeHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    { "inputs": [], "name": "AmbiguousFillLog", "type": "error" },
+    { "inputs": [], "name": "GoalWasAlreadyFilled", "type": "error" },
+    { "inputs": [], "name": "InvalidConfiguration", "type": "error" },
+    { "inputs": [], "name": "InvalidRLP", "type": "error" },
+    { "inputs": [], "name": "MalformedFillLog", "type": "error" },
+    { "inputs": [], "name": "NoFillLog", "type": "error" },
+    { "inputs": [], "name": "NotAnchored", "type": "error" },
+    { "inputs": [], "name": "ReceiptFailed", "type": "error" },
+    { "inputs": [], "name": "RouterAccountMissing", "type": "error" },
+    { "inputs": [], "name": "RouterCodeMismatch", "type": "error" },
+    { "inputs": [], "name": "UnknownReceipt", "type": "error" },
+    { "inputs": [], "name": "WrongInbox", "type": "error" },
+    {
+      "inputs": [],
+      "name": "FILLS_SLOT",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "GOAL_FILLED_TOPIC",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "goalId", "type": "bytes32" }
+      ],
+      "name": "fillSlot",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "inbox",
+      "outputs": [
+        { "internalType": "contract RootInbox", "name": "", "type": "address" }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "blockHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "transactionIndex",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes[]",
+              "name": "receiptProof",
+              "type": "bytes[]"
+            }
+          ],
+          "internalType": "struct GoalFillFactVerifier.Evidence",
+          "name": "e",
+          "type": "tuple"
+        }
+      ],
+      "name": "proveFill",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            { "internalType": "address", "name": "winner", "type": "address" },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" },
+            { "internalType": "address", "name": "payer", "type": "address" },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            {
+              "internalType": "uint64",
+              "name": "sourceTimestamp",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct GoalFillFactVerifier.FillFact",
+          "name": "f",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "bytes32",
+              "name": "blockHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes[]",
+              "name": "accountProof",
+              "type": "bytes[]"
+            },
+            {
+              "internalType": "bytes[]",
+              "name": "slotProof",
+              "type": "bytes[]"
+            }
+          ],
+          "internalType": "struct GoalFillFactVerifier.UnfilledEvidence",
+          "name": "e",
+          "type": "tuple"
+        }
+      ],
+      "name": "proveUnfilled",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint64",
+              "name": "sourceTimestamp",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "sourceHeight",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct GoalFillFactVerifier.UnfilledFact",
+          "name": "f",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "router",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "routerCodeHash",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sourceDomain",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stateVerifier",
+      "outputs": [
+        {
+          "internalType": "contract StateProofVerifier",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes", "name": "encoded", "type": "bytes" }
+      ],
+      "name": "verifyFill",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint32",
+              "name": "roundNumber",
+              "type": "uint32"
+            },
+            { "internalType": "address", "name": "winner", "type": "address" },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" },
+            { "internalType": "address", "name": "payer", "type": "address" },
+            { "internalType": "uint64", "name": "payBy", "type": "uint64" },
+            {
+              "internalType": "uint64",
+              "name": "sourceTimestamp",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct GoalFillFactVerifier.FillFact",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes", "name": "encoded", "type": "bytes" }
+      ],
+      "name": "verifyUnfilled",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "goalId", "type": "bytes32" },
+            {
+              "internalType": "uint64",
+              "name": "sourceTimestamp",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "sourceHeight",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct GoalFillFactVerifier.UnfilledFact",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "RootInbox": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "nativeProver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "sourceChainKey",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ethereumChainId",
+          "type": "uint256"
+        },
+        { "internalType": "address", "name": "headerAnchor", "type": "address" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    { "inputs": [], "name": "Conflict", "type": "error" },
+    { "inputs": [], "name": "InvalidAnchor", "type": "error" },
+    { "inputs": [], "name": "InvalidHeader", "type": "error" },
+    { "inputs": [], "name": "InvalidProof", "type": "error" },
+    { "inputs": [], "name": "InvalidRLP", "type": "error" },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceDomain",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "height",
+          "type": "uint64"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "blockHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "stateRoot",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "transactionsRoot",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "receiptsRoot",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "timestamp",
+          "type": "uint64"
+        }
+      ],
+      "name": "HeaderAccepted",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "ANCHOR_EVENT",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "uint64", "name": "anchorHeight", "type": "uint64" },
+        { "internalType": "bytes", "name": "txBytes", "type": "bytes" },
+        {
+          "components": [
+            { "internalType": "bytes32", "name": "root", "type": "bytes32" },
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "hash",
+                  "type": "bytes32"
+                },
+                { "internalType": "bool", "name": "isLeft", "type": "bool" }
+              ],
+              "internalType": "struct IAttestcoinBlockProver.Sibling[]",
+              "name": "siblings",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct IAttestcoinBlockProver.MerkleProof",
+          "name": "merkle",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "lowerEndpointDigest",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "roots",
+              "type": "bytes32[]"
+            }
+          ],
+          "internalType": "struct IAttestcoinBlockProver.ContinuityProof",
+          "name": "continuity",
+          "type": "tuple"
+        },
+        { "internalType": "bytes", "name": "fullHeader", "type": "bytes" }
+      ],
+      "name": "accept",
+      "outputs": [
+        { "internalType": "bytes32", "name": "hash", "type": "bytes32" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "acceptedChild",
+          "type": "bytes32"
+        },
+        { "internalType": "bytes", "name": "parentRlp", "type": "bytes" }
+      ],
+      "name": "acceptParent",
+      "outputs": [
+        { "internalType": "bytes32", "name": "parentHash", "type": "bytes32" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "anchor",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+      "name": "canonicalHash",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "chainKey",
+      "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "bytes32", "name": "hash", "type": "bytes32" }
+      ],
+      "name": "getHeader",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "uint64", "name": "height", "type": "uint64" },
+            { "internalType": "uint64", "name": "timestamp", "type": "uint64" },
+            {
+              "internalType": "bytes32",
+              "name": "parentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "stateRoot",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "transactionsRoot",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "receiptsRoot",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct RootInbox.Header",
+          "name": "h",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "bytes", "name": "data", "type": "bytes" }],
+      "name": "parseHeader",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "uint64", "name": "height", "type": "uint64" },
+            { "internalType": "uint64", "name": "timestamp", "type": "uint64" },
+            {
+              "internalType": "bytes32",
+              "name": "parentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "stateRoot",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "transactionsRoot",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "receiptsRoot",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct RootInbox.Header",
+          "name": "h",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "prover",
+      "outputs": [
+        {
+          "internalType": "contract IAttestcoinBlockProver",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sourceChainId",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sourceDomain",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}

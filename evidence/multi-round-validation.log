@@ -1,0 +1,34 @@
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/goal/negative-fact.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ an unfilled goal produces a negative fact carrying the source timestamp (2856.170247ms)
+✔ a negative fact is refused once the goal really has been filled (4928.220093ms)
+✔ expiry release frees the guarantee and the budget without closing the goal (3024.183437ms)
+✔ expiry release before T proves nothing and is refused (3152.460986ms)
+✔ after expiry release the operator can still relay and win on the same goal (12981.336652ms)
+✔ a negative fact for another goal cannot release this round (3128.477614ms)
+✔ a negative fact from an unanchored source block is refused (1475.060734ms)
+✔ a negative fact cannot be forged against an address that is not the router (3493.539601ms)
+✔ expiry release also works on an already refunded round (3151.970459ms)
+✔ a round retired by an expiry proof lets a replacement open immediately (12455.696197ms)
+✔ two expired rounds keep their guarantees independent while the same goal relays (15427.769614ms)
+✔ a still-live previous round is not retired, so relay still waits (1569.20752ms)
+✔ a released round cannot be released or settled again (3177.715759ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101141.830335

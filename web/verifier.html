@@ -1,14 +1,230 @@
 <!doctype html>
-<meta charset="utf-8">
-<title>StateLift public verifier</title>
-<style>body{font:16px system-ui;max-width:760px;margin:40px auto;padding:0 18px;color:#18212b}input,button{font:inherit;padding:10px}input{width:560px;max-width:90%}pre{background:#f3f5f7;padding:14px;overflow:auto}.muted{color:#667}</style>
-<h1>StateLift public verifier</h1>
-<p class="muted">Read-only Creditcoin testnet check. The page queries public RPC; it does not sign or send transactions.</p>
-<input id="tx" placeholder="Creditcoin transaction hash" value="0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6"><button id="go">Verify</button>
-<pre id="out">Enter a transaction hash.</pre>
-<script type="module">
-import {JsonRpcProvider} from 'https://cdn.jsdelivr.net/npm/ethers@6.15.0/+esm';
-const p=new JsonRpcProvider('https://rpc.cc3-testnet.creditcoin.network',102031,{staticNetwork:true});
-const out=document.querySelector('#out');
-document.querySelector('#go').onclick=async()=>{const h=document.querySelector('#tx').value.trim();try{if(!/^0x[0-9a-fA-F]{64}$/.test(h))throw Error('Enter a 32-byte transaction hash');const [t,r,b]=await Promise.all([p.getTransaction(h),p.getTransactionReceipt(h),p.getBlock('latest')]);if(!t||!r)throw Error('Transaction not found on Creditcoin testnet');out.textContent=JSON.stringify({network:'Creditcoin testnet',chainId:102031,hash:h,block:r.blockNumber,status:r.status,gasUsed:r.gasUsed.toString(),from:t.from,to:t.to,latestBlock:b.number,explorer:`https://creditcoin-testnet.blockscout.com/tx/${h}`},null,2)}catch(e){out.textContent=`Verification error: ${e.message}`}};
-</script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StateLift · Verify the outcome</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, sans-serif;
+        color: #18212b;
+        background: #fafbf9;
+      }
+      body {
+        max-width: 880px;
+        margin: 48px auto;
+        padding: 0 20px;
+        line-height: 1.6;
+      }
+      header {
+        border-bottom: 2px solid #203f35;
+        padding-bottom: 24px;
+        margin-bottom: 28px;
+      }
+      h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+      }
+      h2 {
+        font-size: 1.25rem;
+      }
+      a {
+        color: #205d49;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      input,
+      button {
+        font: inherit;
+        padding: 12px;
+        border: 1px solid #76827b;
+        border-radius: 4px;
+      }
+      input {
+        box-sizing: border-box;
+        width: 100%;
+        background: white;
+      }
+      button {
+        cursor: pointer;
+        background: #203f35;
+        color: white;
+        margin-top: 12px;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      a:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #a07124;
+        outline-offset: 3px;
+      }
+      .examples {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .examples button {
+        background: transparent;
+        color: #203f35;
+        padding: 6px 12px;
+      }
+      .muted {
+        color: #526059;
+        font-size: 0.9rem;
+      }
+      #status {
+        padding: 16px 0;
+        font-weight: 600;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        text-align: right;
+        padding: 10px 6px;
+        border-bottom: 1px solid #d4dcd5;
+      }
+      th:first-child,
+      td:first-child {
+        text-align: left;
+      }
+      pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        background: #eef1ec;
+        padding: 16px;
+        font-size: 0.85rem;
+      }
+      li {
+        margin: 6px 0;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      #identity {
+        overflow-wrap: anywhere;
+      }
+      footer {
+        margin-top: 40px;
+        border-top: 1px solid #d4dcd5;
+        padding-top: 16px;
+      }
+      details {
+        margin-top: 24px;
+      }
+      summary {
+        cursor: pointer;
+      }
+      @media (max-width: 520px) {
+        body {
+          margin: 24px auto;
+        }
+        h1 {
+          font-size: 1.7rem;
+        }
+        th,
+        td {
+          padding: 8px 4px;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="https://github.com/miemiemi2/statelift-ctc"
+        >StateLift / source & evidence</a
+      >
+      <h1>Verify what changed the money.</h1>
+      <p>
+        A proof that a payment goal was still unfilled releases its guarantee.
+        The goal stays open for another executor.
+      </p>
+      <p class="muted">
+        Read-only · Creditcoin testnet + Ethereum Sepolia · No wallet,
+        signatures or transactions required.
+      </p>
+    </header>
+    <main>
+      <form id="form">
+        <label for="query">Published outcome, transaction hash or goal ID</label
+        ><input
+          id="query"
+          value="expiry"
+          spellcheck="false"
+          autocomplete="off"
+          aria-describedby="hint"
+        />
+        <p id="hint" class="muted">
+          Matches the four published evidence bundles. Other transactions are
+          not supported.
+        </p>
+        <div class="examples" aria-label="Examples">
+          <button type="button" data-act="expiry">Unfilled expiry</button
+          ><button type="button" data-act="normal">Normal payment</button
+          ><button type="button" data-act="late">Late proof</button
+          ><button type="button" data-act="relay">Same-goal relay</button>
+        </div>
+        <button id="go" type="submit">Verify against public RPC</button>
+      </form>
+      <p id="status" role="status" aria-live="polite">
+        Choose an outcome, then verify its proof and historical balances.
+      </p>
+      <section id="result" hidden>
+        <h2 id="headline"></h2>
+        <p id="identity"></p>
+        <p>
+          <a id="explorer" target="_blank" rel="noopener"
+            >View settlement or release transaction ↗</a
+          >
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>
+              Escrow accounting at the end of the preceding block and the
+              transaction block (tCTC)
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Balance bucket</th>
+                <th scope="col">Before</th>
+                <th scope="col">After</th>
+                <th scope="col">Change</th>
+              </tr>
+            </thead>
+            <tbody id="balances"></tbody>
+          </table>
+        </div>
+        <h2>Checks performed</h2>
+        <ul id="checks"></ul>
+        <details>
+          <summary>Full verification result</summary>
+          <pre id="raw"></pre>
+        </details>
+      </section>
+      <noscript
+        >Enable JavaScript to query RPC. Published JSON evidence remains
+        available in the repository.</noscript
+      >
+    </main>
+    <footer class="muted">
+      Checks use public RPC responses and the published deployment manifest.
+      They re-run the deployed fact verifier and compare block-end accounting;
+      they are not an independent consensus client or a security audit. Later
+      withdrawals do not alter these historical results.
+    </footer>
+    <script type="module" src="./verifier.mjs"></script>
+  </body>
+</html>

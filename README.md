@@ -68,7 +68,7 @@ It uses public Sepolia and Creditcoin RPCs and public evidence files. Rerunning 
 npm test
 ```
 
-Full-suite baseline (before the added multi-round case): **107 passed, 0 failed**, in about 18 minutes on this ARM64 host. [Raw output](evidence/full-recheck.log). Tests run sequentially to avoid redundant parallel Solidity compilation pressure. Ganache's native-binding fallback is a performance warning, not by itself a failed assertion.
+Full-suite baseline (after the final fixture cleanup): **108 passed, 0 failed**, in about 18 minutes on this ARM64 host. [Raw output](evidence/full-recheck.log). Tests run sequentially to avoid redundant parallel Solidity compilation pressure. Ganache's native-binding fallback is a performance warning, not by itself a failed assertion.
 
 The updated negative-fact suite additionally passes **13/13**, including two independent expiries followed by a third-round settlement on the same goal ([validation log](evidence/multi-round-validation.log)).
 

@@ -15,6 +15,7 @@ These are confirmed transactions, not mock proof-builder responses. Separate ope
 | Normal payment | [0xeffe0ce3…](https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9) | Winner gains R from held principal; B unlocks |
 | Payment proven late | [0x742f0927…](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20) | Operator keeps refunded R; the dedicated B pays the winner |
 | Old executor never paid | [0xa532ba0a…](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af) | R1 returned at D; executor 2 completes the same G; old B1 releases |
+| Unfilled expiry | [0xc281cefe…](https://creditcoin-testnet.blockscout.com/tx/0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6) | After R1 refund, an authenticated post-T unfilled fact releases B1; G remains open |
 
 A second, validly signed source payment attempt was **mined and reverted**, leaving recipient and payer USDC balances unchanged: [duplicate receipt](evidence/testnet/duplicate-payment.json). All credits were subsequently withdrawn to their role wallets; gas-adjusted native balance deltas were verified and the escrow reconciled to zero: [withdrawal evidence](evidence/testnet/withdrawals.json).
 

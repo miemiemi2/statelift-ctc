@@ -13,6 +13,7 @@ Attestcoin is part of the money decision. A real Sepolia payment and its HeaderA
 - Normal: [settlement](https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9) pays from R and unlocks B.
 - Late proof: [settlement](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20) keeps recovered R with the operator and pays from B.
 - Unpaid handoff: [settlement](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af) completes round 2 on the same G and releases old B1.
+- Unfilled expiry: [release](https://creditcoin-testnet.blockscout.com/tx/0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6) releases B1 after a post-T authenticated unfilled fact while leaving G open.
 - [Independent audit](../evidence/testnet/audit.json) checks historical deltas, and [withdrawal evidence](../evidence/testnet/withdrawals.json) shows the final escrow decomposition at zero.
 
 ## Honest limits

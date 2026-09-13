@@ -2,7 +2,7 @@
 
 **跨链付款结果不明时，你的预算不会被无限冻结，付款也不会发生第二次。付款人失联可以换人，迟到的旧付款由该轮专属保障资金承担。**
 
-本地三幕与三条真实测试网路径均已跑通：官方 Sepolia USDC 付款经官方 Attestcoin 证明改变 Creditcoin 的 R/B 归属，所有角色已提款、余额核对为零。逐笔证据见 [测试网集成文档](docs/TESTNET-INTEGRATION.md)，当前完成度见 [STATUS.md](STATUS.md)。
+本地三幕与四条真实测试网路径均已跑通：官方 Sepolia USDC 付款经官方 Attestcoin 证明改变 Creditcoin 的 R/B 归属。前三条路径完成提款核对；expiry 路径保留可复查的 B 与 credits。逐笔证据见 [测试网集成文档](docs/TESTNET-INTEGRATION.md)，当前完成度见 [STATUS.md](STATUS.md)。
 
 ---
 
@@ -15,9 +15,9 @@ node cli/operator.mjs demo-quote
 
 这条命令不碰任何链，它打印一张透明报价：预算 `R`、专属担保 `B`、源付款截止 `T`、清账截止 `D`、保障费 `π`、覆盖范围、保障方的最坏责任，以及为什么"自己留备用金 / 普通 solver 重试 / 单独退款工具"都给不了同一个结果。
 
-完整场景与不可缩水清单在 [PRODUCT-SLICE.md](PRODUCT-SLICE.md)。**所有数字都是演示参数**，不是市场报价、不是已有客户、不是已备流动性。
+**所有数字都是演示参数**，不是市场报价、不是已有客户、不是已备流动性。
 
-购买结果是：在**不知道旧付款到底成没成**时，恢复自己的预算并沿同一 G 安全接力；代价由每轮足额担保明确承担。对近邻的差异与证据边界见 [竞争对照](docs/COMPETITIVE-POSITION.md) 和 [承保模型](research/underwriting-model.md)。
+购买结果是：在**不知道旧付款到底成没成**时，恢复自己的预算并沿同一 G 安全接力；代价由每轮足额担保明确承担。所有数字均为演示参数，承保模型见 [承保模型](research/underwriting-model.md)。
 
 ---
 
@@ -237,4 +237,4 @@ npm run test:cli        # 只跑 CLI 入口
 - 产品不承诺任何故障下都能限时退款：CTC 链停机时不承诺墙钟准时提款，`R` 的购买力不保证，已花的 gas 与 `π` 本身不退。
 - 极端情况下收款人确实收到了款、你也确实取回了 `R`，保障方净亏 `R`。这是**收费、预先锁足资金**的清账期限责任，不是无风险垫款。
 
-当前状态、未完成项与阻塞项见 [STATUS.md](STATUS.md)。设计判断的来龙去脉见 [IMPLEMENTATION.md](IMPLEMENTATION.md) 与 [ACCEPTANCE.md](ACCEPTANCE.md)。
+当前状态、未完成项与阻塞项见 [STATUS.md](STATUS.md)。可复现验收场景见 [ACCEPTANCE.md](ACCEPTANCE.md)。

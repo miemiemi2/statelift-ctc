@@ -89,15 +89,7 @@ For N simultaneous exposures, locked capital must cover the sum of their dedicat
 
 There is no finite bound on B's lock time when usable source facts remain unavailable. Bounded budget recovery protects the operator's principal; it does not create riskless capital recycling for guarantors.
 
-## 8. Alternatives and competitive position
-
-Self-insurance may be preferable for a capital-rich operator. Reserve funds alone do not prevent duplicate execution, but an operator can build the same G gate and assume all late losses itself. StateLift's proposition is an explicit transferable underwriting arrangement, not proof that external underwriting always costs less.
-
-A solver market supplies execution and liquidity. It gives the same complete result only if it also enforces shared goal identity across attempts and reserves a dedicated late-payment obligation. A standalone refund mechanism does not by itself allocate that old obligation safely.
-
-ProofPay is a direct neighbor for Creditcoin-funded Ethereum merchant payments with proof-gated reimbursement. That payment topology is not StateLift's differentiator. index41 demonstrates a strong funded protection promise whose evidence produces compensation. CrossCredit demonstrates cross-chain history producing lower collateral requirements. StateLift must meet that standard of direct funds consequences, while explaining its own capital burden. Detailed source scope and remaining evidence gaps are in docs/COMPETITIVE-POSITION.md.
-
-## 9. Limits and what remains unproven
+## 8. Limits and what remains unproven
 
 The prototype has no evidence of paying customers, market-clearing quotes, independent guarantors or profitable underwriting. CTC/USDC exchange risk, executor inventory needs, USDC blacklisting/upgrades, chain reorganizations and source/destination outages remain relevant. CTC chain unavailability can prevent wall-clock withdrawal at D; gas and premium are not refunded and R's purchasing power is not protected.
 
@@ -114,4 +106,3 @@ Production work would require measured latency/loss distributions, correlated ex
 - evidence/testnet/flow-{normal,late,relay,expiry}.json: transactions and per-role accounting.
 - docs/TESTNET-INTEGRATION.md: official endpoints, proof pipeline and resumption commands.
 - research/underwriting-model.md: pricing assumptions and correlated-loss examples.
-- docs/COMPETITIVE-POSITION.md: index41, CrossCredit and ProofPay comparisons with public source links.

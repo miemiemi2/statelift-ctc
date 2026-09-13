@@ -4,7 +4,7 @@
 
 StateLift protects a Creditcoin payment operator when an Ethereum USDC payment's outcome is uncertain. All attempts share one source-chain goal G, so replacing an executor cannot produce a second compliant payment. Each round reserves its own fully funded guarantee before accepting the operator's budget.
 
-[中文说明](README.zh-CN.md) · [Whitepaper PDF](submission/StateLift-whitepaper.pdf) · [Technical integration](docs/TESTNET-INTEGRATION.md) · [Underwriting economics](research/underwriting-model.md) · [Competitive position](docs/COMPETITIVE-POSITION.md)
+[中文说明](README.zh-CN.md) · [Whitepaper PDF](submission/StateLift-whitepaper.pdf) · [Technical integration](docs/TESTNET-INTEGRATION.md) · [Underwriting economics](research/underwriting-model.md)
 
 [Open the public verifier](https://miemiemi2.github.io/statelift-ctc/web/verifier.html): re-run a published flow’s proof and compare historical R/B/credit balances through public RPC. Supports `expiry`, `normal`, `late`, `relay`, or their published transaction hashes / goal IDs. No wallet required. Locally, run `python3 -m http.server 8080` from the repository root and visit `http://localhost:8080/web/verifier.html`.
 
@@ -103,10 +103,4 @@ Normal root acceptance plus settlement cost 0.001109895 tCTC, above the demo pre
 
 The prototype does not prove customer demand, independent counterparties, profitable underwriting or production security. B can remain locked indefinitely without usable facts. CTC outages can prevent wall-clock withdrawals. USDC upgrades/blacklisting, source-chain assumptions, FX, executor inventory and operational availability remain risks. Failed transactions spend gas; premiums are not refunded.
 
-ProofPay already demonstrates proof-gated cross-chain payments. StateLift's proposed difference is the combined **same-goal handoff + operator clearing deadline + funded late obligation**, not the existence of a solver, tests or an Attestcoin API call. Comparisons with index41 and CrossCredit and the remaining evidence gaps are [explicitly scoped](docs/COMPETITIVE-POSITION.md).
-
-## Legacy isolation
-
-`StateLiftEscrow.sol`, `StateLiftFactVerifier.sol` and their legacy tests preserve an earlier single-round research implementation. They do not implement the current product's cross-round G or dedicated late B. The old `web/` research UI is available only via `npm run legacy:web` and carries a historical label. `npm start` opens current CLI help.
-
-[Current status](STATUS.md) · [Implementation report](IMPLEMENTATION-REPORT.md) · [Raw local demo](evidence/three-acts.md)
+[Current status](STATUS.md) · [Raw local demo](evidence/three-acts.md)

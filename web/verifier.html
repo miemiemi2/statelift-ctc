@@ -171,15 +171,15 @@
       <a href="https://github.com/miemiemi2/statelift-ctc"
         >StateLift / source & evidence</a
       >
-      <h1>Verify what changed the money.</h1>
+      <h1>Verify a testnet transaction.</h1>
       <p>
-        A proof that a payment goal was still unfilled releases its guarantee.
-        The goal stays open for another executor.
+        Check a recorded payment settlement or guarantee release using public
+        RPC and the deployed proof verifier.
       </p>
       <p>
         <strong
-          >Attestcoin proves what happened. StateLift proves a payment
-          hadn’t.</strong
+          >For guarantee release, StateLift verifies that the payment goal was
+          unfilled at an authenticated Ethereum block after the deadline.</strong
         >
       </p>
       <p class="muted">
@@ -231,7 +231,7 @@
             </caption>
             <thead>
               <tr>
-                <th scope="col">Balance bucket</th>
+                <th scope="col">Escrow balance</th>
                 <th scope="col">Before</th>
                 <th scope="col">After</th>
                 <th scope="col">Change</th>

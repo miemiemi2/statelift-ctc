@@ -29,7 +29,7 @@ function render() {
   $("title").textContent = scene.title;
   $("story").textContent = scene.story;
   $("caption").textContent =
-    scene.caption || "Recorded per-goal / per-round outcome";
+    scene.caption || "Recorded state";
   $("rows").replaceChildren();
   for (const row of scene.rows) {
     const tr = document.createElement("tr");
@@ -73,7 +73,7 @@ function render() {
   $("verify").hidden = scene.act !== "expiry";
   if (isCase && !liveCache.has(scene.act))
     $("live-status").textContent =
-      "Live verification will run when this case opens…";
+      "Checking the recorded expiry transaction against public RPC…";
   $("step").textContent = `${position + 1} / ${scenes.length}`;
   $("back").disabled = busy || position === 0;
   $("next").disabled = busy;
@@ -125,9 +125,9 @@ async function initialise() {
         case: "Case A · Same-goal handoff",
         act: "relay",
         flow: relay,
-        title: "The executor disappears. The payment still needs to happen.",
+        title: "The payment proof hasn’t arrived.",
         story:
-          "A Creditcoin operator needs to pay a supplier in Ethereum USDC. No payment proof has arrived. Keeping the budget locked blocks progress; starting a separate payment could pay twice.",
+          "An operator has reserved funds on Creditcoin for a supplier payment in Ethereum USDC. Without proof of payment, those funds remain locked.",
         rows: [
           [
             "Supplier payment",
@@ -137,36 +137,36 @@ async function initialise() {
           ["Round 1 guarantee funded in advance", B],
         ],
         meaning:
-          "StateLift gives the operator a deadline to recover the budget and a safe way to continue.",
+          "The operator can recover these funds at the agreed deadline, even if the proof has not arrived.",
         boundary:
-          "Target-customer scenario. Testnet amounts; no established customer or market quote.",
+          "Illustrative supplier scenario using real testnet transactions.",
         transactions: [["Open round 1", "open-1"]],
       },
       {
         case: "Case A · Same goal, deadline reached",
         act: "relay",
         flow: relay,
-        title: "Recover the budget without declaring “unpaid”.",
+        title: "The budget is now available to withdraw.",
         story:
-          "At the clearing deadline, the operator claims the round’s principal. Its guarantee remains liable while the destination chain still lacks a payment fact.",
+          "The operator has claimed the reserved funds after the settlement deadline. The guarantee stays locked in case a valid payment proof arrives later.",
         rows: [
           ["Round 1 budget", `${R} credited to the operator`],
           ["Round 1 guarantee", `${B} remains locked`],
-          ["Meaning of the refund", "Payment outcome still unknown"],
+          ["Payment status", "Not yet established on Creditcoin"],
         ],
         meaning:
-          "Budget recovery does not erase responsibility for a real payment.",
+          "A late payment proof can still be settled from this round’s guarantee.",
         boundary:
-          "Credited means withdrawable inside the escrow. This frame does not claim it has already been withdrawn or reused.",
+          "The funds are available to withdraw from escrow. This record does not show a withdrawal or reuse.",
         transactions: [["Deadline refund", "refund-1"]],
       },
       {
         case: "Case A · Same goal, replacement executor",
         act: "relay",
         flow: relay,
-        title: "A new executor finishes the same payment goal.",
+        title: "A second executor completes the payment.",
         story:
-          "Round 2 brings its own principal, premium and guarantee. The replacement pays through the same source-chain goal. The accepted winning fact settles round 2 and releases round 1’s unused guarantee.",
+          "The operator funds a second round, with a new guarantee and fee. A replacement executor pays the supplier under the same goal ID. Its payment proof is accepted on Creditcoin.",
         rows: [
           [
             "Source winner",
@@ -179,9 +179,9 @@ async function initialise() {
           ["Round 1 guarantee", `${B} released`],
         ],
         meaning:
-          "Every retry shares one source-chain gate: at most one compliant payment per goal.",
+          "GoalRouter accepts only one compliant payment for this goal, across all rounds.",
         boundary:
-          "The guarantee applies to executions through GoalRouter. It does not prevent unrelated direct transfers.",
+          "Duplicate-payment protection covers GoalRouter payments only. Direct transfers outside the router are not covered.",
         transactions: [
           ["Replacement source payment", "pay-2", "sepolia"],
           ["Round 2 settlement", "settle"],
@@ -192,27 +192,27 @@ async function initialise() {
         case: "Case B · Separate goal / separate testnet record",
         act: "late",
         flow: late,
-        title: "What if the old executor had already paid?",
+        title: "The payment was on time, but its proof was late.",
         story:
-          "In this different case, the supplier was paid before the payment deadline, but settlement arrived after the clearing deadline. The operator keeps its recovered principal; the dedicated guarantee pays the executor.",
+          "In this separate case, the executor paid the supplier on time. By the time settlement took place on Creditcoin, the operator had already recovered the budget.",
         rows: [
           [
             "Operator’s recovered principal",
             `${money(late.rounds["1"].principal)} retained`,
           ],
           [
-            "Winner’s payment",
+            "Executor’s settlement credit",
             `${money(late.rounds["1"].principal)} credited from this round’s guarantee`,
           ],
           [
             "Guarantor’s exposure",
-            "Real principal loss, not just a temporary advance",
+            "The guarantee can be spent in full",
           ],
         ],
         meaning:
-          "Refunding the operator does not leave a proven payment unpaid.",
+          "The executor receives credit from this round’s guarantee. The operator’s recovered funds are not taken back.",
         boundary:
-          "Separate goal from Case A. The late-proof timing was deliberately exercised; it does not estimate natural late-loss probability.",
+          "Separate transaction record from Case A. Proof submission was deliberately delayed for this test.",
         transactions: [
           ["Original source payment", "pay-1", "sepolia"],
           ["Operator refund", "refund-1"],
@@ -223,9 +223,9 @@ async function initialise() {
         case: "Case C · Separate goal / separate testnet record",
         act: "expiry",
         flow: expiry,
-        title: "Silence alone cannot unlock the guarantee.",
+        title: "The guarantee is still locked after the deadline.",
         story:
-          "This third goal was still unfilled after the round’s source payment deadline. The budget has been credited back, but a missing receipt alone cannot safely release the guarantee.",
+          "In this third case, the operator has recovered the budget. To release the guarantee too, the contract needs proof that the goal was still unfilled after this round’s payment deadline.",
         rows: [
           [
             "Round guarantee before expiry release",
@@ -235,9 +235,9 @@ async function initialise() {
           ["Evidence needed", "Authenticated post-deadline unfilled state"],
         ],
         meaning:
-          "Attestcoin proves what happened. StateLift proves a payment hadn’t.",
+          "StateLift uses an Attestcoin-authenticated block hash to verify the goal’s unfilled state.",
         boundary:
-          "The claim concerns this GoalRouter goal at an authenticated source block, not arbitrary absence.",
+          "The proof covers this goal’s state at a specific Ethereum block after the deadline.",
         transactions: [
           ["Principal refund", "refund-1"],
           ["Source header anchor", "anchor-expiry", "sepolia"],
@@ -245,40 +245,40 @@ async function initialise() {
         ],
       },
       {
-        case: "Case C · Authenticated fact changes capital ownership",
+        case: "Case C · Guarantee release",
         act: "expiry",
         flow: expiry,
         live: true,
-        title: "Release the guarantee. Keep the goal open.",
+        title: "The unfilled proof releases this round’s guarantee.",
         story:
-          "The authenticated state proof shows the goal was still unfilled after the round expired. That round can no longer win, so its guarantee becomes available. A new round can still pursue the same goal.",
+          "The contract accepts the state proof and makes this round’s guarantee available again. The expired round cannot make a valid payment.",
         rows: [
           ["Guarantee released", money(released)],
-          ["Released round", "Closed to further payment liability"],
+          ["Released round", "No further valid payments"],
           ["Payment goal", "Still open for a new funded round"],
         ],
         meaning:
-          "An absence proof changes Creditcoin funds, not just a “proof valid” label.",
+          "The goal remains open, so a new funded round can still complete the payment.",
         boundary:
-          "Recorded outcome above. Use “Verify expiry live” below to re-run the checks through public RPC.",
+          "The table shows the recorded transaction result. The live check below revalidates it against public RPC.",
         transactions: [["Release guarantee by expiry", "release-expiry"]],
       },
       {
-        case: "StateLift · Funded clearing-deadline protection",
-        title: "Recover the budget. Continue safely. Honor real payments.",
+        case: "StateLift · Summary",
+        title: "Each payment round has a deadline and its own guarantee.",
         story:
-          "For payment operators who need a clearing deadline: keep the same goal across attempts, recover principal when the outcome is uncertain, and fund late-payment responsibility in advance.",
+          "The operator can recover its budget at the settlement deadline and fund another attempt under the same goal. Each round’s guarantee covers a valid payment settled after that budget has been returned.",
         rows: [
-          ["Operator buys", "Budget recovery and safe same-goal handoff"],
+          ["Operator receives", "Budget recovery at the settlement deadline"],
           [
-            "Guarantor provides",
+            "Guarantor funds",
             "A separately funded guarantee for each round",
           ],
-          ["Proof decides", "Who owns the reserved Creditcoin funds"],
+          ["Accepted proof determines", "Settlement or guarantee release"],
         ],
-        meaning: "One payment goal. At most one compliant supplier payment.",
+        meaning: "The operator pays a fee for this protection. The guarantor can lose the full guaranteed amount.",
         boundary:
-          "Testnet prototype. Guarantees carry real loss risk; sustainable pricing and customer demand remain unverified.",
+          "Testnet prototype. Customer demand and sustainable guarantee pricing have not been validated.",
         transactions: [],
       },
     ];

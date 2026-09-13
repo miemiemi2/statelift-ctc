@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>StateLift · One payment goal, a safe way forward</title>
+    <title>StateLift · Payment demo</title>
     <link rel="stylesheet" href="./demo.css" />
   </head>
   <body>
@@ -25,7 +25,7 @@
       </p>
       <section id="stage" aria-labelledby="title">
         <p id="case" class="case"></p>
-        <h1 id="title">One payment goal, a safe way forward.</h1>
+        <h1 id="title">StateLift payment demo</h1>
         <p id="story" class="story">
           Loading the published transaction records…
         </p>
@@ -35,7 +35,7 @@
           </caption>
           <thead>
             <tr>
-              <th scope="col">What matters</th>
+              <th scope="col">Item</th>
               <th scope="col">Recorded result</th>
             </tr>
           </thead>
@@ -51,7 +51,7 @@
         <div id="live" hidden>
           <button id="verify" type="button">Verify expiry live</button>
           <p id="live-status" role="status" aria-live="polite">
-            Optional: query public RPC and re-run the deployed verifier now.
+            This check reads public RPC and calls the deployed verifier.
           </p>
           <div id="live-result" hidden>
             <p id="live-summary"></p>
@@ -70,9 +70,8 @@
       <button id="retry" type="button" hidden>Retry loading evidence</button>
     </main>
     <footer>
-      Demonstration amounts and deadlines. Every round requires a separate
-      funded guarantee and a premium. Customer demand and sustainable pricing
-      are not yet established.
+      Each round requires its own funded guarantee and fee. Amounts and
+      deadlines shown here are testnet examples.
     </footer>
     <noscript
       >Enable JavaScript to load the evidence-backed demonstration. Source

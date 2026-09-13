@@ -50,10 +50,10 @@ $("form").onsubmit = async (event) => {
       act === "expiry"
         ? "Guarantee released. Goal still open."
         : act === "late"
-          ? "Late winner paid from dedicated guarantee."
+          ? "The executor received credit from the round’s guarantee."
           : act === "relay"
-            ? "Second executor paid. Old guarantee released."
-            : "Winner paid from reserved principal.";
+            ? "Round 2 settled; round 1’s guarantee was released."
+            : "The executor received credit from the reserved budget.";
     $("identity").textContent =
       `${r.proof.type} · Creditcoin block ${r.block} · Goal ${r.goalId}`;
     $("explorer").href =

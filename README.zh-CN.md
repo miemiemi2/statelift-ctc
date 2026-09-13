@@ -198,12 +198,6 @@ GoalRouter                               StateLiftGoalEscrow
 | `cli/operator.mjs` | 运营者控制台 |
 | `lib/local/` | 本地世界的部署与证明辅助（测试与 CLI 共用同一份实现） |
 
-**legacy，不是产品路径**
-
-旧 `web/` 研究界面仅通过 `npm run legacy:web` 打开，有显式历史标识；`npm start` 为当前 CLI 帮助。
-
-`contracts/payment/StateLiftEscrow.sol` 与 `contracts/payment/StateLiftFactVerifier.sol` 是早期的单轮 escrow，连同 `tests/payment/escrow.test.cjs`、`tests/payment/fact-integration.test.cjs` 保留下来只为防回归。它们**不**实现 D 归属、专属担保或跨轮防重；它们的源端防重锚点是每轮一次而不是每目标一次，正是这个缺口促成了 `GoalRouter`。不要把它们当作本产品的实现。
-
 ---
 
 ## 测试

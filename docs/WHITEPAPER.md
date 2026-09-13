@@ -95,7 +95,7 @@ The prototype has no evidence of paying customers, market-clearing quotes, indep
 
 No claim is made that the code has received a professional security audit. Negative facts depend on an authenticated state root, the correct router code hash, and a source timestamp beyond T. Missing evidence is never treated as evidence that payment did not occur.
 
-Production work would require measured latency/loss distributions, correlated exposure caps, independent capital and execution providers, key-management review, adversarial audit, source anchoring operations and commercial validation. Adding AI, unrelated assets or a generalized dashboard would not resolve these requirements.
+Production work would require measured latency/loss distributions, correlated exposure caps, independent capital and execution providers, key-management review, adversarial audit, source anchoring operations and commercial validation.
 
 ## Evidence and references
 

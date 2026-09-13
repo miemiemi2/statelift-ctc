@@ -68,7 +68,7 @@ function render() {
     li.append(a);
     $("links").append(li);
   }
-  const isCase = Boolean(scene.act);
+  const isCase = scene.act === "expiry";
   $("live").hidden = !isCase;
   $("verify").hidden = scene.act !== "expiry";
   if (isCase && !liveCache.has(scene.act))
@@ -284,7 +284,7 @@ async function initialise() {
     ];
     position = 0;
     render();
-    void startLive(scenes[position].act);
+    if (scenes[position].act === "expiry") void startLive("expiry");
   } catch (error) {
     $("error").hidden = false;
     $("error").textContent = `Cannot load the demonstration: ${error.message}`;
@@ -335,14 +335,14 @@ $("next").onclick = () => {
   if (!busy) {
     position = (position + 1) % scenes.length;
     render();
-    void startLive(scenes[position].act);
+    if (scenes[position].act === "expiry") void startLive("expiry");
   }
 };
 $("back").onclick = () => {
   if (!busy && position > 0) {
     position--;
     render();
-    void startLive(scenes[position].act);
+    if (scenes[position].act === "expiry") void startLive("expiry");
   }
 };
 $("retry").onclick = initialise;

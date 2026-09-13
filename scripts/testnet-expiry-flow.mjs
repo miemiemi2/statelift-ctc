@@ -15,6 +15,17 @@ try{await assertChains();if(step==='start'){s.terms={businessRef:id(`StateLift:e
   const latest=await providers.sepolia.getBlock('latest'); sourceBlock=latest.number-1; // Leave room for the anchor tx to land in a later source block.
   if(sourceBlock < 1) throw Error('source chain too short'); s.anchorSourceBlock=sourceBlock; save(file,s);
  }
+ // A same-block anchor cannot be accepted: RootInbox requires header.height < anchorHeight.
+ // If an earlier checkpoint landed in the chosen source block, discard only that
+ // checkpoint and anchor a fresh source height one block behind the tip.
+ if (s.transactions?.['anchor-expiry']) {
+  const prior = await providers.sepolia.getTransactionReceipt(s.transactions['anchor-expiry'].hash);
+  if (prior && Number(prior.blockNumber) <= Number(sourceBlock)) {
+   delete s.transactions['anchor-expiry']; delete s.anchorSourceBlock;
+   sourceBlock = (await providers.sepolia.getBlockNumber()) - 1;
+   s.anchorSourceBlock = sourceBlock; save(file,s);
+  }
+ }
  await tx('anchor-expiry','sepolia',()=>contract('HeaderAnchor').anchor(sourceBlock,{gasLimit:100000}));
  // The anchor transaction is checkpointed; always derive the exact source height from its calldata if needed.
  if(!s.anchorSourceBlock){ const atx=await providers.sepolia.getTransaction(s.transactions['anchor-expiry'].hash); sourceBlock=Number(new AbiCoder().decode(['uint64'],`0x${atx.data.slice(10)}`)[0]); s.anchorSourceBlock=sourceBlock; save(file,s); }

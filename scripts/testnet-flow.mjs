@@ -62,7 +62,7 @@ async function prove() {
   if(!response.ok)throw Error(`Prover HTTP ${response.status}; keep anchor and retry proof later`);
   const proof=JSON.parse(raw);
   assert.equal(Number(proof.chainKey),1);assert.equal(proof.txHash.toLowerCase(),state.transactions.anchor.hash.toLowerCase());
-  const abi=JSON.parse(fs.readFileSync('research/sdk/package/dist/block-prover/block_prover.json'));
+  const abi=JSON.parse(fs.readFileSync('lib/proof/block_prover.json'));
   const native=new Contract('0x0000000000000000000000000000000000000FD2',abi,providers.creditcoin);
   const verify='verify(uint64,uint64,bytes,(bytes32,(bytes32,bool)[]),(bytes32,bytes32[]))';
   assert.equal(await native[verify](1,proof.headerNumber,proof.txBytes,proof.merkleProof,proof.continuityProof),true);

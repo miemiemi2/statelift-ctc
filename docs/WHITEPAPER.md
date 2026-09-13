@@ -57,7 +57,7 @@ The RPC, proof builder and submitting process transport evidence; they are not a
 
 The observed prover requires a 32-source-block reorg-protection window plus attestation availability. Proof generation and destination inclusion add further latency. These observations are not a latency SLA. The source anchor must execute within the EVM's 256-block BLOCKHASH history window; permissionless recovery still depends on data and timely anchoring availability.
 
-## 6. Three observable paths
+## 6. Four observable paths
 
 | Path | What actually happens | Allocation required |
 |---|---|---|
@@ -65,11 +65,11 @@ The observed prover requires a 32-source-block reorg-protection window plus atte
 | Late proof | Executor pays before T; operator claims at D; proof arrives later | Operator keeps R; that round's B pays winner |
 | Unpaid handoff | Old executor never pays; R1 returned at D; executor 2 pays under G | R2 to executor 2; winning fact releases old B1; one supplier payment |
 
-The local suite executes all three paths, failed second payments, wrong facts, deadlines, negative storage facts and balance invariants. The current full run passed 107 tests with zero failures. The recorded local demonstration completed 49 CLI commands and 13 invariant snapshots. Local USDC and Attestcoin substitutes are explicitly labelled and are not evidence of real testnet integration.
+The local suite executes all four paths, failed second payments, wrong facts, deadlines, negative storage facts and balance invariants. The current full run passed 107 tests with zero failures. The recorded local demonstration completed 49 CLI commands and 13 invariant snapshots. Local USDC and Attestcoin substitutes are explicitly labelled and are not evidence of real testnet integration.
 
 Real testnet receipts, official responses and per-role before/after snapshots are stored separately in evidence/testnet. Roles use distinct addresses controlled by one test harness; this establishes mechanics, not independent economic counterparties. A deployment or proof-validity result alone does not establish settlement: the relevant flow must include confirmed settle and changed credits.
 
-All three real testnet paths have confirmed Creditcoin settlement transactions. Normal settlement is [0xeffe0ce3…](https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9), block 5,481,035. Late settlement is [0x742f0927…](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20), block 5,481,040. Round-2 handoff settlement is [0xa532ba0a…](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af), block 5,481,066, followed by old-round guarantee release at block 5,481,067.
+All four real testnet paths have confirmed Creditcoin state-changing transactions. Normal settlement is [0xeffe0ce3…](https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9), block 5,481,035. Late settlement is [0x742f0927…](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20), block 5,481,040. Round-2 handoff settlement is [0xa532ba0a…](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af), block 5,481,066, followed by old-round guarantee release at block 5,481,067. The unfilled expiry path released B at [0xc281cefe…](https://creditcoin-testnet.blockscout.com/tx/0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6), block 5,481,512, while leaving G open.
 
 A separately mined duplicate payment transaction reverted on Sepolia; both payer and recipient USDC balances remained unchanged. After all three paths, each credited role withdrew to its own wallet; gas-adjusted native balance changes were checked and all escrow accounting buckets reconciled to zero (evidence/testnet/withdrawals.json). The complete testnet execution audit, including historical CTC balance-bucket changes at settlement blocks, is maintained in evidence/testnet/audit.json. This is stronger evidence than a proof-builder response or a deployment address.
 

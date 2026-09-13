@@ -6,6 +6,8 @@ StateLift protects a Creditcoin payment operator when an Ethereum USDC payment's
 
 [中文说明](README.zh-CN.md) · [Whitepaper PDF](submission/StateLift-whitepaper.pdf) · [Technical integration](docs/TESTNET-INTEGRATION.md) · [Underwriting economics](research/underwriting-model.md) · [Competitive position](docs/COMPETITIVE-POSITION.md)
 
+Public read-only verifier page: open `web/verifier.html` locally or serve the repository and enter any Creditcoin transaction hash. It queries the public RPC and never signs or sends a transaction.
+
 ## Real testnet results
 
 These are confirmed transactions, not mock proof-builder responses. Separate operator, guarantor, executor, replacement executor and recipient addresses were used.

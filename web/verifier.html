@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>StateLift public verifier</title>
+<style>body{font:16px system-ui;max-width:760px;margin:40px auto;padding:0 18px;color:#18212b}input,button{font:inherit;padding:10px}input{width:560px;max-width:90%}pre{background:#f3f5f7;padding:14px;overflow:auto}.muted{color:#667}</style>
+<h1>StateLift public verifier</h1>
+<p class="muted">Read-only Creditcoin testnet check. The page queries public RPC; it does not sign or send transactions.</p>
+<input id="tx" placeholder="Creditcoin transaction hash" value="0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6"><button id="go">Verify</button>
+<pre id="out">Enter a transaction hash.</pre>
+<script type="module">
+import {JsonRpcProvider} from 'https://cdn.jsdelivr.net/npm/ethers@6.15.0/+esm';
+const p=new JsonRpcProvider('https://rpc.cc3-testnet.creditcoin.network',102031,{staticNetwork:true});
+const out=document.querySelector('#out');
+document.querySelector('#go').onclick=async()=>{const h=document.querySelector('#tx').value.trim();try{if(!/^0x[0-9a-fA-F]{64}$/.test(h))throw Error('Enter a 32-byte transaction hash');const [t,r,b]=await Promise.all([p.getTransaction(h),p.getTransactionReceipt(h),p.getBlock('latest')]);if(!t||!r)throw Error('Transaction not found on Creditcoin testnet');out.textContent=JSON.stringify({network:'Creditcoin testnet',chainId:102031,hash:h,block:r.blockNumber,status:r.status,gasUsed:r.gasUsed.toString(),from:t.from,to:t.to,latestBlock:b.number,explorer:`https://creditcoin-testnet.blockscout.com/tx/${h}`},null,2)}catch(e){out.textContent=`Verification error: ${e.message}`}};
+</script>

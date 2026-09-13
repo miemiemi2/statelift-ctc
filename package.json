@@ -1,0 +1,28 @@
+{
+  "name": "statelift-ctc",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node cli/operator.mjs help",
+    "legacy:web": "node web/server.mjs",
+    "test": "node --test --test-concurrency=1 tests/cli/*.test.js tests/cli/*.test.cjs tests/proof/*.test.cjs tests/payment/*.test.cjs tests/fixtures/*.test.cjs tests/source/*.test.cjs tests/goal/*.test.cjs",
+    "local:up": "node cli/operator.mjs up",
+    "local:down": "node -e \"const fs=require('fs'),p='.statelift-local/deployment.json'; if(!fs.existsSync(p)){console.log('no local world running');process.exit(0)} const d=JSON.parse(fs.readFileSync(p,'utf8')); try{process.kill(d.pid,'SIGTERM');console.log('stopped pid',d.pid)}catch(e){console.log('process gone; clearing state')} fs.rmSync(p,{force:true});\"",
+    "op": "node cli/operator.mjs",
+    "test:contracts": "node --test --test-concurrency=1 tests/proof/*.test.cjs tests/payment/*.test.cjs tests/fixtures/*.test.cjs tests/source/*.test.cjs tests/goal/*.test.cjs",
+    "test:cli": "node --test --test-concurrency=1 tests/cli/*.test.js tests/cli/*.test.cjs",
+    "demo:three-acts": "node scripts/demo-three-acts.mjs"
+  },
+  "dependencies": {
+    "@ethereumjs/rlp": "^5.0.2",
+    "@ethereumjs/trie": "^6.2.1",
+    "ethers": "^6.15.0",
+    "ganache": "^7.9.2",
+    "solc": "^0.8.30",
+    "solc-0612": "npm:solc@^0.6.12"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-solidity": "^1.4.3"
+  }
+}

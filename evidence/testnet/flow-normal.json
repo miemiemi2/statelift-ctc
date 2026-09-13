@@ -1,0 +1,362 @@
+{
+  "file": "flow-normal",
+  "act": "normal",
+  "createdAt": "2026-09-13T13:27:56.147Z",
+  "snapshots": [
+    {
+      "label": "round-1-open",
+      "at": "2026-09-13T13:28:34.694Z",
+      "ctcBlock": 5480989,
+      "sourceBlock": 11696189,
+      "invariant": {
+        "balance": "300600000000000000",
+        "heldR": "100000000000000000",
+        "availableB": "100000000000000000",
+        "lockedB": "100000000000000000",
+        "credits": "600000000000000"
+      },
+      "credits": {
+        "operator": "0",
+        "guarantor": "600000000000000",
+        "executor": "0",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "1",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "0"
+    },
+    {
+      "label": "paid-source-1-not-settled",
+      "at": "2026-09-13T13:28:52.060Z",
+      "ctcBlock": 5480990,
+      "sourceBlock": 11696191,
+      "invariant": {
+        "balance": "300600000000000000",
+        "heldR": "100000000000000000",
+        "availableB": "100000000000000000",
+        "lockedB": "100000000000000000",
+        "credits": "600000000000000"
+      },
+      "credits": {
+        "operator": "0",
+        "guarantor": "600000000000000",
+        "executor": "0",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "1",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "100000"
+    },
+    {
+      "label": "round-1-open",
+      "at": "2026-09-13T13:29:50.984Z",
+      "ctcBlock": 5480994,
+      "sourceBlock": 11696196,
+      "invariant": {
+        "balance": "300600000000000000",
+        "heldR": "100000000000000000",
+        "availableB": "100000000000000000",
+        "lockedB": "100000000000000000",
+        "credits": "600000000000000"
+      },
+      "credits": {
+        "operator": "0",
+        "guarantor": "600000000000000",
+        "executor": "0",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "1",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "100000"
+    },
+    {
+      "label": "paid-source-1-not-settled",
+      "at": "2026-09-13T13:29:54.242Z",
+      "ctcBlock": 5480994,
+      "sourceBlock": 11696196,
+      "invariant": {
+        "balance": "300600000000000000",
+        "heldR": "100000000000000000",
+        "availableB": "100000000000000000",
+        "lockedB": "100000000000000000",
+        "credits": "600000000000000"
+      },
+      "credits": {
+        "operator": "0",
+        "guarantor": "600000000000000",
+        "executor": "0",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "1",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "100000"
+    },
+    {
+      "label": "proof-valid-but-not-settled",
+      "at": "2026-09-13T13:39:52.548Z",
+      "ctcBlock": 5481034,
+      "sourceBlock": 11696242,
+      "invariant": {
+        "balance": "1002400000000000000",
+        "heldR": "200000000000000000",
+        "availableB": "200000000000000000",
+        "lockedB": "400000000000000000",
+        "credits": "202400000000000000"
+      },
+      "credits": {
+        "operator": "200000000000000000",
+        "guarantor": "2400000000000000",
+        "executor": "0",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "1",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "300000"
+    },
+    {
+      "label": "before-settlement",
+      "at": "2026-09-13T13:39:55.920Z",
+      "ctcBlock": 5481034,
+      "sourceBlock": 11696242,
+      "invariant": {
+        "balance": "1002400000000000000",
+        "heldR": "200000000000000000",
+        "availableB": "200000000000000000",
+        "lockedB": "400000000000000000",
+        "credits": "202400000000000000"
+      },
+      "credits": {
+        "operator": "200000000000000000",
+        "guarantor": "2400000000000000",
+        "executor": "0",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "1",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "300000"
+    },
+    {
+      "label": "after-settlement",
+      "at": "2026-09-13T13:40:03.850Z",
+      "ctcBlock": 5481035,
+      "sourceBlock": 11696243,
+      "invariant": {
+        "balance": "1002400000000000000",
+        "heldR": "100000000000000000",
+        "availableB": "300000000000000000",
+        "lockedB": "300000000000000000",
+        "credits": "302400000000000000"
+      },
+      "credits": {
+        "operator": "200000000000000000",
+        "guarantor": "2400000000000000",
+        "executor": "100000000000000000",
+        "executor2": "0"
+      },
+      "rounds": {
+        "1": {
+          "state": "2",
+          "principalReturned": false,
+          "principal": "100000000000000000",
+          "guarantee": "100000000000000000",
+          "premium": "600000000000000",
+          "payBy": "1789307895",
+          "clearBy": "1789313295"
+        }
+      },
+      "recipientUSDC": "300000"
+    }
+  ],
+  "rounds": {
+    "1": {
+      "goalId": "0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159",
+      "roundNumber": 1,
+      "guarantor": "0xd9dD6aD78B0aC23536CcD1dc189e79A31E466C6e",
+      "payBy": 1789307895,
+      "clearBy": 1789313295,
+      "principal": "100000000000000000",
+      "guarantee": "100000000000000000",
+      "premium": "600000000000000",
+      "acceptBefore": 1789306695,
+      "guarantorNonce": 1789306098041
+    }
+  },
+  "terms": {
+    "businessRef": "0x9fe1f89666bbac2a637c6dcdd669102941dd9ca8992bc51416906278cc0e07a3",
+    "token": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+    "recipient": "0x19e42B46985D61d42142931420d98b5693A6007f",
+    "amount": "100000"
+  },
+  "goalId": "0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159",
+  "ref": {
+    "ctcChainId": 102031,
+    "escrow": "0x86f4DBB8300e2A9d26D49CE2ce9F93347157D0e2",
+    "owner": "0xB5533341C9f8A3eD824c4b983ca84077f3473402",
+    "businessRef": "0x9fe1f89666bbac2a637c6dcdd669102941dd9ca8992bc51416906278cc0e07a3",
+    "token": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+    "recipient": "0x19e42B46985D61d42142931420d98b5693A6007f",
+    "amount": "100000"
+  },
+  "transactions": {
+    "create": {
+      "hash": "0x6dee71918ba35d4f7362d8d29f224254ce9ccd91ae1dbe73c2a7ff5e84994313",
+      "chain": "creditcoin",
+      "block": 5480987,
+      "status": 1,
+      "gasUsed": "161227"
+    },
+    "capital": {
+      "hash": "0x0896868fac5a018c237b50f085e269c320bfb35fec53f3dd216effac1c5a5240",
+      "chain": "creditcoin",
+      "block": 5480988,
+      "status": 1,
+      "gasUsed": "145796"
+    },
+    "open-1": {
+      "hash": "0xf43078ccbcd5002d11ee43cce0d9819bbe24e96d038de9e5a1d6aa0efccddc99",
+      "chain": "creditcoin",
+      "block": 5480989,
+      "status": 1,
+      "gasUsed": "348402"
+    },
+    "pay-1": {
+      "hash": "0x91e966d31e8af18752f3cdbc1bedab71c55c06b7a8c1817a9a9c7b71c9d08496",
+      "chain": "sepolia",
+      "block": 11696191,
+      "status": 1,
+      "gasUsed": "195737"
+    },
+    "anchor": {
+      "hash": "0x7770ce5f7f450bb67ac66ca5d6ecd87fe2360f9caaefac0a68422b1560f71ace",
+      "chain": "sepolia",
+      "block": 11696197,
+      "status": 1,
+      "gasUsed": "23273"
+    },
+    "accept-root": {
+      "hash": "0x2f28de8887a87e7a1db10db0d87562a88675dcb60f8e606cbc05c457ba4a1a97",
+      "chain": "creditcoin",
+      "block": 5481034,
+      "status": 1,
+      "gasUsed": "248409"
+    },
+    "settle": {
+      "hash": "0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9",
+      "chain": "creditcoin",
+      "block": 5481035,
+      "status": 1,
+      "gasUsed": "1971381"
+    }
+  },
+  "usdcDomain": {
+    "name": "USDC",
+    "version": "2",
+    "chainId": 11155111,
+    "verifyingContract": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238"
+  },
+  "paidRound": 1,
+  "paymentBlock": 11696191,
+  "paymentIndex": 54,
+  "evidence": {
+    "blockHash": "0xeed8d9b8ac9bfe238352f39c678aafa97c6ba17f5c18364acdd4fe0e5d65e3b0",
+    "transactionIndex": 54,
+    "receiptProof": [
+      "0xf90111a0b909b4337cfab5eaf53ce23fe48e53ce0417ff3c0582b190bb7b691f9ec64618a085825878d7b021270f90c2329880dfec9710096c21bd71e3ca284e1c9a814caca04748fc21e4b21e2b78be1cebe66afb45a66be2d0bc46ce122b215989819664d1a097bb6513736e6edf1234224d75777c364a4f44d5bd4dfea0e5551923739fd322a05e0b21ef27577b2e518c389957e72e907ba18de138ad591d3082e7039b7f1759a0f9b6c4a82ff96f39f9ccf588aee650dfe29f632294ae6d2d4b598e6ce698b430a0c1d6b32de1608c71591edb6698b9ec111b15843fcb7cb88b49dd9ce42c39590b80a05596b7d1ae953c50ffe051d72d86bbe3ad597d5db1413fc95e99f401314b8c8a8080808080808080",
+      "0xf90211a0e91d96928a9edce2b9269e9ee29b86a0975d26fd953c8418e47ec28766f7d6c2a0034374f61e339df2ae840af5d0b7a66f265a08b1ffa9cd4ff8163013ea3d632da0b5075cf6e44c30ea6682859e6dd4de7a21c0c4df4b0f3d4eabbb536b679772b7a0ef11897fc1f8f600c134a29611669d61b428a6c371abaaaab301b7a8a0cfa50ea0b9cad3a058aabee4045c235e06732a89622343caf42627770c0597421eebd2d3a013190fdd93c49e641bd8eef54c35258c724b6cd9e87e10518183cdd4e37d1968a0d5b9f531e5875e6b32631e1d4faec198671233e145932acbbb9ab483f5b88ebfa0c994cfbf1e604f406793e8afcceac26791d513b66c88288b8cc16ceddea334d9a0cb3fd80fd53b630bc5c58982ba2837f2e46252195e868173e8c95081bb7b7360a001a2b26350c414ac3b5618e46a0bddd0ebd370dbba8cdd2506b9f2719bf747daa01d9b744ebfa418e878d834cd778f5f1048d46dee2ce9bab01e68d633c62d4af5a0b14b80b965932f896c343a4c9eb59ffb8c1e87e7b9e4a13a1403d561a8d22c24a06e87edaf1e97e2b2c11188b39830c5332d2a3bf9fced55e2138e2f7b81328a20a044cbc6a3323d0fa06fe392264bd7b6dbad5188eefa08e62970736333f4a96d1da002dd0fe9ed104f6612a8439a8890ff41ad8abf2c9a872c70e660e2ccb8fdae17a0017f0ed62509021459c71ab21df6c0d3536f01b2bc21fb611b16f6df6483711e80",
+      "0xf903ea20b903e602f903e201834eb1c3b901000000000000000000040000000000030000000000000000000000000000020000000004000000000000000000000000000000000000000000000000020004000000000000000000000000000c000000000000000000040020080000000001000000000000000000000000000000000000000000000000000000000010000000000000800000100000000000400000000000000000000000004000000000000000000000000000000000000800000000000004000001000040000000000000000000000002000000000000000040000000000000040000000008000800008040000000000000000000000010000000000000000000000010020000000000000000f902d7f87b941c7d4b196cb0c7b01d743fbc6116a902379c7238f863a098de503528ee59b575ef0c0a2576a82497bfc029a5685b209e9ec333479b10a5a000000000000000000000000002dfd719264a25fe020e79529b2904b8365b8263a0ee2b7c153bce8af253470dae30351e2be4c0b0e5859e060ed4bb1ce7b1703f4580f89b941c7d4b196cb0c7b01d743fbc6116a902379c7238f863a0ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3efa000000000000000000000000002dfd719264a25fe020e79529b2904b8365b8263a000000000000000000000000062b65603baead5bf7e320ce9c242887e86cec01da000000000000000000000000000000000000000000000000000000000000186a0f89b941c7d4b196cb0c7b01d743fbc6116a902379c7238f863a0ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3efa000000000000000000000000062b65603baead5bf7e320ce9c242887e86cec01da000000000000000000000000019e42b46985d61d42142931420d98b5693a6007fa000000000000000000000000000000000000000000000000000000000000186a0f9011d9462b65603baead5bf7e320ce9c242887e86cec01df884a0d2e36e5921c63e23969d977d7da4d327a16486d25a791db96a2c13f8b268e47ca0c31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159a00000000000000000000000000000000000000000000000000000000000000001a000000000000000000000000002dfd719264a25fe020e79529b2904b8365b8263b88000000000000000000000000019e42b46985d61d42142931420d98b5693a6007f00000000000000000000000000000000000000000000000000000000000186a000000000000000000000000002dfd719264a25fe020e79529b2904b8365b8263000000000000000000000000000000000000000000000000000000006aa6abf7"
+    ]
+  },
+  "fact": {
+    "goalId": "0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159",
+    "roundNumber": "1",
+    "winner": "0x02dFd719264a25FE020e79529b2904B8365B8263",
+    "amount": "100000",
+    "payBy": "1789307895",
+    "sourceTimestamp": "1789306128"
+  },
+  "beforeSettlement": {
+    "label": "before-settlement",
+    "at": "2026-09-13T13:39:55.920Z",
+    "ctcBlock": 5481034,
+    "sourceBlock": 11696242,
+    "invariant": {
+      "balance": "1002400000000000000",
+      "heldR": "200000000000000000",
+      "availableB": "200000000000000000",
+      "lockedB": "400000000000000000",
+      "credits": "202400000000000000"
+    },
+    "credits": {
+      "operator": "200000000000000000",
+      "guarantor": "2400000000000000",
+      "executor": "0",
+      "executor2": "0"
+    },
+    "rounds": {
+      "1": {
+        "state": "1",
+        "principalReturned": false,
+        "principal": "100000000000000000",
+        "guarantee": "100000000000000000",
+        "premium": "600000000000000",
+        "payBy": "1789307895",
+        "clearBy": "1789313295"
+      }
+    },
+    "recipientUSDC": "300000"
+  }
+}

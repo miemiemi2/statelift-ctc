@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-09-13T12:57:25.316Z",
+  "rpc": "https://rpc.cc3-testnet.creditcoin.network",
+  "chainId": 102031,
+  "blockNumber": 5480864,
+  "address": "0x5780B298dFAdB0013d65056eb71a519f84A30f91",
+  "nativeBalanceWei": "10000000000000000000000",
+  "nativeBalanceCTC": "10000",
+  "note": "Read-only JSON-RPC checks; no private key accessed or emitted."
+}

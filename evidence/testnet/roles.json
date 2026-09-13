@@ -1,0 +1,54 @@
+{
+  "file": "roles",
+  "roles": {
+    "operator": "0xB5533341C9f8A3eD824c4b983ca84077f3473402",
+    "guarantor": "0xd9dD6aD78B0aC23536CcD1dc189e79A31E466C6e",
+    "executor": "0x02dFd719264a25FE020e79529b2904B8365B8263",
+    "executor2": "0x1032FA40492bf7E084BC627d80CDCfdF58761286",
+    "recipient": "0x19e42B46985D61d42142931420d98b5693A6007f"
+  },
+  "transactions": {
+    "operator-ctc": {
+      "hash": "0x8cd7cf1a895b1c1e072115d24695f09b16d973eb747aec0067126976d58a7c8b",
+      "chain": "creditcoin",
+      "block": 5480979,
+      "status": 1,
+      "gasUsed": "21000"
+    },
+    "guarantor-ctc": {
+      "hash": "0xe32d8630db0c237efe28d847a005791f6958f13d3bfd495599df09d6978233d1",
+      "chain": "creditcoin",
+      "block": 5480980,
+      "status": 1,
+      "gasUsed": "21000"
+    },
+    "executor-eth": {
+      "hash": "0xa1587e6dff44f4df4fefaa53f2278fae9fae865e830a22dc06fe0c62c2248a52",
+      "chain": "sepolia",
+      "block": 11696179,
+      "status": 1,
+      "gasUsed": "21000"
+    },
+    "executor-usdc": {
+      "hash": "0x338aaedd5f42cfbfef06e1b49daee36ae8eb1e3b8ae9fefeae8c4a32f4d33453",
+      "chain": "sepolia",
+      "block": 11696180,
+      "status": 1,
+      "gasUsed": "62159"
+    },
+    "executor2-eth": {
+      "hash": "0x68e2256c6625282712af0dca31b204976a44cf8bce6cf127ed431bf0c95a40df",
+      "chain": "sepolia",
+      "block": 11696182,
+      "status": 1,
+      "gasUsed": "21000"
+    },
+    "executor2-usdc": {
+      "hash": "0x0f43f700713e25d86aff7e82b12ab4f41830b38efc61b795e5e387961d16bc86",
+      "chain": "sepolia",
+      "block": 11696183,
+      "status": 1,
+      "gasUsed": "62159"
+    }
+  }
+}

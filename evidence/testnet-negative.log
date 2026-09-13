@@ -1,0 +1,2 @@
+duplicate broadcast 0x6589e0d98d21946ed72b40d1f3d89af9f50d49b1deb68ea58b2f3ce6b620804d
+Confirmed revert; no second USDC debit or payment; winner remains round 1. Gas was spent.

@@ -1,0 +1,14 @@
+{
+  "goalId": "0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159",
+  "recipientBefore": "300000",
+  "payerBefore": "900000",
+  "hash": "0x6589e0d98d21946ed72b40d1f3d89af9f50d49b1deb68ea58b2f3ce6b620804d",
+  "recipientAfter": "300000",
+  "payerAfter": "900000",
+  "block": 11696269,
+  "status": 0,
+  "recipientUnchanged": true,
+  "payerUSDCUnchanged": true,
+  "winningRound": "1",
+  "gasUsed": "34290"
+}

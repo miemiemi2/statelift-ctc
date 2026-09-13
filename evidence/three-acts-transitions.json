@@ -1,0 +1,637 @@
+{
+  "generatedAt": "2026-09-13T13:30:28.842Z",
+  "transitions": [
+    {
+      "act": "A",
+      "label": "round open, nothing paid yet",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "not yet — wait until the current round's T has passed",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "5150",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "34850",
+        "withdrawableCredits": "31",
+        "escrowBalance": "45181",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "A",
+      "label": "paid on the source chain, nothing proven on the CTC side",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "not yet — wait until the current round's T has passed",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "5150",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "34850",
+        "withdrawableCredits": "31",
+        "escrowBalance": "45181",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "A",
+      "label": "fact provable but NOT settled",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "not yet — wait until the current round's T has passed",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "5150",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "34850",
+        "withdrawableCredits": "31",
+        "escrowBalance": "45181",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "A",
+      "label": "settled before D: winner paid from R, guarantee released",
+      "goalState": "Paid",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "SettledFromPrincipal",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "no",
+        "canRelay": "no — this goal is already filled on the source chain",
+        "paidExactlyOnce": "yes — filled by round 1 on the source chain"
+      },
+      "money": {
+        "R_stillEscrowed": "0",
+        "B_lockedAgainstRounds": "0",
+        "guaranteeCapitalAvailable": "40000",
+        "withdrawableCredits": "5181",
+        "escrowBalance": "45181",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "B",
+      "label": "paid, but the CTC side does not know it",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "not yet — wait until the current round's T has passed",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "5150",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "74850",
+        "withdrawableCredits": "5212",
+        "escrowBalance": "90362",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "B",
+      "label": "past D: budget recovered AND old payment still unproven",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Refunded",
+          "pastT": true,
+          "pastD": true,
+          "budgetReturned": true
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "yes for round(s) 1",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "yes — open the next round; a second real payment is impossible",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "0",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "74850",
+        "withdrawableCredits": "10362",
+        "escrowBalance": "90362",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "B",
+      "label": "late proof settled from B; the operator keeps R",
+      "goalState": "Paid",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "SettledFromGuarantee",
+          "pastT": true,
+          "pastD": true,
+          "budgetReturned": true
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "yes for round(s) 1",
+        "oldPaymentAwaitingProof": "no",
+        "canRelay": "no — this goal is already filled on the source chain",
+        "paidExactlyOnce": "yes — filled by round 1 on the source chain"
+      },
+      "money": {
+        "R_stillEscrowed": "0",
+        "B_lockedAgainstRounds": "0",
+        "guaranteeCapitalAvailable": "74850",
+        "withdrawableCredits": "15512",
+        "escrowBalance": "90362",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "C",
+      "label": "past T1, operator does not know whether the old payment happened",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": true,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "yes — open the next round; a second real payment is impossible",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "5150",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "109700",
+        "withdrawableCredits": "15543",
+        "escrowBalance": "135543",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "C",
+      "label": "replacement payment refused on the source chain, nothing spent",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": true,
+          "pastD": false,
+          "budgetReturned": false
+        },
+        {
+          "round": 2,
+          "state": "Pending",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "not yet — wait until the current round's T has passed",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "10300",
+        "B_lockedAgainstRounds": "10300",
+        "guaranteeCapitalAvailable": "104550",
+        "withdrawableCredits": "15574",
+        "escrowBalance": "140724",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "C",
+      "label": "old round settled from its B; the relay round unwound in full",
+      "goalState": "Paid",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "SettledFromGuarantee",
+          "pastT": true,
+          "pastD": true,
+          "budgetReturned": true
+        },
+        {
+          "round": 2,
+          "state": "Released",
+          "pastT": true,
+          "pastD": false,
+          "budgetReturned": true
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "yes for round(s) 1, 2",
+        "oldPaymentAwaitingProof": "no",
+        "canRelay": "no — this goal is already filled on the source chain",
+        "paidExactlyOnce": "yes — filled by round 1 on the source chain"
+      },
+      "money": {
+        "R_stillEscrowed": "0",
+        "B_lockedAgainstRounds": "0",
+        "guaranteeCapitalAvailable": "109700",
+        "withdrawableCredits": "31024",
+        "escrowBalance": "140724",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "C2",
+      "label": "round open, no payment",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Pending",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "no",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "not yet — wait until the current round's T has passed",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "5150",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "104550",
+        "withdrawableCredits": "31055",
+        "escrowBalance": "145905",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "C2",
+      "label": "R1 returned at D without proof; B1 stays locked and G remains open",
+      "goalState": "Open",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Refunded",
+          "pastT": true,
+          "pastD": true,
+          "budgetReturned": true
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "yes for round(s) 1",
+        "oldPaymentAwaitingProof": "yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened",
+        "canRelay": "yes — open the next round; a second real payment is impossible",
+        "paidExactlyOnce": "not yet — no compliant payment has been proven for this goal"
+      },
+      "money": {
+        "R_stillEscrowed": "0",
+        "B_lockedAgainstRounds": "5150",
+        "guaranteeCapitalAvailable": "104550",
+        "withdrawableCredits": "36205",
+        "escrowBalance": "145905",
+        "balancesReconcile": true
+      }
+    },
+    {
+      "act": "C2",
+      "label": "replacement executor completed the same goal",
+      "goalState": "Paid",
+      "rounds": [
+        {
+          "round": 1,
+          "state": "Released",
+          "pastT": true,
+          "pastD": true,
+          "budgetReturned": true
+        },
+        {
+          "round": 2,
+          "state": "SettledFromPrincipal",
+          "pastT": false,
+          "pastD": false,
+          "budgetReturned": false
+        }
+      ],
+      "fourQuestions": {
+        "budgetReturned": "yes for round(s) 1",
+        "oldPaymentAwaitingProof": "no",
+        "canRelay": "no — this goal is already filled on the source chain",
+        "paidExactlyOnce": "yes — filled by round 2 on the source chain"
+      },
+      "money": {
+        "R_stillEscrowed": "0",
+        "B_lockedAgainstRounds": "0",
+        "guaranteeCapitalAvailable": "109700",
+        "withdrawableCredits": "41386",
+        "escrowBalance": "151086",
+        "balancesReconcile": true
+      }
+    }
+  ],
+  "transcript": [
+    {
+      "command": "node cli/operator.mjs demo-quote",
+      "failed": false,
+      "output": "StateLift demo quote — every number below is a DEMO PARAMETER.\nNot a market price, not an existing customer, not committed liquidity.\n\n  What you are paying for a cross-chain payment goal G:\n\n    R  budget            5150 local units   (includes the winner's full reward)\n    B  dedicated guarantee 5150 local units (B >= R, reserved for THIS round only)\n    T  source pay-by      opening + 600 s   (demo; product doc uses 1800 s)\n    D  clearing deadline  opening + 900 s   (demo; product doc uses 7200 s)\n    pi guarantee premium    31 local units  (~0.6% of R, earned at open, never refunded)\n\n  What you get:\n    1. The same goal G is paid AT MOST ONCE, enforced on the source chain.\n       So if your executor vanishes you can hand G to someone else without\n       ever risking a second real payment.\n    2. If nothing has cleared by D, R becomes yours by chain-accepted time.\n       Not by asking anyone, and not by winning a race to send a transaction.\n    3. If the old payment turns out to have happened and the proof only lands\n       after D, the winner is paid from B. You keep R.\n\n  What the guarantor is on the hook for:\n    Worst case they lose R (5150) and keep only pi (31). That happens exactly when\n    the recipient really was paid and the proof was late. This is a priced,\n    pre-funded liability, not risk-free float.\n\n  Not covered: purchasing power of R, wall-clock withdrawal if the CTC chain halts,\n  gas already spent, pi itself, or gifts sent straight to the recipient.\n\n  Why a simpler tool is not the same thing:\n    * Your own reserve fund     -> gives you cash, does NOT make retry safe.\n    * A normal solver retry     -> can swap executors, but refund timing stays\n                                   at someone's discretion and late payments have\n                                   no funded backstop.\n    * A plain timeout refunder  -> returns money, but after the refund a late\n                                   payment has no source of funds, so you still\n                                   dare not relay."
+    },
+    {
+      "command": "node cli/operator.mjs create-goal --ref demo-act-a",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f\",\n  \"sourceChainDerivesSameId\": true,\n  \"owner\": \"0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"maxRounds\": 8,\n  \"note\": \"Recipient and amount are now fixed for this goal. Every retry reuses this goalId.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs deposit-capital --amount 40000",
+      "failed": false,
+      "output": "{\n  \"guarantor\": \"0xd03ea8624C8C5987235048901fB614fDcA89b117\",\n  \"available\": \"40000\",\n  \"locked\": \"0\",\n  \"note\": \"Only unlocked capital can be withdrawn. Capital backing a live round cannot.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs open-round --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f --pay-in 600 --clear-in 900",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x7c73c7ebe4928bc849f09c7c371ea91872b7e5041b1a1056e7f96500ed6c985c\",\n  \"roundNumber\": 1,\n  \"accepted\": {\n    \"R_budget\": \"5150\",\n    \"B_dedicatedGuarantee\": \"5150\",\n    \"pi_premium\": \"31\",\n    \"T_sourcePayBy\": 1789306864,\n    \"D_clearingDeadline\": 1789307164\n  },\n  \"guarantorCapital\": {\n    \"available\": \"34850\",\n    \"locked\": \"5150\"\n  },\n  \"note\": \"All five terms are now immutable for this round.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306266,\n    \"source\": 1789306261\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"not yet — wait until the current round's T has passed\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": false,\n      \"sourceChainWinningRound\": null,\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7c73c7ebe4928bc849f09c7c371ea91872b7e5041b1a1056e7f96500ed6c985c\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306864\",\n      \"D_clearingDeadline\": \"1789307164\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"5150\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"34850\",\n    \"withdrawableCredits\": \"31\",\n    \"escrowBalance\": \"45181\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs pay --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f --round 1 --as executor",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"paid\": true,\n  \"sourceBlock\": 5,\n  \"transactionIndex\": 0,\n  \"payer\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"recipientBalanceBefore\": \"0\",\n  \"recipientBalanceAfter\": \"5000000000\",\n  \"next\": \"node cli/operator.mjs prove --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306266,\n    \"source\": 1789306268\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"not yet — wait until the current round's T has passed\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source chain HAS been paid, but this side has not settled it yet — these are two different things, and telling them apart is the point of this product\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7c73c7ebe4928bc849f09c7c371ea91872b7e5041b1a1056e7f96500ed6c985c\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306864\",\n      \"D_clearingDeadline\": \"1789307164\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"5150\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"34850\",\n    \"withdrawableCredits\": \"31\",\n    \"escrowBalance\": \"45181\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs prove --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f",
+      "failed": false,
+      "output": "{\n  \"anchoredSourceBlock\": 5,\n  \"provenFact\": {\n    \"winningRound\": \"1\",\n    \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n    \"amount\": \"5000000000\",\n    \"sourceTimestamp\": \"1789306268\"\n  },\n  \"evidenceFile\": \"evidence/cli/fill-0x1d255887.json\",\n  \"important\": \"A provable fact is NOT settlement. Nothing has moved until you run settle.\",\n  \"next\": \"node cli/operator.mjs settle --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f --round 1\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306270,\n    \"source\": 1789306268\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"not yet — wait until the current round's T has passed\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source chain HAS been paid, but this side has not settled it yet — these are two different things, and telling them apart is the point of this product\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7c73c7ebe4928bc849f09c7c371ea91872b7e5041b1a1056e7f96500ed6c985c\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306864\",\n      \"D_clearingDeadline\": \"1789307164\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"5150\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"34850\",\n    \"withdrawableCredits\": \"31\",\n    \"escrowBalance\": \"45181\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs settle --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f --round 1",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x7c73c7ebe4928bc849f09c7c371ea91872b7e5041b1a1056e7f96500ed6c985c\",\n  \"roundStateBefore\": \"Pending\",\n  \"roundStateAfter\": \"SettledFromPrincipal\",\n  \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"amountPaidToWinner\": \"5150\",\n  \"paidFrom\": \"R — your budget (the proof cleared before D)\",\n  \"yourRecoveredBudget\": \"0\",\n  \"events\": [\n    \"RoundSettled\"\n  ]\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2558879c7de9e4dedb4d895d3ddd9bd1e58dcd0cb14a7f6b421340095e074f\",\n  \"goalState\": \"Paid\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306276,\n    \"source\": 1789306268\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"no\",\n      \"unclearedRounds\": []\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"no — this goal is already filled on the source chain\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"yes — filled by round 1 on the source chain\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": true,\n      \"rewardedWinner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\"\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7c73c7ebe4928bc849f09c7c371ea91872b7e5041b1a1056e7f96500ed6c985c\",\n      \"state\": \"SettledFromPrincipal\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306864\",\n      \"D_clearingDeadline\": \"1789307164\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"0\",\n    \"B_lockedAgainstRounds\": \"0\",\n    \"guaranteeCapitalAvailable\": \"40000\",\n    \"withdrawableCredits\": \"5181\",\n    \"escrowBalance\": \"45181\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs create-goal --ref demo-act-b",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644\",\n  \"sourceChainDerivesSameId\": true,\n  \"owner\": \"0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"maxRounds\": 8,\n  \"note\": \"Recipient and amount are now fixed for this goal. Every retry reuses this goalId.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs deposit-capital --amount 40000",
+      "failed": false,
+      "output": "{\n  \"guarantor\": \"0xd03ea8624C8C5987235048901fB614fDcA89b117\",\n  \"available\": \"80000\",\n  \"locked\": \"0\",\n  \"note\": \"Only unlocked capital can be withdrawn. Capital backing a live round cannot.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs open-round --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644 --pay-in 300 --clear-in 600",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x40e90758ec7eed300eb983583b599f9afd84c7c8466ac8ae9e5cbaea1373cc48\",\n  \"roundNumber\": 1,\n  \"accepted\": {\n    \"R_budget\": \"5150\",\n    \"B_dedicatedGuarantee\": \"5150\",\n    \"pi_premium\": \"31\",\n    \"T_sourcePayBy\": 1789306581,\n    \"D_clearingDeadline\": 1789306881\n  },\n  \"guarantorCapital\": {\n    \"available\": \"74850\",\n    \"locked\": \"5150\"\n  },\n  \"note\": \"All five terms are now immutable for this round.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs pay --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644 --round 1 --as executor",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"paid\": true,\n  \"sourceBlock\": 6,\n  \"transactionIndex\": 0,\n  \"payer\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"recipientBalanceBefore\": \"5000000000\",\n  \"recipientBalanceAfter\": \"10000000000\",\n  \"next\": \"node cli/operator.mjs prove --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306282,\n    \"source\": 1789306283\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"not yet — wait until the current round's T has passed\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source chain HAS been paid, but this side has not settled it yet — these are two different things, and telling them apart is the point of this product\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x40e90758ec7eed300eb983583b599f9afd84c7c8466ac8ae9e5cbaea1373cc48\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306581\",\n      \"D_clearingDeadline\": \"1789306881\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"5150\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"74850\",\n    \"withdrawableCredits\": \"5212\",\n    \"escrowBalance\": \"90362\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs advance --chain ctc --seconds 700",
+      "failed": false,
+      "output": "{\n  \"chain\": \"ctc\",\n  \"advancedBy\": 700,\n  \"newChainTimestamp\": 1789306985,\n  \"note\": \"Deadlines are judged by chain-accepted time, so this moves the chain, not a clock in this process.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs refund --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644 --round 1",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x40e90758ec7eed300eb983583b599f9afd84c7c8466ac8ae9e5cbaea1373cc48\",\n  \"roundState\": \"Refunded\",\n  \"yourRecoveredBudget\": \"5150\",\n  \"guaranteeStillLocked\": \"5150\",\n  \"note\": \"The budget is yours as of D, by chain-accepted time. The guarantee stays locked because a payment may still turn out to have happened.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306987,\n    \"source\": 1789306283\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"yes for round(s) 1\",\n      \"recoveredCredits\": \"5150\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"yes — open the next round; a second real payment is impossible\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source chain HAS been paid, but this side has not settled it yet — these are two different things, and telling them apart is the point of this product\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x40e90758ec7eed300eb983583b599f9afd84c7c8466ac8ae9e5cbaea1373cc48\",\n      \"state\": \"Refunded\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306581\",\n      \"D_clearingDeadline\": \"1789306881\",\n      \"pastT\": true,\n      \"pastD\": true,\n      \"budgetReturnedToYou\": true\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"0\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"74850\",\n    \"withdrawableCredits\": \"10362\",\n    \"escrowBalance\": \"90362\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs prove --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644",
+      "failed": false,
+      "output": "{\n  \"anchoredSourceBlock\": 6,\n  \"provenFact\": {\n    \"winningRound\": \"1\",\n    \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n    \"amount\": \"5000000000\",\n    \"sourceTimestamp\": \"1789306283\"\n  },\n  \"evidenceFile\": \"evidence/cli/fill-0xe8fd6d7b.json\",\n  \"important\": \"A provable fact is NOT settlement. Nothing has moved until you run settle.\",\n  \"next\": \"node cli/operator.mjs settle --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644 --round 1\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs settle --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644 --round 1 --as guarantor",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x40e90758ec7eed300eb983583b599f9afd84c7c8466ac8ae9e5cbaea1373cc48\",\n  \"roundStateBefore\": \"Refunded\",\n  \"roundStateAfter\": \"SettledFromGuarantee\",\n  \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"amountPaidToWinner\": \"5150\",\n  \"paidFrom\": \"B — the dedicated guarantee (the proof landed at or after D, so your budget stayed yours)\",\n  \"yourRecoveredBudget\": \"5150\",\n  \"events\": [\n    \"RoundSettled\"\n  ]\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0xe8fd6d7b411d9245120551315533b2673b5008f8fc84b66605bd4e6c9a185644\",\n  \"goalState\": \"Paid\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789306993,\n    \"source\": 1789306283\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"yes for round(s) 1\",\n      \"recoveredCredits\": \"5150\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"no\",\n      \"unclearedRounds\": []\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"no — this goal is already filled on the source chain\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"yes — filled by round 1 on the source chain\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": true,\n      \"rewardedWinner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\"\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x40e90758ec7eed300eb983583b599f9afd84c7c8466ac8ae9e5cbaea1373cc48\",\n      \"state\": \"SettledFromGuarantee\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789306581\",\n      \"D_clearingDeadline\": \"1789306881\",\n      \"pastT\": true,\n      \"pastD\": true,\n      \"budgetReturnedToYou\": true\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"0\",\n    \"B_lockedAgainstRounds\": \"0\",\n    \"guaranteeCapitalAvailable\": \"74850\",\n    \"withdrawableCredits\": \"15512\",\n    \"escrowBalance\": \"90362\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs create-goal --ref demo-act-c",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33\",\n  \"sourceChainDerivesSameId\": true,\n  \"owner\": \"0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"maxRounds\": 8,\n  \"note\": \"Recipient and amount are now fixed for this goal. Every retry reuses this goalId.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs deposit-capital --amount 40000",
+      "failed": false,
+      "output": "{\n  \"guarantor\": \"0xd03ea8624C8C5987235048901fB614fDcA89b117\",\n  \"available\": \"114850\",\n  \"locked\": \"0\",\n  \"note\": \"Only unlocked capital can be withdrawn. Capital backing a live round cannot.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs open-round --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --pay-in 300 --clear-in 900",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x7da6353510316d6d672e19c8f7cb977537e4e0e0358a160dd3db05da81d07466\",\n  \"roundNumber\": 1,\n  \"accepted\": {\n    \"R_budget\": \"5150\",\n    \"B_dedicatedGuarantee\": \"5150\",\n    \"pi_premium\": \"31\",\n    \"T_sourcePayBy\": 1789307298,\n    \"D_clearingDeadline\": 1789307898\n  },\n  \"guarantorCapital\": {\n    \"available\": \"109700\",\n    \"locked\": \"5150\"\n  },\n  \"note\": \"All five terms are now immutable for this round.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs pay --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 1 --as executor",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"paid\": true,\n  \"sourceBlock\": 7,\n  \"transactionIndex\": 0,\n  \"payer\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"recipientBalanceBefore\": \"10000000000\",\n  \"recipientBalanceAfter\": \"15000000000\",\n  \"next\": \"node cli/operator.mjs prove --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs advance --chain ctc --seconds 400",
+      "failed": false,
+      "output": "{\n  \"chain\": \"ctc\",\n  \"advancedBy\": 400,\n  \"newChainTimestamp\": 1789307402,\n  \"note\": \"Deadlines are judged by chain-accepted time, so this moves the chain, not a clock in this process.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789307402,\n    \"source\": 1789306301\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"yes — open the next round; a second real payment is impossible\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source chain HAS been paid, but this side has not settled it yet — these are two different things, and telling them apart is the point of this product\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7da6353510316d6d672e19c8f7cb977537e4e0e0358a160dd3db05da81d07466\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789307298\",\n      \"D_clearingDeadline\": \"1789307898\",\n      \"pastT\": true,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"5150\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"109700\",\n    \"withdrawableCredits\": \"15543\",\n    \"escrowBalance\": \"135543\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs open-round --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 2 --pay-in 300 --clear-in 900",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x86e2d07d5ef17695998a660f0b5798cfe31f8f7b35c305674fc2676bb20e276b\",\n  \"roundNumber\": 2,\n  \"accepted\": {\n    \"R_budget\": \"5150\",\n    \"B_dedicatedGuarantee\": \"5150\",\n    \"pi_premium\": \"31\",\n    \"T_sourcePayBy\": 1789307702,\n    \"D_clearingDeadline\": 1789308302\n  },\n  \"guarantorCapital\": {\n    \"available\": \"104550\",\n    \"locked\": \"10300\"\n  },\n  \"note\": \"All five terms are now immutable for this round.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs pay --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 2 --as executor2",
+      "failed": true,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"paid\": false,\n  \"reason\": \"this goal was ALREADY filled on the source chain, so a second payment is impossible\",\n  \"alreadyFilledBy\": {\n    \"roundNumber\": \"1\",\n    \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\"\n  },\n  \"recipientBalanceUnchanged\": true,\n  \"note\": \"No tokens were spent by this attempt. This is what makes relay safe.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789307404,\n    \"source\": 1789306305\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1,\n        2\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"not yet — wait until the current round's T has passed\",\n      \"roundsUsed\": \"2 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source chain HAS been paid, but this side has not settled it yet — these are two different things, and telling them apart is the point of this product\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7da6353510316d6d672e19c8f7cb977537e4e0e0358a160dd3db05da81d07466\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789307298\",\n      \"D_clearingDeadline\": \"1789307898\",\n      \"pastT\": true,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    },\n    {\n      \"roundNumber\": 2,\n      \"roundId\": \"0x86e2d07d5ef17695998a660f0b5798cfe31f8f7b35c305674fc2676bb20e276b\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789307702\",\n      \"D_clearingDeadline\": \"1789308302\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"10300\",\n    \"B_lockedAgainstRounds\": \"10300\",\n    \"guaranteeCapitalAvailable\": \"104550\",\n    \"withdrawableCredits\": \"15574\",\n    \"escrowBalance\": \"140724\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs advance --chain ctc --seconds 700",
+      "failed": false,
+      "output": "{\n  \"chain\": \"ctc\",\n  \"advancedBy\": 700,\n  \"newChainTimestamp\": 1789308107,\n  \"note\": \"Deadlines are judged by chain-accepted time, so this moves the chain, not a clock in this process.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs refund --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 1",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x7da6353510316d6d672e19c8f7cb977537e4e0e0358a160dd3db05da81d07466\",\n  \"roundState\": \"Refunded\",\n  \"yourRecoveredBudget\": \"10300\",\n  \"guaranteeStillLocked\": \"10300\",\n  \"note\": \"The budget is yours as of D, by chain-accepted time. The guarantee stays locked because a payment may still turn out to have happened.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs prove --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33",
+      "failed": false,
+      "output": "{\n  \"anchoredSourceBlock\": 7,\n  \"provenFact\": {\n    \"winningRound\": \"1\",\n    \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n    \"amount\": \"5000000000\",\n    \"sourceTimestamp\": \"1789306301\"\n  },\n  \"evidenceFile\": \"evidence/cli/fill-0x6b66b602.json\",\n  \"important\": \"A provable fact is NOT settlement. Nothing has moved until you run settle.\",\n  \"next\": \"node cli/operator.mjs settle --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 1\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs settle --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 1 --as guarantor",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x7da6353510316d6d672e19c8f7cb977537e4e0e0358a160dd3db05da81d07466\",\n  \"roundStateBefore\": \"Refunded\",\n  \"roundStateAfter\": \"SettledFromGuarantee\",\n  \"winner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\",\n  \"amountPaidToWinner\": \"5150\",\n  \"paidFrom\": \"B — the dedicated guarantee (the proof landed at or after D, so your budget stayed yours)\",\n  \"yourRecoveredBudget\": \"10300\",\n  \"events\": [\n    \"RoundSettled\"\n  ]\n}"
+    },
+    {
+      "command": "node cli/operator.mjs release --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33 --round 2 --by winner",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0x86e2d07d5ef17695998a660f0b5798cfe31f8f7b35c305674fc2676bb20e276b\",\n  \"releasedBy\": \"winner\",\n  \"roundState\": \"Released\",\n  \"guarantorAvailable\": \"109700\",\n  \"guarantorLocked\": \"0\",\n  \"yourRecoveredBudget\": \"15450\",\n  \"goalStillOpenForRelay\": \"no — the goal was filled on the source chain\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x6b66b60262aad91ee9089e02eb9142a1ad8fe762e08c4bfad41a1efb8d314b33\",\n  \"goalState\": \"Paid\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789308118,\n    \"source\": 1789306305\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"yes for round(s) 1, 2\",\n      \"recoveredCredits\": \"10300\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"no\",\n      \"unclearedRounds\": []\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"no — this goal is already filled on the source chain\",\n      \"roundsUsed\": \"2 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"yes — filled by round 1 on the source chain\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"1\",\n      \"winnerRewardedOnce\": true,\n      \"rewardedWinner\": \"0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b\"\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0x7da6353510316d6d672e19c8f7cb977537e4e0e0358a160dd3db05da81d07466\",\n      \"state\": \"SettledFromGuarantee\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789307298\",\n      \"D_clearingDeadline\": \"1789307898\",\n      \"pastT\": true,\n      \"pastD\": true,\n      \"budgetReturnedToYou\": true\n    },\n    {\n      \"roundNumber\": 2,\n      \"roundId\": \"0x86e2d07d5ef17695998a660f0b5798cfe31f8f7b35c305674fc2676bb20e276b\",\n      \"state\": \"Released\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789307702\",\n      \"D_clearingDeadline\": \"1789308302\",\n      \"pastT\": true,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": true\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"0\",\n    \"B_lockedAgainstRounds\": \"0\",\n    \"guaranteeCapitalAvailable\": \"109700\",\n    \"withdrawableCredits\": \"31024\",\n    \"escrowBalance\": \"140724\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs create-goal --ref demo-act-c-unpaid",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727\",\n  \"sourceChainDerivesSameId\": true,\n  \"owner\": \"0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"maxRounds\": 8,\n  \"note\": \"Recipient and amount are now fixed for this goal. Every retry reuses this goalId.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs open-round --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --pay-in 120 --clear-in 900",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0xa434387d181425844dca0b8db55af626026d411f6a363d4d184ab852eee7dc4b\",\n  \"roundNumber\": 1,\n  \"accepted\": {\n    \"R_budget\": \"5150\",\n    \"B_dedicatedGuarantee\": \"5150\",\n    \"pi_premium\": \"31\",\n    \"T_sourcePayBy\": 1789308241,\n    \"D_clearingDeadline\": 1789309021\n  },\n  \"guarantorCapital\": {\n    \"available\": \"104550\",\n    \"locked\": \"5150\"\n  },\n  \"note\": \"All five terms are now immutable for this round.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789308123,\n    \"source\": 1789306305\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"no\",\n      \"recoveredCredits\": \"0\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"not yet — wait until the current round's T has passed\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": false,\n      \"sourceChainWinningRound\": null,\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0xa434387d181425844dca0b8db55af626026d411f6a363d4d184ab852eee7dc4b\",\n      \"state\": \"Pending\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789308241\",\n      \"D_clearingDeadline\": \"1789309021\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"5150\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"104550\",\n    \"withdrawableCredits\": \"31055\",\n    \"escrowBalance\": \"145905\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs advance --chain ctc --seconds 1000",
+      "failed": false,
+      "output": "{\n  \"chain\": \"ctc\",\n  \"advancedBy\": 1000,\n  \"newChainTimestamp\": 1789309125,\n  \"note\": \"Deadlines are judged by chain-accepted time, so this moves the chain, not a clock in this process.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs refund --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --round 1",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0xa434387d181425844dca0b8db55af626026d411f6a363d4d184ab852eee7dc4b\",\n  \"roundState\": \"Refunded\",\n  \"yourRecoveredBudget\": \"20600\",\n  \"guaranteeStillLocked\": \"5150\",\n  \"note\": \"The budget is yours as of D, by chain-accepted time. The guarantee stays locked because a payment may still turn out to have happened.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727\",\n  \"goalState\": \"Open\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789309126,\n    \"source\": 1789306305\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"yes for round(s) 1\",\n      \"recoveredCredits\": \"5150\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened\",\n      \"unclearedRounds\": [\n        1\n      ]\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"yes — open the next round; a second real payment is impossible\",\n      \"roundsUsed\": \"1 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"not yet — no compliant payment has been proven for this goal\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": false,\n      \"sourceChainWinningRound\": null,\n      \"winnerRewardedOnce\": false,\n      \"rewardedWinner\": null\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0xa434387d181425844dca0b8db55af626026d411f6a363d4d184ab852eee7dc4b\",\n      \"state\": \"Refunded\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789308241\",\n      \"D_clearingDeadline\": \"1789309021\",\n      \"pastT\": true,\n      \"pastD\": true,\n      \"budgetReturnedToYou\": true\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"0\",\n    \"B_lockedAgainstRounds\": \"5150\",\n    \"guaranteeCapitalAvailable\": \"104550\",\n    \"withdrawableCredits\": \"36205\",\n    \"escrowBalance\": \"145905\",\n    \"balancesReconcile\": true\n  }\n}"
+    },
+    {
+      "command": "node cli/operator.mjs open-round --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --round 2 --pay-in 5000 --clear-in 5300",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0xb28a044dfbedc13441c2f6e3dbe64d4d9130e986efcf0ef2249dd31f617caa75\",\n  \"roundNumber\": 2,\n  \"accepted\": {\n    \"R_budget\": \"5150\",\n    \"B_dedicatedGuarantee\": \"5150\",\n    \"pi_premium\": \"31\",\n    \"T_sourcePayBy\": 1789314126,\n    \"D_clearingDeadline\": 1789314426\n  },\n  \"guarantorCapital\": {\n    \"available\": \"99400\",\n    \"locked\": \"10300\"\n  },\n  \"note\": \"All five terms are now immutable for this round.\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs pay --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --round 2 --as executor2",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"paid\": true,\n  \"sourceBlock\": 9,\n  \"transactionIndex\": 0,\n  \"payer\": \"0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC\",\n  \"winner\": \"0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC\",\n  \"recipientBalanceBefore\": \"15000000000\",\n  \"recipientBalanceAfter\": \"20000000000\",\n  \"next\": \"node cli/operator.mjs prove --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs prove --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727",
+      "failed": false,
+      "output": "{\n  \"anchoredSourceBlock\": 9,\n  \"provenFact\": {\n    \"winningRound\": \"2\",\n    \"winner\": \"0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC\",\n    \"amount\": \"5000000000\",\n    \"sourceTimestamp\": \"1789306329\"\n  },\n  \"evidenceFile\": \"evidence/cli/fill-0x1d2aa5f1.json\",\n  \"important\": \"A provable fact is NOT settlement. Nothing has moved until you run settle.\",\n  \"next\": \"node cli/operator.mjs settle --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --round 2\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs settle --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --round 2",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0xb28a044dfbedc13441c2f6e3dbe64d4d9130e986efcf0ef2249dd31f617caa75\",\n  \"roundStateBefore\": \"Pending\",\n  \"roundStateAfter\": \"SettledFromPrincipal\",\n  \"winner\": \"0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC\",\n  \"amountPaidToWinner\": \"5150\",\n  \"paidFrom\": \"R — your budget (the proof cleared before D)\",\n  \"yourRecoveredBudget\": \"20600\",\n  \"events\": [\n    \"RoundSettled\"\n  ]\n}"
+    },
+    {
+      "command": "node cli/operator.mjs release --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727 --round 1 --by winner",
+      "failed": false,
+      "output": "{\n  \"roundId\": \"0xa434387d181425844dca0b8db55af626026d411f6a363d4d184ab852eee7dc4b\",\n  \"releasedBy\": \"winner\",\n  \"roundState\": \"Released\",\n  \"guarantorAvailable\": \"109700\",\n  \"guarantorLocked\": \"0\",\n  \"yourRecoveredBudget\": \"20600\",\n  \"goalStillOpenForRelay\": \"no — the goal was filled on the source chain\"\n}"
+    },
+    {
+      "command": "node cli/operator.mjs status --goal 0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727",
+      "failed": false,
+      "output": "{\n  \"testDouble\": \"TEST-DOUBLE: source token is MockUSDC3009 (not real USDC); Attestcoin prover is MockAttestcoinProver. Local demo only, not a testnet integration.\",\n  \"goalId\": \"0x1d2aa5f1f1cdfac8799b0e58e840d8eb68e2993b5a5760070ca2d944be65b727\",\n  \"goalState\": \"Paid\",\n  \"recipient\": \"0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d\",\n  \"amount\": \"5000000000\",\n  \"chainTime\": {\n    \"creditcoinSide\": 1789309139,\n    \"source\": 1789306329\n  },\n  \"fourSeparateQuestions\": {\n    \"1_budgetReturnedToYou\": {\n      \"answer\": \"yes for round(s) 1\",\n      \"recoveredCredits\": \"5150\"\n    },\n    \"2_oldPaymentStillAwaitingProof\": {\n      \"answer\": \"no\",\n      \"unclearedRounds\": []\n    },\n    \"3_canRelayOnThisSameGoal\": {\n      \"answer\": \"no — this goal is already filled on the source chain\",\n      \"roundsUsed\": \"2 of 8\"\n    },\n    \"4_finalOutcomePaidExactlyOnce\": {\n      \"answer\": \"yes — filled by round 2 on the source chain\",\n      \"readingThisField\": \"the source-chain fact and this side's settlement agree\",\n      \"sourceChainFilled\": true,\n      \"sourceChainWinningRound\": \"2\",\n      \"winnerRewardedOnce\": true,\n      \"rewardedWinner\": \"0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC\"\n    }\n  },\n  \"rounds\": [\n    {\n      \"roundNumber\": 1,\n      \"roundId\": \"0xa434387d181425844dca0b8db55af626026d411f6a363d4d184ab852eee7dc4b\",\n      \"state\": \"Released\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789308241\",\n      \"D_clearingDeadline\": \"1789309021\",\n      \"pastT\": true,\n      \"pastD\": true,\n      \"budgetReturnedToYou\": true\n    },\n    {\n      \"roundNumber\": 2,\n      \"roundId\": \"0xb28a044dfbedc13441c2f6e3dbe64d4d9130e986efcf0ef2249dd31f617caa75\",\n      \"state\": \"SettledFromPrincipal\",\n      \"R_budget\": \"5150\",\n      \"B_dedicatedGuarantee\": \"5150\",\n      \"pi_premium\": \"31\",\n      \"T_sourcePayBy\": \"1789314126\",\n      \"D_clearingDeadline\": \"1789314426\",\n      \"pastT\": false,\n      \"pastD\": false,\n      \"budgetReturnedToYou\": false\n    }\n  ],\n  \"money\": {\n    \"R_stillEscrowed\": \"0\",\n    \"B_lockedAgainstRounds\": \"0\",\n    \"guaranteeCapitalAvailable\": \"109700\",\n    \"withdrawableCredits\": \"41386\",\n    \"escrowBalance\": \"151086\",\n    \"balancesReconcile\": true\n  }\n}"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+gas-executor: broadcast 0x5b26a85df091decaa880ac3ff2b1dec8d1dc879e064a70228bb77fdf986bc833
+gas-executor: confirmed block 5481072
+gas-executor2: broadcast 0x1387d8bee259aa4412d689e9842e526b6dbf73f359a7545890b0f9deac08c01f
+gas-executor2: confirmed block 5481073
+capital: broadcast 0x31c7c02e7a4545164e3a30c382c6d629de21d021d25ba7a5863b4b497908ab49
+capital: confirmed block 5481074
+withdraw-operator: broadcast 0x4b753706de5bd05534a39126c131f01a008861df7ff454b852169f3ea3636f4c
+withdraw-operator: confirmed block 5481075
+withdraw-guarantor: broadcast 0xc5111f043d511050d7d1ccc0c97536ea11e9a26a9b8a259115b8b32fe8cdc66d
+withdraw-guarantor: confirmed block 5481076
+withdraw-executor: broadcast 0xda759f0b1540b1d29c10b2fa7b400e4aa3613743eacfde958f1839894fc80964
+withdraw-executor: confirmed block 5481077
+withdraw-executor2: broadcast 0x1de3b024ba6eec4a3c897089bf6d259ecd083a634c480173c7be1d3d9fecf975
+withdraw-executor2: confirmed block 5481078
+All credits paid to role wallets; gas-adjusted balance deltas verified; escrow reconciles to zero.

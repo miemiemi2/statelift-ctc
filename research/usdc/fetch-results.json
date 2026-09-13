@@ -1,0 +1,19 @@
+[
+  {
+    "name": "sourcify-full",
+    "url": "https://repo.sourcify.dev/contracts/full_match/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/metadata.json",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "circle-proxy",
+    "url": "https://raw.githubusercontent.com/circlefin/stablecoin-evm/master/contracts/v1/FiatTokenProxy.sol",
+    "status": 200,
+    "bytes": 1090
+  },
+  {
+    "name": "circle-erc3009",
+    "url": "https://raw.githubusercontent.com/circlefin/stablecoin-evm/master/contracts/v2/EIP3009.sol",
+    "status": 200,
+    "bytes": 11782
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "pages": 6,
+  "bookmarks": 11,
+  "links": 13,
+  "pageChecks": [
+    {
+      "page": 1,
+      "characters": 323,
+      "overflow": 0
+    },
+    {
+      "page": 2,
+      "characters": 2114,
+      "overflow": 0
+    },
+    {
+      "page": 3,
+      "characters": 2710,
+      "overflow": 0
+    },
+    {
+      "page": 4,
+      "characters": 2944,
+      "overflow": 0
+    },
+    {
+      "page": 5,
+      "characters": 3157,
+      "overflow": 0
+    },
+    {
+      "page": 6,
+      "characters": 2620,
+      "overflow": 0
+    }
+  ]
+}

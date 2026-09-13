@@ -1,0 +1,12 @@
+create: broadcast 0xdcd3e360891a9f83ed658da2a59bb25de5189c48b5c9db08b9e9a0e9dca8e160
+create: confirmed block 5480999
+capital: broadcast 0xec163ded437a3dc116371e5101f244d6cb599aad36a294e304f5298e0d0907a7
+capital: confirmed block 5481000
+open-1: broadcast 0x1feaa232e4fce74a9bb171f65a2e9491ccccaa373160796af631e7770a27c2c9
+open-1: confirmed block 5481001
+snapshot: round-1-open
+pay-1: broadcast 0xc1779044bfcf4cf6ba352e02b00d473e250111e84db2f2d81ff28a37ea197106
+pay-1: confirmed block 11696205
+snapshot: paid-source-1-not-settled
+anchor: broadcast 0xb7456091918d8da055f86858b3a827dd5df44a74104502f2fd3f26f81a1bd5b4
+anchor: confirmed block 11696207

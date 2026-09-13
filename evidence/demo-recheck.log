@@ -1,0 +1,92 @@
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/lib/local/deployment.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/scripts/demo-three-acts.mjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+starting a local world for the demo (compiles once)...
+
+=== Act A — the ordinary case: proof clears before D ===
+  [A] round open, nothing paid yet
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : not yet — wait until the current round's T has passed
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [A] paid on the source chain, nothing proven on the CTC side
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : not yet — wait until the current round's T has passed
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [A] fact provable but NOT settled
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : not yet — wait until the current round's T has passed
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [A] settled before D: winner paid from R, guarantee released
+      budget returned      : no
+      old payment unproven : no
+      can relay on same G  : no — this goal is already filled on the source chain
+      paid exactly once    : yes — filled by round 1 on the source chain
+
+=== Act B — the payment happened, the proof was late ===
+  [B] paid, but the CTC side does not know it
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : not yet — wait until the current round's T has passed
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [B] past D: budget recovered AND old payment still unproven
+      budget returned      : yes for round(s) 1
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : yes — open the next round; a second real payment is impossible
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [B] late proof settled from B; the operator keeps R
+      budget returned      : yes for round(s) 1
+      old payment unproven : no
+      can relay on same G  : no — this goal is already filled on the source chain
+      paid exactly once    : yes — filled by round 1 on the source chain
+
+=== Act C — the executor vanishes, the operator relays safely ===
+  [C] past T1, operator does not know whether the old payment happened
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : yes — open the next round; a second real payment is impossible
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+      replacement payment refused: this goal was ALREADY filled on the source chain, so a second payment is impossible
+      recipient balance unchanged: true
+  [C] replacement payment refused on the source chain, nothing spent
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : not yet — wait until the current round's T has passed
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [C] old round settled from its B; the relay round unwound in full
+      budget returned      : yes for round(s) 1, 2
+      old payment unproven : no
+      can relay on same G  : no — this goal is already filled on the source chain
+      paid exactly once    : yes — filled by round 1 on the source chain
+
+=== Act C (continued) — nobody paid, R recovered at D, new executor finishes ===
+  [C2] round open, no payment
+      budget returned      : no
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : not yet — wait until the current round's T has passed
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [C2] R1 returned at D without proof; B1 stays locked and G remains open
+      budget returned      : yes for round(s) 1
+      old payment unproven : yes — one or more rounds are uncleared, and the CTC side genuinely does not know whether a payment happened
+      can relay on same G  : yes — open the next round; a second real payment is impossible
+      paid exactly once    : not yet — no compliant payment has been proven for this goal
+  [C2] replacement executor completed the same goal
+      budget returned      : yes for round(s) 1
+      old payment unproven : no
+      can relay on same G  : no — this goal is already filled on the source chain
+      paid exactly once    : yes — filled by round 2 on the source chain
+
+wrote evidence/three-acts.md and evidence/three-acts-transitions.json (13 snapshots, 49 commands)
+
+All three acts completed and every fund invariant held.

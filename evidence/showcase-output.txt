@@ -1,0 +1,27 @@
+
+NORMAL · proof pays from R
+  G: 0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159
+  source payment: 0x91e966d31e8af18752f3cdbc1bedab71c55c06b7a8c1817a9a9c7b71c9d08496 (confirmed)
+  CTC settlement: 0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9 (confirmed, fromGuarantee=false)
+  historical credit delta: 0 → 100000000000000000
+  explorer: https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9
+
+LATE · D passed, proof pays from B
+  G: 0xdc64d7605924fa72e1948b53145f86606f27f722f55bd623a68f88eaa1c0e985
+  source payment: 0xc1779044bfcf4cf6ba352e02b00d473e250111e84db2f2d81ff28a37ea197106 (confirmed)
+  CTC settlement: 0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20 (confirmed, fromGuarantee=true)
+  historical credit delta: 100000000000000000 → 200000000000000000
+  explorer: https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20
+
+HANDOFF · same G, executor 2 wins
+  G: 0x8417c34b63a32d3f8ff31e133b7c08bf18191bdfaadfd4a3a191e86bbd83992a
+  source payment: 0xa82c3d719cb4210a84b89c6d146f8c4005c485e43001b2367d1ba828a40826ec (confirmed)
+  CTC settlement: 0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af (confirmed, fromGuarantee=false)
+  historical credit delta: 0 → 100000000000000000
+  explorer: https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af
+
+DUPLICATE GUARD · 0x6589e0d98d21946ed72b40d1f3d89af9f50d49b1deb68ea58b2f3ce6b620804d
+  mined status: 0 · recipient unchanged: true · payer unchanged: true
+
+FINAL ACCOUNTING · escrowFullyReconciled=true
+  every role withdrew; gas-adjusted balance deltas verified

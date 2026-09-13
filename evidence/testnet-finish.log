@@ -1,0 +1,54 @@
+2026-09-13T13:39:32.951Z normal: requesting original anchor proof
+accept-root: broadcast 0x2f28de8887a87e7a1db10db0d87562a88675dcb60f8e606cbc05c457ba4a1a97
+accept-root: confirmed block 5481034
+snapshot: proof-valid-but-not-settled
+snapshot: before-settlement
+settle: broadcast 0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9
+settle: confirmed block 5481035
+snapshot: after-settlement
+normal: official proof and money settlement completed
+2026-09-13T13:40:04.476Z late: requesting original anchor proof
+Prover HTTP 422; keep anchor and retry proof later
+late: BlockNotReady; wait 45 seconds, retain the same source transaction
+2026-09-13T13:40:51.499Z late: requesting original anchor proof
+accept-root: broadcast 0xabff9eb7a9ba20eebd65d0f72ad026676ad73f6925cba1303ccb9506fc9d5635
+accept-root: confirmed block 5481039
+snapshot: proof-valid-but-not-settled
+snapshot: before-settlement
+settle: broadcast 0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20
+settle: confirmed block 5481040
+snapshot: after-settlement
+late: official proof and money settlement completed
+2026-09-13T13:41:19.274Z relay: requesting original anchor proof
+Prover HTTP 404; keep anchor and retry proof later
+relay: BlockNotOnSourceChain; wait 45 seconds, retain the same source transaction
+2026-09-13T13:42:06.252Z relay: requesting original anchor proof
+Prover HTTP 404; keep anchor and retry proof later
+relay: BlockNotOnSourceChain; wait 45 seconds, retain the same source transaction
+2026-09-13T13:42:53.245Z relay: requesting original anchor proof
+Prover HTTP 404; keep anchor and retry proof later
+relay: BlockNotOnSourceChain; wait 45 seconds, retain the same source transaction
+2026-09-13T13:43:40.193Z relay: requesting original anchor proof
+Prover HTTP 404; keep anchor and retry proof later
+relay: BlockNotOnSourceChain; wait 45 seconds, retain the same source transaction
+2026-09-13T13:44:27.138Z relay: requesting original anchor proof
+Prover HTTP 404; keep anchor and retry proof later
+relay: BlockNotOnSourceChain; wait 45 seconds, retain the same source transaction
+2026-09-13T13:45:14.072Z relay: requesting original anchor proof
+Prover HTTP 404; keep anchor and retry proof later
+relay: BlockNotOnSourceChain; wait 45 seconds, retain the same source transaction
+2026-09-13T13:46:01.050Z relay: requesting original anchor proof
+Prover HTTP 422; keep anchor and retry proof later
+relay: BlockNotReady; wait 45 seconds, retain the same source transaction
+2026-09-13T13:46:48.078Z relay: requesting original anchor proof
+accept-root: broadcast 0x49ee6e50d560461e0fd856b8184bc685843303e9233272015243032affd30416
+accept-root: confirmed block 5481063
+snapshot: proof-valid-but-not-settled
+snapshot: before-settlement
+settle: broadcast 0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af
+settle: confirmed block 5481066
+snapshot: after-settlement
+release-1: broadcast 0x5e729bff9379e6b66d59330c6e35054099d76665fc13bbed4d29a5ea7b807970
+release-1: confirmed block 5481067
+snapshot: old-B1-released-by-round-2-winner
+relay: official proof and money settlement completed

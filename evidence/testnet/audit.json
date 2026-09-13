@@ -1,0 +1,165 @@
+{
+  "observedAt": "2026-09-13T13:53:59.822Z",
+  "deployments": [
+    {
+      "name": "GoalRouter",
+      "chain": "sepolia",
+      "address": "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d",
+      "codeHashMatches": true
+    },
+    {
+      "name": "HeaderAnchor",
+      "chain": "sepolia",
+      "address": "0x1FcF2C8C06b82F5a108928d9E3E12ECAE955ed84",
+      "codeHashMatches": true
+    },
+    {
+      "name": "RootInbox",
+      "chain": "creditcoin",
+      "address": "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d",
+      "codeHashMatches": true
+    },
+    {
+      "name": "StateProofVerifier",
+      "chain": "creditcoin",
+      "address": "0x1FcF2C8C06b82F5a108928d9E3E12ECAE955ed84",
+      "codeHashMatches": true
+    },
+    {
+      "name": "GoalFillFactVerifier",
+      "chain": "creditcoin",
+      "address": "0x76bF0C9F697d199a017b357fA561680F616924D3",
+      "codeHashMatches": true
+    },
+    {
+      "name": "StateLiftGoalEscrow",
+      "chain": "creditcoin",
+      "address": "0x86f4DBB8300e2A9d26D49CE2ce9F93347157D0e2",
+      "codeHashMatches": true
+    }
+  ],
+  "flows": [
+    {
+      "act": "normal",
+      "goalId": "0xc31fc478681a410c82d0c4eecdccf269d82d16dd36b01caaa1a19d54e4c36159",
+      "sourcePayment": {
+        "hash": "0x91e966d31e8af18752f3cdbc1bedab71c55c06b7a8c1817a9a9c7b71c9d08496",
+        "chain": "sepolia",
+        "block": 11696191,
+        "status": 1,
+        "gasUsed": "195737"
+      },
+      "settlement": {
+        "hash": "0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9",
+        "chain": "creditcoin",
+        "block": 5481035,
+        "status": 1,
+        "gasUsed": "1971381"
+      },
+      "winningRound": 1,
+      "winner": "0x02dFd719264a25FE020e79529b2904B8365B8263",
+      "fromGuarantee": false,
+      "creditBefore": "0",
+      "creditAfter": "100000000000000000",
+      "invariantBefore": [
+        "1002400000000000000",
+        "200000000000000000",
+        "200000000000000000",
+        "400000000000000000",
+        "202400000000000000"
+      ],
+      "invariantAfter": [
+        "1002400000000000000",
+        "100000000000000000",
+        "300000000000000000",
+        "300000000000000000",
+        "302400000000000000"
+      ],
+      "historicalRpcDeltaVerified": true
+    },
+    {
+      "act": "late",
+      "goalId": "0xdc64d7605924fa72e1948b53145f86606f27f722f55bd623a68f88eaa1c0e985",
+      "sourcePayment": {
+        "hash": "0xc1779044bfcf4cf6ba352e02b00d473e250111e84db2f2d81ff28a37ea197106",
+        "chain": "sepolia",
+        "block": 11696205,
+        "status": 1,
+        "gasUsed": "178645"
+      },
+      "settlement": {
+        "hash": "0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20",
+        "chain": "creditcoin",
+        "block": 5481040,
+        "status": 1,
+        "gasUsed": "1939634"
+      },
+      "winningRound": 1,
+      "winner": "0x02dFd719264a25FE020e79529b2904B8365B8263",
+      "fromGuarantee": true,
+      "creditBefore": "100000000000000000",
+      "creditAfter": "200000000000000000",
+      "invariantBefore": [
+        "1002400000000000000",
+        "100000000000000000",
+        "300000000000000000",
+        "300000000000000000",
+        "302400000000000000"
+      ],
+      "invariantAfter": [
+        "1002400000000000000",
+        "100000000000000000",
+        "300000000000000000",
+        "200000000000000000",
+        "402400000000000000"
+      ],
+      "historicalRpcDeltaVerified": true
+    },
+    {
+      "act": "relay",
+      "goalId": "0x8417c34b63a32d3f8ff31e133b7c08bf18191bdfaadfd4a3a191e86bbd83992a",
+      "sourcePayment": {
+        "hash": "0xa82c3d719cb4210a84b89c6d146f8c4005c485e43001b2367d1ba828a40826ec",
+        "chain": "sepolia",
+        "block": 11696238,
+        "status": 1,
+        "gasUsed": "178657"
+      },
+      "settlement": {
+        "hash": "0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af",
+        "chain": "creditcoin",
+        "block": 5481066,
+        "status": 1,
+        "gasUsed": "1967175"
+      },
+      "winningRound": 2,
+      "winner": "0x1032FA40492bf7E084BC627d80CDCfdF58761286",
+      "fromGuarantee": false,
+      "creditBefore": "0",
+      "creditAfter": "100000000000000000",
+      "invariantBefore": [
+        "1002400000000000000",
+        "100000000000000000",
+        "300000000000000000",
+        "200000000000000000",
+        "402400000000000000"
+      ],
+      "invariantAfter": [
+        "1002400000000000000",
+        "0",
+        "400000000000000000",
+        "100000000000000000",
+        "502400000000000000"
+      ],
+      "historicalRpcDeltaVerified": true
+    }
+  ],
+  "duplicate": {
+    "hash": "0x6589e0d98d21946ed72b40d1f3d89af9f50d49b1deb68ea58b2f3ce6b620804d",
+    "onChainStatus": 0,
+    "recordedRecipientUnchanged": true,
+    "recordedPayerUnchanged": true
+  },
+  "recipientUSDC": "300000",
+  "allChecksPassed": true
+}

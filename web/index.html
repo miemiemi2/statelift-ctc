@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StateLift · Legacy 单轮研究工作台（非当前产品）</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside style="padding:20px;background:#fff0cc;color:#402900;font-weight:bold">历史单轮研究工作台，不是当前 StateLift 产品或比赛 demo。这里的静态研究结果不证明 G/E 接力、足额 B 或当前测试网集成。当前入口：README.md 与 node cli/operator.mjs help。</aside>
+    <header class="masthead">
+      <a class="brand" href="/" aria-label="StateLift 首页"
+        ><svg width="25" height="26" viewBox="0 0 25 26" aria-hidden="true">
+          <path
+            d="M2 18h8V8h13M2 24h14V2h7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          /></svg
+        >StateLift</a
+      ><span class="environment">工程工作台 · 本地运行</span
+      ><a href="/api/download/report" class="text-link">下载验证报告</a>
+    </header>
+    <div class="shell">
+      <aside>
+        <p class="nav-title">工作空间</p>
+        <nav aria-label="主要导航">
+          <button data-page="payments" aria-current="page">
+            付款目标<span>01</span></button
+          ><button data-page="roots">事实与来源<span>02</span></button
+          ><button data-page="bundle">公开恢复包<span>03</span></button>
+        </nav>
+        <div class="side-note">
+          <strong>让资金有据可结</strong>
+          <p>已付才结算。确未付才退款。未知，继续取证。</p>
+        </div>
+      </aside>
+      <main id="main">
+        <div id="load-error" role="alert" hidden></div>
+        <section id="payments" class="page">
+          <div class="page-head">
+            <div>
+              <h1>每笔付款，都有明确的下一步。</h1>
+              <p>从源链事实，走到同一笔资金的正确归属。</p>
+            </div>
+          </div>
+          <div class="scope-note">
+            <strong>本地合约验证记录</strong
+            ><span
+              >以下为已运行的工程案例，使用合成源状态与本地
+              EVM；尚未开放真实付款。</span
+            >
+          </div>
+          <div class="section-head">
+            <h2>付款终局</h2>
+            <span id="test-status">正在读取运行记录…</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">
+                本地付款终局验证案例
+              </caption>
+              <thead>
+                <tr>
+                  <th>付款目标</th>
+                  <th>证明中的事实</th>
+                  <th>允许的资金动作</th>
+                  <th>证据</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>按约付款</strong><small>指定授权已被消费</small>
+                  </td>
+                  <td><span class="state paid">已证明履约</span></td>
+                  <td>结算给原交付方<small>不可退款或重开付款</small></td>
+                  <td>
+                    <button class="row-action" data-case="paid">
+                      查看记录
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>到期未使用</strong
+                    ><small>授权过期，nonce 仍为零</small>
+                  </td>
+                  <td><span class="state refund">已证明未履约</span></td>
+                  <td>退款或预算内重试<small>旧尝试不能重复领取</small></td>
+                  <td>
+                    <button class="row-action" data-case="unused">
+                      查看记录
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>执行版本不确定</strong
+                    ><small>付款块内出现升级事件</small>
+                  </td>
+                  <td><span class="state wait">自动判断被拒绝</span></td>
+                  <td>保留待定，继续核验<small>未知不是失败</small></td>
+                  <td>
+                    <button class="row-action" data-case="upgrade">
+                      查看记录
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <section class="detail" id="case-detail" aria-live="polite">
+            <div>
+              <h2 id="case-title">已付款，就不能把预算退掉。</h2>
+              <p id="case-copy">
+                指定
+                nonce、收款人、金额与授权窗口共同确定是否按约履约。证明迟到不会改变已经发生的付款。
+              </p>
+            </div>
+            <dl>
+              <div>
+                <dt>合约决策</dt>
+                <dd id="case-result">固定交付方取得 CTC 结算款</dd>
+              </div>
+              <div>
+                <dt>验证层级</dt>
+                <dd>本地 EVM · 真实验证算法 · 合成源状态</dd>
+              </div>
+              <div>
+                <dt>可复验入口</dt>
+                <dd class="mono" id="case-file">
+                  tests/payment/fact-integration.test.cjs
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <div class="bottom-note">
+            <h2>先区分事实，再处理预算。</h2>
+            <p>
+              付款本金、证明服务费和交付方保证金独立记账。只有旧尝试取得合格终局，剩余预算才能用于下一次尝试。证明缺失或目标链超时均不能触发退款。
+            </p>
+          </div>
+        </section>
+        <section id="roots" class="page" hidden>
+          <div class="page-head">
+            <div>
+              <h1>可验证的事实，也要有来源。</h1>
+              <p>检查同一条证据链中已经成立的部分，以及尚未接通的部分。</p>
+            </div>
+          </div>
+          <div class="evidence-row">
+            <span class="step">A</span>
+            <div>
+              <h2>Attestcoin 回执认证</h2>
+              <p>
+                真实 Creditcoin 主网只读调用。原始 payload 通过，修改 receipt
+                状态或 emitter 后被拒绝。
+              </p>
+              <dl id="attest-data"></dl>
+              <a class="text-link" href="/api/download/attest">下载原始返回</a>
+            </div>
+            <span class="state paid">真实链上观察</span>
+          </div>
+          <div class="evidence-row">
+            <span class="step">B</span>
+            <div>
+              <h2>USDC 状态与版本</h2>
+              <p>
+                实际代理与实现代码匹配；已使用和未使用 nonce 的见证分别证明为 1
+                与 0。
+              </p>
+              <dl id="usdc-data"></dl>
+              <a class="text-link" href="/api/download/usdc">下载状态见证</a>
+            </div>
+            <span class="state paid">真实 RPC 见证</span>
+          </div>
+          <div class="evidence-row">
+            <span class="step">C</span>
+            <div>
+              <h2>完整源锚点接线</h2>
+              <p>
+                RootInbox、MPT 与付款合约已在本地 EVM 接通。真实 StateLift
+                HeaderAnchor 尚未部署；上面的 Ethereum 快照尚未通过该锚点认证。
+              </p>
+            </div>
+            <span class="state wait">尚待接通</span>
+          </div>
+          <div class="bottom-note">
+            <h2>数据可验证，不等于随时可取得。</h2>
+            <p>
+              历史节点、证明材料和认证服务长期不可用时，订单仍可能等待。工作台不把这一边界改成管理员裁决或无条件退款承诺。
+            </p>
+          </div>
+        </section>
+        <section id="bundle" class="page" hidden>
+          <div class="page-head">
+            <div>
+              <h1>换一个执行者，保留同一份条款。</h1>
+              <p>
+                公开恢复包包含原始订单与签名报价。只有摘要，没有原文，就不能完整恢复。
+              </p>
+            </div>
+          </div>
+          <div class="import-area">
+            <label for="bundle-file">选择公开恢复包 JSON</label
+            ><input
+              id="bundle-file"
+              type="file"
+              accept="application/json,.json"
+            />
+            <p>
+              在本机核验文件完整性、EIP-712 报价签名与 nonce
+              推导。此动作不提交交易，不等于已经核验链上锁款。
+            </p>
+            <button id="verify-bundle" disabled>核验恢复包</button>
+          </div>
+          <pre id="bundle-result" aria-live="polite" hidden></pre>
+          <section class="bottom-note">
+            <h2>恢复材料必须能够独立取得。</h2>
+            <p>
+              订单、报价、预算状态和证明定位信息都不能只存在于项目私有数据库。此入口首先检查材料自身；链上锁款、历史事实和最终性仍需分别验证。
+            </p>
+            <code>node cli/statelift.mjs bundle order.json</code>
+          </section>
+        </section>
+        <footer>
+          <span>StateLift · 当前为工程构建</span
+          ><span>未部署付款服务 · 无真实资金交易</span>
+        </footer>
+      </main>
+    </div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

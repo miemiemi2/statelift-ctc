@@ -1,0 +1,93 @@
+{
+  "contracts": {
+    "GoalRouter": {
+      "chain": "sepolia",
+      "address": "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d",
+      "hash": "0xa0281fa489932c244543b0fac056fce3a5565adc785c341183b63163163aed88",
+      "args": [],
+      "block": 11696163,
+      "gasUsed": "700181",
+      "runtimeCodeHash": "0xda3e875b6db0ad173be71d3e7aecefa1ddc8ef6b4eb5ddbfcb353fe3444020b0",
+      "status": 1
+    },
+    "HeaderAnchor": {
+      "chain": "sepolia",
+      "address": "0x1FcF2C8C06b82F5a108928d9E3E12ECAE955ed84",
+      "hash": "0xd90c0d1709737ce24def3b65e064b29f0e56d5e414e43822951ef96518db478c",
+      "args": [],
+      "block": 11696164,
+      "gasUsed": "105735",
+      "runtimeCodeHash": "0x93eb594a2a7fe402fd2cc7546d0873e6cbb43af4941eb8250f34c22eb72aef54",
+      "status": 1
+    },
+    "RootInbox": {
+      "chain": "creditcoin",
+      "address": "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d",
+      "hash": "0x32d8d5bcea99afcff5e60884b17e65d4f574bd356b9535717148daa38a157c93",
+      "args": [
+        "0x0000000000000000000000000000000000000FD2",
+        1,
+        11155111,
+        "0x1FcF2C8C06b82F5a108928d9E3E12ECAE955ed84"
+      ],
+      "block": 5480969,
+      "gasUsed": "1476948",
+      "runtimeCodeHash": "0x69a62d2f1011e3dac75f4d64468db03de76122604598b5eaff00293a1138cede",
+      "status": 1
+    },
+    "StateProofVerifier": {
+      "chain": "creditcoin",
+      "address": "0x1FcF2C8C06b82F5a108928d9E3E12ECAE955ed84",
+      "hash": "0x048aed6dbfb7973ce1630f462fa734eef004f5239a42bb87951d5e3c50b1880f",
+      "args": [
+        "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d"
+      ],
+      "block": 5480970,
+      "gasUsed": "1375440",
+      "runtimeCodeHash": "0x1bd94c3bea72bd3c732bab20edd807b79c9deae5e8742779c9da32644792bf49",
+      "status": 1
+    },
+    "GoalFillFactVerifier": {
+      "chain": "creditcoin",
+      "address": "0x76bF0C9F697d199a017b357fA561680F616924D3",
+      "hash": "0x44e7de9560b3994a2c6ebd95e7cc1f13a32c5e1a18b75693866a4a394d6b931b",
+      "args": [
+        "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d",
+        "0x1FcF2C8C06b82F5a108928d9E3E12ECAE955ed84",
+        "0x62B65603BAeAd5bF7E320Ce9C242887E86cEc01d",
+        "0xda3e875b6db0ad173be71d3e7aecefa1ddc8ef6b4eb5ddbfcb353fe3444020b0"
+      ],
+      "block": 5480971,
+      "gasUsed": "1693489",
+      "runtimeCodeHash": "0xa539621f90ac1ac98cb8cdec2984646c3d73d01a01c7c49b24591ae574c7e521",
+      "status": 1
+    },
+    "StateLiftGoalEscrow": {
+      "chain": "creditcoin",
+      "address": "0x86f4DBB8300e2A9d26D49CE2ce9F93347157D0e2",
+      "hash": "0x503c5deef674742874c4dddd86d3d79260fd4ed0ec5128a550a8f68e864fe29b",
+      "args": [
+        "0x76bF0C9F697d199a017b357fA561680F616924D3",
+        60
+      ],
+      "block": 5480972,
+      "gasUsed": "2093460",
+      "runtimeCodeHash": "0xd3ac5f7333bf3042ee82b48ed4154570b7577719d15d964ae6eb7ab7d579201e",
+      "status": 1
+    }
+  },
+  "createdAt": "2026-09-13T13:22:23.318Z",
+  "configuration": {
+    "sourceChainKey": 1,
+    "sepoliaChainId": 11155111,
+    "creditcoinChainId": 102031,
+    "usdc": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+    "minimumClearingWindow": 60,
+    "parameters": "DEMO ONLY"
+  },
+  "verifiedConfiguration": {
+    "prover": "0x0000000000000000000000000000000000000FD2",
+    "chainKey": "1",
+    "escrowVerifier": "0x76bF0C9F697d199a017b357fA561680F616924D3"
+  }
+}

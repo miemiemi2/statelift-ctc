@@ -1,0 +1,8 @@
+open-2: broadcast 0x987e9366dac406a3906cb1c3aead6acc1f1af9bd55f412063c95199db9f7f940
+open-2: confirmed block 5481029
+snapshot: round-2-open-same-G
+pay-2: broadcast 0xa82c3d719cb4210a84b89c6d146f8c4005c485e43001b2367d1ba828a40826ec
+pay-2: confirmed block 11696238
+snapshot: paid-source-2-not-settled
+anchor: broadcast 0xef352aebc89270255bab4b73d4a2046c72cb5732c0b1b7b5ace96cbf5ca69ba5
+anchor: confirmed block 11696239

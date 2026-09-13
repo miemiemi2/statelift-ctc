@@ -1,0 +1,265 @@
+✔ public bundle preserves signed terms independently of key ordering (59.454054ms)
+✔ missing original terms and edited recipient are rejected (2.511497ms)
+✔ the entry explains what is being bought before any chain action (32889.49732ms)
+✔ help names the roles and never hides the test doubles (854.131821ms)
+✔ both chains agree on the goal id the moment a goal is created (1080.040793ms)
+✔ Act A through the CLI: the four questions stay separate at every stage (17912.726711ms)
+✔ Act B through the CLI: budget returned AND old payment unproven are both reported, then B pays (16176.968838ms)
+✔ Act C through the CLI: a replacement payment on an already-filled goal is refused and costs nothing (8803.369733ms)
+✔ Act C relay completes when the old executor really never paid (23478.545646ms)
+✔ expiry release retires the round but leaves the goal relayable (7219.093857ms)
+✔ a guarantor can take back unlocked capital but not capital backing a live round (9377.067104ms)
+✔ a failing step reports the contract's actual error name (4220.963497ms)
+✔ status refuses to invent a deployment when the local world is down (944.407142ms)
+✔ reject header tamper (2.438977ms)
+✔ exact used+paired transfer pays only in strict open interval (4.446591ms)
+✔ plain transfer, wrong token and no matching nonce remain unknown (1.104368ms)
+✔ cancel is a distinct terminal fact; failed receipt is unknown (0.509604ms)
+✔ mismatched amounts and recipient are not paid; unpaired log is unknown (1.591531ms)
+✔ typed receipt decoding preserves authenticated raw logs (2.582898ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/source-proof.spike.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ real source-chain storage is verified on the CTC side through real MPT proofs (2643.498637ms)
+✔ real source-chain receipt is verified on the CTC side and its trie root matches the header (1871.025289ms)
+✔ a source block that was never anchored cannot be used as a fact source (339.275167ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/goal/act-a-settle.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ Act A: proof before D pays the winner from R and releases B (10804.176886ms)
+✔ Act A: the winner can withdraw exactly once (10250.141393ms)
+✔ Act A: the operator cannot claim a refund on a settled round (10496.342125ms)
+✔ Act A: replaying the same success fact does not pay twice (10263.176589ms)
+✔ Act A: no further round can open once the goal is paid (10398.844829ms)
+✔ Act A: a fact naming a different round cannot settle this round (12100.969172ms)
+✔ Act A: a fill quoting a deadline other than the round's T cannot settle it (12265.496978ms)
+✔ Act A: a fact for a different goal cannot settle this round (12393.880531ms)
+✔ Act A: settling an unknown round fails (2452.984224ms)
+✔ Act A: a proof sitting in the inbox is not settlement by itself (12156.261129ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/goal/act-b-late.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ Act B: at D the operator recovers R while the guarantee stays liable (3236.154752ms)
+✔ Act B: a late proof pays the winner from B and never touches the returned R (10328.126357ms)
+✔ Act B anti-front-run: a late proof draws on B even if the operator never claimed (10136.417506ms)
+✔ Act B boundary: settling just before D uses R and releases B (10168.345579ms)
+✔ Act B boundary: settling once D has been reached uses B (9937.538653ms)
+✔ Act B: the refund cannot be claimed twice and the winner cannot be paid twice (10273.210131ms)
+✔ Act B: after a late settlement the goal is closed to new rounds (10099.396923ms)
+✔ Act B: everyone can withdraw their own side of the outcome (10420.299779ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/goal/act-c-relay.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ Act C1: executor vanishes, operator recovers R1 and a replacement round completes the goal (19533.857482ms)
+✔ Act C2: the old payment had happened, so the replacement payment is rejected on the source chain (22044.324658ms)
+✔ Act C: a late fact for the old round cannot pay a second winner (12283.579541ms)
+✔ Act C: a round cannot release its own guarantee by claiming it lost (12049.203189ms)
+✔ Act C: a fact from an unrelated goal cannot release a guarantee (11998.502044ms)
+✔ Act C: an outsider filling an unregistered round closes the goal without paying anyone (20912.092812ms)
+✔ Act C: relay is refused while the previous round can still be filled (2297.131303ms)
+✔ Act C: a third round can follow a second failed relay (28287.223992ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/goal/escrow-open.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ both chains derive the same goal id from the same terms (1020.184235ms)
+✔ a goal fixes recipient and amount and cannot be created twice (542.738447ms)
+✔ opening a round splits R, B and the premium into separate pools (1529.643288ms)
+✔ a quote with guarantee below the principal is refused (637.929514ms)
+✔ a quote the guarantor cannot fund is refused (652.412855ms)
+✔ the same capital cannot underwrite two live rounds (1394.205139ms)
+✔ locked capital cannot be withdrawn by the guarantor (1371.960343ms)
+✔ a clearing deadline that is not clear of the payment deadline is refused (644.50992ms)
+✔ a payment deadline in the past is refused (658.398098ms)
+✔ the operator must send exactly R plus the premium (664.43682ms)
+✔ only the goal owner can open a round on it (670.768664ms)
+✔ a round quote cannot be opened without the guarantor's signature (647.891184ms)
+✔ a guarantor quote nonce cannot be reused (1371.977583ms)
+✔ an expired quote is refused (628.929612ms)
+✔ round numbers must be consecutive and a replacement cannot open while the previous round is still live (2201.146119ms)
+✔ the goal's round cap is enforced (1541.874775ms)
+✔ guarantee capital can be deposited and unlocked capital withdrawn (879.219647ms)
+✔ a zero-value capital deposit and an empty withdrawal are refused (465.038582ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/goal/negative-fact.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ an unfilled goal produces a negative fact carrying the source timestamp (3011.228647ms)
+✔ a negative fact is refused once the goal really has been filled (5416.601884ms)
+✔ expiry release frees the guarantee and the budget without closing the goal (3436.730593ms)
+✔ expiry release before T proves nothing and is refused (3471.222197ms)
+✔ after expiry release the operator can still relay and win on the same goal (13166.715672ms)
+✔ a negative fact for another goal cannot release this round (3354.110137ms)
+✔ a negative fact from an unanchored source block is refused (1580.415811ms)
+✔ a negative fact cannot be forged against an address that is not the router (3611.654185ms)
+✔ expiry release also works on an already refunded round (3443.144724ms)
+✔ a round retired by an expiry proof lets a replacement open immediately (13161.492291ms)
+✔ a still-live previous round is not retired, so relay still waits (1648.887613ms)
+✔ a released round cannot be released or settled again (3298.38655ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/payment/escrow.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ paid principal goes to solver, never Ethereum recipient; one settlement only (3377.921034ms)
+✔ expiry before deadline cannot refund; valid expiry recycles Q without also crediting Q (4025.106618ms)
+✔ bad signatures, concurrent attempt and over-budget quote are rejected (2030.572816ms)
+✔ mismatched consumption closes into exception; principal refund cannot be retried (2092.181329ms)
+✔ no local timeout action: owner cannot close an active goal, and paid window is strict (2229.939616ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/payment/fact-integration.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ actual MPT and native receipt policy produce paid fact consumed by native CTC escrow (75979.663683ms)
+✔ proven expired unused nonce yields refundable fact; tampered goal does not spend the original budget (26397.913294ms)
+✔ known code at block end does not bypass same-block upgrade exclusion (10861.07399ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/fixtures/two-chain.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/payment/goal-fill-fact.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ an anchored fill receipt yields the winning round and winner (20452.341367ms)
+✔ the fact reports the round that actually filled, not the round asked about (11069.295834ms)
+✔ a goal id that was not the one filled does not appear in the fact (11013.109202ms)
+✔ an unanchored block cannot produce a fact (898.712437ms)
+✔ a tampered receipt proof cannot produce a fact (1507.887758ms)
+✔ a receipt from an anchored block with no router fill log is rejected (5321.17584ms)
+✔ the verifier is bound to one router and one inbox (21163.657756ms)
+✔ a verifier cannot be constructed with a mismatched state verifier or zero router (582.369374ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/proof/mainnet-witness.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ saved real USDC MPT witnesses agree in Solidity and JS; header bytes match observed block hash (38275.543144ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/proof/root-inbox.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ native HeaderAnchor reports actual previous local block hash and rejects unavailable height (646.119062ms)
+✔ RootInbox requires correct authenticated emitter, status, chain and header hash; parent is linked (2194.016986ms)
+✔ EthereumJS generated MPT proves account/storage/receipt and separates nonmembership from missing proof (3706.156618ms)
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_arm64_137.node'
+Require stack:
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /root/buidl-ctc-2026-fall-concept/statelift/node_modules/ganache/dist/node/core.js
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/helpers.cjs
+- /root/buidl-ctc-2026-fall-concept/statelift/tests/source/goal-router.test.cjs
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+✔ a compliant fill pays the recipient exactly once and records the winner (985.58441ms)
+✔ a second round on the same goal reverts and spends no second payment (544.79887ms)
+✔ replaying the identical fill reverts (468.947818ms)
+✔ a fill after the round deadline T reverts (229.313653ms)
+✔ an authorization for a different amount cannot fill the goal (260.629792ms)
+✔ an authorization bound to another goal cannot fill this goal (256.516644ms)
+✔ an authorization signed for a different round number is not reusable (255.885439ms)
+✔ the router authorization cannot be redirected to pay the recipient directly (216.122119ms)
+✔ zero round number and zero winner are rejected (245.744848ms)
+ℹ tests 107
+ℹ suites 0
+ℹ pass 107
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1093051.333172

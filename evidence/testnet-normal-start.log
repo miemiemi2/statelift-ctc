@@ -1,0 +1,19 @@
+create: broadcast 0x6dee71918ba35d4f7362d8d29f224254ce9ccd91ae1dbe73c2a7ff5e84994313
+create: confirmed block 5480987
+capital: broadcast 0x0896868fac5a018c237b50f085e269c320bfb35fec53f3dd216effac1c5a5240
+capital: confirmed block 5480988
+open-1: broadcast 0xf43078ccbcd5002d11ee43cce0d9819bbe24e96d038de9e5a1d6aa0efccddc99
+open-1: confirmed block 5480989
+snapshot: round-1-open
+pay-1: broadcast 0x91e966d31e8af18752f3cdbc1bedab71c55c06b7a8c1817a9a9c7b71c9d08496
+pay-1: confirmed block 11696191
+snapshot: paid-source-1-not-settled
+execution reverted (unknown custom error)
+create: confirmed block 5480987
+capital: confirmed block 5480988
+open-1: confirmed block 5480989
+snapshot: round-1-open
+pay-1: confirmed block 11696191
+snapshot: paid-source-1-not-settled
+anchor: broadcast 0x7770ce5f7f450bb67ac66ca5d6ecd87fe2360f9caaefac0a68422b1560f71ace
+anchor: confirmed block 11696197

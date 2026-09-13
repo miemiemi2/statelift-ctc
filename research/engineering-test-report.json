@@ -1,0 +1,9 @@
+{
+  "observedAt": "2026-09-11T14:02:11.128089+00:00",
+  "command": "node --test --test-concurrency=1 tests/cli/bundle.test.js tests/cli/primitives.test.js tests/cli/receipt.test.js tests/payment/escrow.test.cjs tests/payment/fact-integration.test.cjs tests/proof/mainnet-witness.test.cjs tests/proof/root-inbox.test.cjs",
+  "exitCode": 0,
+  "tests": 20,
+  "passed": 20,
+  "failed": 0,
+  "scope": "Local EVM, synthetic authenticated anchor fixture, real cryptographic proof algorithms, saved mainnet USDC witnesses; not a deployed StateLift service."
+}

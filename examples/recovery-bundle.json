@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "evidenceKind": "local-synthetic",
+  "order": {
+    "targetChainId": "1337",
+    "hub": "0x1111111111111111111111111111111111111111",
+    "goalId": "0xa8d5502346c1ac5fb3f7b8051dbbbcdf4c587f4c7a730aaef305e47c5c0d66a5",
+    "owner": "0x2222222222222222222222222222222222222222",
+    "goal": {
+      "sourceDomain": "0x3361ee038d2129577c3c07b640bf9be13df41ff9b2d19fd5f927f57ad808be8a",
+      "manifestId": "0x64c4722fdb66d9ac32e703be064afd096c9b6260e1cf3ab4fa449b8631a2b95a",
+      "token": "0x3333333333333333333333333333333333333333",
+      "recipient": "0x4444444444444444444444444444444444444444",
+      "usdcAmount": "100000000",
+      "principalCap": "1000",
+      "serviceCap": "100",
+      "maxAttempts": 3,
+      "automaticRetry": true
+    }
+  },
+  "quote": {
+    "goalId": "0xa8d5502346c1ac5fb3f7b8051dbbbcdf4c587f4c7a730aaef305e47c5c0d66a5",
+    "attemptNumber": 1,
+    "solver": "0x8d1C13517140C7c88590B1D3dC4BAB77910Faf56",
+    "authorizer": "0x8d1C13517140C7c88590B1D3dC4BAB77910Faf56",
+    "validAfter": 10,
+    "validBefore": 200,
+    "acceptBefore": 4000000000,
+    "principal": "700",
+    "serviceCap": "40",
+    "proofReward": "10",
+    "bond": "20",
+    "nonfulfillmentPenalty": "5",
+    "solverNonce": "1"
+  },
+  "termsHash": "0x6ec2140b66c0401185ca6af4d25391dbc5129cf0049c482a81fedfdf9dc8b8c9",
+  "sourceNonce": "0x389e96d1b59c20aed592fa3391a04e5782b87cd451883bba9108fc3290967832",
+  "quoteSignature": "0x4b25126e1ddafb414ef996a8ba6b45a6b35d93b151c396a6a6d4fbc3bd84fe4168fd12ce9d75dfe47f8ba5b676f13d0ddf769c472d38c35d9085146f062ace391b",
+  "note": "Synthetic signed public bundle. No on-chain lock or real funds.",
+  "bundleDigest": "0x9960ba0055886cee3632114fff465e171817b8ff748095602c031550f92bbd35"
+}

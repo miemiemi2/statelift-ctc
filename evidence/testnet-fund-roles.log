@@ -1,0 +1,12 @@
+operator-ctc: broadcast 0x8cd7cf1a895b1c1e072115d24695f09b16d973eb747aec0067126976d58a7c8b
+operator-ctc: confirmed block 5480979
+guarantor-ctc: broadcast 0xe32d8630db0c237efe28d847a005791f6958f13d3bfd495599df09d6978233d1
+guarantor-ctc: confirmed block 5480980
+executor-eth: broadcast 0xa1587e6dff44f4df4fefaa53f2278fae9fae865e830a22dc06fe0c62c2248a52
+executor-eth: confirmed block 11696179
+executor-usdc: broadcast 0x338aaedd5f42cfbfef06e1b49daee36ae8eb1e3b8ae9fefeae8c4a32f4d33453
+executor-usdc: confirmed block 11696180
+executor2-eth: broadcast 0x68e2256c6625282712af0dca31b204976a44cf8bce6cf127ed431bf0c95a40df
+executor2-eth: confirmed block 11696182
+executor2-usdc: broadcast 0x0f43f700713e25d86aff7e82b12ab4f41830b38efc61b795e5e387961d16bc86
+executor2-usdc: confirmed block 11696183

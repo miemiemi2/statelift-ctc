@@ -1,0 +1,11 @@
+node_modules/
+research/sdk/node_modules/
+.statelift-local/
+*.log
+!evidence/current-validation.md
+!evidence/full-recheck.log
+!evidence/demo-recheck.log
+!evidence/source-router-recheck.log
+!evidence/testnet-*.log
+!evidence/showcase-output.txt
+!evidence/pdf-render.log

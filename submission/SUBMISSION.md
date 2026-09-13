@@ -21,6 +21,6 @@ R=B=0.1 tCTC, π=0.0006 tCTC and 0.1 test USDC are demo parameters. The measured
 
 ## Links
 
-- Repository: [StateLift](https://github.com/REPLACE_AFTER_PUBLISH)
-- Whitepaper: `submission/StateLift-whitepaper.pdf`
+- Repository: [StateLift](https://github.com/miemiemi2/statelift-ctc)
+- Whitepaper: https://github.com/miemiemi2/statelift-ctc/raw/main/submission/StateLift-whitepaper.pdf
 - Source and evidence: `README.md`, `docs/TESTNET-INTEGRATION.md`, `evidence/testnet/`

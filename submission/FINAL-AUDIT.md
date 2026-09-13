@@ -16,9 +16,11 @@ Validation:
 - Full-suite baseline: 107 passed, 0 failed (`evidence/full-recheck.log`). Not represented as a rerun of the expanded suite.
 - Updated negative-fact suite: 13 passed, 0 failed, 101.1 seconds (`evidence/multi-round-validation.log`).
 - Browser verification core: all four published flows pass; mismatched expiry goal proof rejected.
-- Chromium: expiry verification, invalid input, desktop and 390px mobile checked; no page errors or horizontal overflow.
+- Live GitHub Pages and local Chromium: expiry verification, invalid input, desktop and 390px mobile checked; no page errors or horizontal overflow.
 - Local showcase reads all four evidence bundles successfully. It displays saved evidence; the public verifier queries RPC live.
 - Fresh release archive: `npm ci --ignore-scripts --no-audit --no-fund`, CLI help and four-flow showcase passed. Primary material relative links resolve; expiry Blockscout link returns HTTP 200.
 - Whitepaper regenerated from the current Markdown; expiry and the separate test scopes are included.
 
 The main claim is a concrete payment decision powered by state non-membership, not unrestricted historical querying. Generic proof components exist, but the submission has one business consumer. Public RPC availability and historical-state support remain runtime dependencies. Economics are subsidized demonstration parameters; customer demand, independent underwriting and profitable pricing are not established. These limitations remain explicit.
+
+Delivery: GitHub Pages is live; Mac latest ZIP, standalone PDF and submission copy were transferred and SHA-256 matched against VPS originals. Old packages retain their `_old-` prefixes.

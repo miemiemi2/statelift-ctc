@@ -23,6 +23,10 @@ A second, validly signed source payment attempt was **mined and reverted**, leav
 
 The [independent audit](evidence/testnet/audit.json) re-queries historical CTC state before and after each settlement. It verifies winner credit deltas, R/B bucket changes, deadline refund deltas, source winning rounds and deployed runtime code hashes.
 
+## The reusable state-proof boundary
+
+StateLift is deliberately a focused first consumer of a separately deployed state-proof boundary. `RootInbox` authenticates an anchored source header and its state root; `StateProofVerifier` verifies an account and storage proof against that root. Those components do not know about payments, rounds, or guarantees. `GoalFillFactVerifier` is the first business consumer: it applies the generic proof to GoalRouter's fill slot and turns the result into the payment-specific filled or still-unfilled fact. The current prototype proves this boundary with one concrete consumer and does not claim an open-ended historical-query SDK.
+
 ## Run locally
 
 Use a current Node.js release; this run used Node 24. The first Solidity compilation takes time.

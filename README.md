@@ -1,26 +1,22 @@
 # StateLift
 
-**Recover your budget at D. Hand off the same payment goal. Let dedicated B pay a late old obligation.**
+**Recover a cross-chain payment budget without declaring the payment failed.**
 
-StateLift protects a Creditcoin payment operator when an Ethereum USDC payment's outcome is uncertain. All attempts share one source-chain goal G, so replacing an executor cannot produce a second compliant payment. Each round reserves its own fully funded guarantee before accepting the operator's budget.
+A cross-chain payment may already have happened while its proof is still missing. StateLift lets a Creditcoin operator recover the reserved budget at a clearing deadline while keeping the real payment obligation covered until authenticated Ethereum evidence resolves the outcome.
 
-[中文说明](README.zh-CN.md) · [Whitepaper PDF](submission/StateLift-whitepaper.pdf) · [Technical integration](docs/TESTNET-INTEGRATION.md) · [Underwriting economics](research/underwriting-model.md)
+If the first attempt did not pay, the same payment goal stays open for another executor. If it paid before the deadline but the proof arrives late, that attempt’s prefunded guarantee settles the executor without clawing back the operator’s refund.
 
-[Watch the evidence-backed walkthrough](https://miemiemi2.github.io/statelift-ctc/web/demo.html) for the three-case product story. Each case is a separate completed testnet record; the expiry scene also offers live RPC verification.
+**Attestcoin is part of the settlement path:** authenticated Ethereum payment and historical state evidence directly determine Creditcoin settlement and guarantee release.
 
-[Open the public verifier](https://miemiemi2.github.io/statelift-ctc/web/verifier.html): re-run a published flow’s proof and compare historical R/B/credit balances through public RPC. Supports `expiry`, `normal`, `late`, `relay`, or their published transaction hashes / goal IDs. No wallet required. Locally, run `python3 -m http.server 8080` from the repository root and visit `http://localhost:8080/web/verifier.html`.
+[Open the demo](https://miemiemi2.github.io/statelift-ctc/web/demo.html) · [Verify published testnet evidence](https://miemiemi2.github.io/statelift-ctc/web/verifier.html) · [Whitepaper PDF](submission/StateLift-whitepaper.pdf) · [Technical integration](docs/TESTNET-INTEGRATION.md) · [中文说明](README.zh-CN.md)
+
 
 ## Real testnet results
 
-These are confirmed transactions, not mock proof-builder responses. Separate operator, guarantor, executor, replacement executor and recipient addresses were used.
-
-| Path | Creditcoin settlement | Verified result |
-|---|---|---|
-| Unfilled expiry | [0xc281cefe…](https://creditcoin-testnet.blockscout.com/tx/0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6) | After R1 refund, an authenticated post-T unfilled fact releases B1; G remains open |
-| Normal payment | [0xeffe0ce3…](https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9) | Winner gains R from held principal; B unlocks |
-| Payment proven late | [0x742f0927…](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20) | Operator keeps refunded R; the dedicated B pays the winner |
-| Old executor never paid | [0xa532ba0a…](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af) | R1 returned at D; executor 2 completes the same G; old B1 releases |
-
+| Same-goal handoff | [0xa532ba0a…](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af) | R1 returned at D; executor 2 completes the same G; old B1 releases |
+| Payment on time, proof accepted late | [0x742f0927…](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20) | Operator keeps refunded R; the dedicated B pays the winner |
+| Unfilled expiry | [0xc281cefe…](https://creditcoin-testnet.blockscout.com/tx/0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6) | Authenticated post-T unfilled fact releases B1; G remains open |
+| Normal control | [0xeffe0ce3…](https://creditcoin-testnet.blockscout.com/tx/0xeffe0ce362de7e976221343f31d217ac5dcd22fcc7227f18c470e694108977b9) | Winner gains R from held principal; B unlocks |
 A second, validly signed source payment attempt was **mined and reverted**, leaving recipient and payer USDC balances unchanged: [duplicate receipt](evidence/testnet/duplicate-payment.json). The normal, late and relay runs were subsequently withdrawn to their role wallets; gas-adjusted native balance deltas were verified and the escrow reconciled to zero at that checkpoint (before the later expiry run): [withdrawal evidence](evidence/testnet/withdrawals.json).
 
 The [independent audit](evidence/testnet/audit.json) re-queries historical CTC state before and after each settlement. It verifies winner credit deltas, R/B bucket changes, deadline refund deltas, source winning rounds and deployed runtime code hashes.

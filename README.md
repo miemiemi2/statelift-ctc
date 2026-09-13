@@ -13,6 +13,8 @@ If the first attempt did not pay, the same payment goal stays open for another e
 
 ## Real testnet results
 
+| Path | Creditcoin settlement | Verified result |
+|---|---|---|
 | Same-goal handoff | [0xa532ba0a…](https://creditcoin-testnet.blockscout.com/tx/0xa532ba0a5db0d375178a71286715e332787fb2935591a07d69705a38149a35af) | R1 returned at D; executor 2 completes the same G; old B1 releases |
 | Payment on time, proof accepted late | [0x742f0927…](https://creditcoin-testnet.blockscout.com/tx/0x742f0927d6e602582725cc4d4218a80cb87a8f9f3aeee710548d6a2760d1ba20) | Operator keeps refunded R; the dedicated B pays the winner |
 | Unfilled expiry | [0xc281cefe…](https://creditcoin-testnet.blockscout.com/tx/0xc281cefe2f518f1bf2c64f594213f4502a698d260646629a8a9f54d881ed6ab6) | Authenticated post-T unfilled fact releases B1; G remains open |

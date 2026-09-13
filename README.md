@@ -97,7 +97,7 @@ Creditcoin chain ID **102031**; Sepolia chain ID **11155111**; Attestcoin source
 
 ## Economics and limits
 
-R=B=0.1 tCTC, π=0.0006 tCTC and 0.1 test USDC are **demo parameters**, not an exchange rate or market quote. The prototype demonstrates the payment and proof mechanics, not a production underwriting business. Guarantees require prefunded capital and may remain locked while proof is unavailable; demonstration pricing does not establish sustainable economics. Customer demand, independent underwriting, and production security remain unvalidated.
+R=B=0.1 tCTC, π=0.0006 tCTC and 0.1 test USDC are **demo parameters**, not an exchange rate or market quote. The prototype demonstrates the payment and proof mechanics, not a production underwriting business. Guarantees require prefunded capital and may remain locked indefinitely while proof is unavailable; demonstration pricing does not establish sustainable economics. Customer demand, independent underwriting, and production security remain unvalidated.
 
 The observed official prover requires 32 source blocks plus attestation availability. Proof outages can affect multiple guarantee positions, and CTC or USDC operational risks remain. Detailed cost measurements and risk assumptions are in the [underwriting model](research/underwriting-model.md).
 

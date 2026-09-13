@@ -21,7 +21,8 @@ const requireFact = (ok, name) => {
 let scenes = [],
   position = 0,
   busy = false,
-  liveVerified = false;
+  liveVerified = false,
+  liveCache = new Map();
 function render() {
   const scene = scenes[position];
   $("case").textContent = scene.case;
@@ -67,7 +68,12 @@ function render() {
     li.append(a);
     $("links").append(li);
   }
-  $("live").hidden = !scene.live;
+  const isCase = Boolean(scene.act);
+  $("live").hidden = !isCase;
+  $("verify").hidden = scene.act !== "expiry";
+  if (isCase && !liveCache.has(scene.act))
+    $("live-status").textContent =
+      "Live verification will run when this case opens…";
   $("step").textContent = `${position + 1} / ${scenes.length}`;
   $("back").disabled = busy || position === 0;
   $("next").disabled = busy;
@@ -278,6 +284,7 @@ async function initialise() {
     ];
     position = 0;
     render();
+    void startLive(scenes[position].act);
   } catch (error) {
     $("error").hidden = false;
     $("error").textContent = `Cannot load the demonstration: ${error.message}`;
@@ -286,48 +293,70 @@ async function initialise() {
       "No recorded outcome is shown until its evidence is available.";
   }
 }
+async function startLive(act, force = false) {
+  if (!act || (!force && liveCache.has(act))) return liveCache.get(act);
+  busy = true;
+  render();
+  const promise = (async () => {
+    try {
+      const result = await verifyFlow(act, load, (message) => {
+        if (scenes[position]?.act === act)
+          $("live-status").textContent = message;
+      });
+      if (scenes[position]?.act === act) {
+        $("live-status").textContent =
+          `Live verification passed · ${result.checks.length} checks · ${new Date(result.checkedAt).toLocaleString()}`;
+        if (act === "expiry") {
+          const locked = result.rows.find(
+            (r) => r.name === "Locked guarantee B",
+          );
+          $("live-summary").textContent =
+            `Public RPC: locked B ${money(locked.before)} → ${money(locked.after)} at Creditcoin block ${result.block}. Released round; goal remains Open.`;
+          $("live-result").hidden = false;
+        }
+      }
+      return result;
+    } catch (error) {
+      liveCache.delete(act);
+      if (scenes[position]?.act === act)
+        $("live-status").textContent =
+          `Live verification incomplete: ${error.shortMessage || error.message}. Retry this case or use the recorded evidence.`;
+      throw error;
+    } finally {
+      busy = false;
+      render();
+    }
+  })();
+  liveCache.set(act, promise);
+  return promise;
+}
+
 $("next").onclick = () => {
   if (!busy) {
     position = (position + 1) % scenes.length;
     render();
+    void startLive(scenes[position].act);
   }
 };
 $("back").onclick = () => {
   if (!busy && position > 0) {
     position--;
     render();
+    void startLive(scenes[position].act);
   }
 };
 $("retry").onclick = initialise;
 $("verify").onclick = async () => {
   if (busy) return;
-  busy = true;
-  $("verify").disabled = true;
-  render();
+  liveVerified = false;
+  liveCache.delete("expiry");
   $("live-result").hidden = true;
+  $("verify").textContent = "Verify expiry again";
   try {
-    const result = await verifyFlow(
-      "expiry",
-      load,
-      (message) => ($("live-status").textContent = message),
-    );
+    await startLive("expiry", true);
     liveVerified = true;
-    $("live-status").textContent =
-      `Live verification passed · ${result.checks.length} checks · ${new Date(result.checkedAt).toLocaleString()}`;
-    const locked = result.rows.find((r) => r.name === "Locked guarantee B");
-    $("live-summary").textContent =
-      `Public RPC: locked B ${money(locked.before)} → ${money(locked.after)} at Creditcoin block ${result.block}. Released round; goal remains Open.`;
-    $("live-result").hidden = false;
-  } catch (error) {
-    $("live-status").textContent =
-      `Live verification incomplete: ${error.shortMessage || error.message}. The recorded replay remains separate. Wait briefly and retry.`;
-  } finally {
-    busy = false;
-    $("verify").disabled = false;
-    $("verify").textContent = liveVerified
-      ? "Verify expiry again"
-      : "Retry live verification";
-    render();
+  } catch {
+    /* status is rendered by startLive */
   }
 };
 await initialise();

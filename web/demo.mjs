@@ -282,6 +282,41 @@ async function initialise() {
         transactions: [],
       },
     ];
+    // The recording uses five narrative beats. Keep every recorded result and
+    // transaction link, while grouping the intermediate accounting states.
+    scenes = [
+      {
+        ...scenes[0],
+        case: "Case A · Payment proof pending",
+        title: "A stalled payment shouldn’t trap the budget.",
+        story: "A supplier needs paying on Ethereum, but the Creditcoin contract cannot yet verify the first attempt. Waiting ties up the budget; retrying blindly risks paying twice.",
+        meaning: "StateLift sets a deadline for budget recovery and keeps the same payment goal available for a later attempt.",
+        rows: [...scenes[0].rows, ...scenes[1].rows],
+        transactions: [[...scenes[0].transactions[0]], [...scenes[1].transactions[0]]],
+      },
+      {
+        ...scenes[2],
+        case: "Case A · Same-goal handoff",
+        title: "A second executor completes the same payment goal.",
+        story: "The first attempt’s budget is withdrawable after the deadline. A second executor funds a new round and pays through the same goal.",
+        meaning: "The router accepts at most one compliant supplier payment for this goal, across all rounds.",
+      },
+      scenes[3],
+      {
+        ...scenes[4],
+        case: "Case C · Unfilled proof and guarantee release",
+        title: "The unfilled proof releases this round’s guarantee.",
+        story: "The operator has recovered the budget. An authenticated state proof is needed to show that this goal was still unfilled after the deadline and release the guarantee.",
+        rows: [...scenes[4].rows, ...scenes[5].rows],
+        transactions: [...scenes[4].transactions, ...scenes[5].transactions],
+        live: true,
+        meaning: "The goal remains open for a new funded round, while this expired round cannot make a valid payment.",
+      },
+      {
+        ...scenes[6],
+        title: "Recover the budget. Keep the goal open. Cover real payments.",
+      },
+    ];
     position = 0;
     render();
     if (scenes[position].act === "expiry") void startLive("expiry");

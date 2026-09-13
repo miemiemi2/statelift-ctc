@@ -97,10 +97,8 @@ Creditcoin chain ID **102031**; Sepolia chain ID **11155111**; Attestcoin source
 
 ## Economics and limits
 
-R=B=0.1 tCTC, π=0.0006 tCTC and 0.1 test USDC are **demo parameters**, not an exchange rate or market quote. Short late-case deadlines deliberately trigger coverage. The observed official prover requires 32 source blocks plus attestation availability; no latency SLA is implied.
+R=B=0.1 tCTC, π=0.0006 tCTC and 0.1 test USDC are **demo parameters**, not an exchange rate or market quote. The prototype demonstrates the payment and proof mechanics, not a production underwriting business. Guarantees require prefunded capital and may remain locked while proof is unavailable; demonstration pricing does not establish sustainable economics. Customer demand, independent underwriting, and production security remain unvalidated.
 
-Normal root acceptance plus settlement cost 0.001109895 tCTC, above the demo premium. The deployer subsidized those transactions. With π/R=0.6%, even zero other costs cannot cover a late-loss rate at or above 0.6%. Correlated proof outages can consume many B positions together. [Per-sender gas costs](evidence/testnet/gas-costs.json).
-
-The prototype does not prove customer demand, independent counterparties, profitable underwriting or production security. B can remain locked indefinitely without usable facts. CTC outages can prevent wall-clock withdrawals. USDC upgrades/blacklisting, source-chain assumptions, FX, executor inventory and operational availability remain risks. Failed transactions spend gas; premiums are not refunded.
+The observed official prover requires 32 source blocks plus attestation availability. Proof outages can affect multiple guarantee positions, and CTC or USDC operational risks remain. Detailed cost measurements and risk assumptions are in the [underwriting model](research/underwriting-model.md).
 
 [Current status](STATUS.md) · [Raw local demo](evidence/three-acts.md)

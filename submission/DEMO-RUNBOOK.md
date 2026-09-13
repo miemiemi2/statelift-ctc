@@ -6,6 +6,6 @@ Use **Next scene** to move through the three independently recorded cases: same-
 
 The page loads saved testnet evidence. It does not send transactions. Case A, B and C have different goal IDs; they must not be presented as one continuous payment history. A credit is withdrawable escrow ownership, not evidence of a completed withdrawal.
 
-In the expiry outcome scene, **Verify expiry live** queries public RPC and calls the deployed verifier. Success is shown only after the live checks pass. If RPC is unavailable, the page reports an incomplete live check separately from the recorded outcome; retry when available.
+When a case first opens, the page automatically queries public RPC and calls the deployed verifier once; the result is cached while you move through that case’s scenes. The expiry outcome also has a **Verify expiry again** button. Success is shown only after the live checks pass. If RPC is unavailable, the page reports an incomplete live check separately from the recorded outcome; retry when available.
 
 Each case has expandable transaction links and a link to the full verifier. For a local copy, serve the repository root with `python3 -m http.server 8080` and open `http://localhost:8080/web/demo.html`.

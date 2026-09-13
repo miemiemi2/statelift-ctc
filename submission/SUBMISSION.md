@@ -22,6 +22,7 @@ R=B=0.1 tCTC, π=0.0006 tCTC and 0.1 test USDC are demo parameters. The measured
 
 ## Links
 
+- Product walkthrough: https://miemiemi2.github.io/statelift-ctc/web/demo.html
 - Public verifier: https://miemiemi2.github.io/statelift-ctc/web/verifier.html
 - Repository: [StateLift](https://github.com/miemiemi2/statelift-ctc)
 - Whitepaper: https://github.com/miemiemi2/statelift-ctc/raw/main/submission/StateLift-whitepaper.pdf

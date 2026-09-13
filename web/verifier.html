@@ -140,10 +140,34 @@
           font-size: 0.85rem;
         }
       }
+      .examples button[aria-pressed="true"] {
+        background: #203f35;
+        color: white;
+      }
+      .brand-logo {
+        display: block;
+        width: 242px;
+        height: 76px;
+        overflow: hidden;
+        position: relative;
+      }
+      .brand-logo img {
+        position: absolute;
+        width: 302px;
+        max-width: none;
+        left: -30px;
+        top: -70px;
+      }
     </style>
   </head>
   <body>
     <header>
+      <a
+        class="brand-logo"
+        href="./demo.html"
+        aria-label="StateLift demonstration"
+        ><img src="./assets/statelift-logo.png" alt="StateLift"
+      /></a>
       <a href="https://github.com/miemiemi2/statelift-ctc"
         >StateLift / source & evidence</a
       >
@@ -152,6 +176,12 @@
         A proof that a payment goal was still unfilled releases its guarantee.
         The goal stays open for another executor.
       </p>
+      <p>
+        <strong
+          >Attestcoin proves what happened. StateLift proves a payment
+          hadn’t.</strong
+        >
+      </p>
       <p class="muted">
         Read-only · Creditcoin testnet + Ethereum Sepolia · No wallet,
         signatures or transactions required.
@@ -159,7 +189,18 @@
     </header>
     <main>
       <form id="form">
-        <label for="query">Published outcome, transaction hash or goal ID</label
+        <div class="examples" aria-label="Examples">
+          <button type="button" data-act="expiry" aria-pressed="true">
+            Unfilled expiry</button
+          ><button type="button" data-act="normal">Normal payment</button
+          ><button type="button" data-act="late">Late proof</button
+          ><button type="button" data-act="relay">Same-goal relay</button>
+        </div>
+        <p class="muted">
+          Choose a published case, then verify it against public RPC.
+        </p>
+        <label for="query"
+          >Or enter a published transaction hash or goal ID</label
         ><input
           id="query"
           value="expiry"
@@ -171,17 +212,9 @@
           Matches the four published evidence bundles. Other transactions are
           not supported.
         </p>
-        <div class="examples" aria-label="Examples">
-          <button type="button" data-act="expiry">Unfilled expiry</button
-          ><button type="button" data-act="normal">Normal payment</button
-          ><button type="button" data-act="late">Late proof</button
-          ><button type="button" data-act="relay">Same-goal relay</button>
-        </div>
         <button id="go" type="submit">Verify against public RPC</button>
       </form>
-      <p id="status" role="status" aria-live="polite">
-        Choose an outcome, then verify its proof and historical balances.
-      </p>
+      <p id="status" role="status" aria-live="polite"></p>
       <section id="result" hidden>
         <h2 id="headline"></h2>
         <p id="identity"></p>

@@ -11,6 +11,8 @@ const load = async (path) => {
 for (const button of document.querySelectorAll("[data-act]"))
   button.onclick = () => {
     $("query").value = button.dataset.act;
+    for (const option of document.querySelectorAll("[data-act]"))
+      option.setAttribute("aria-pressed", String(option === button));
   };
 $("form").onsubmit = async (event) => {
   event.preventDefault();
@@ -88,3 +90,14 @@ $("form").onsubmit = async (event) => {
     buttons.forEach((b) => (b.disabled = false));
   }
 };
+
+const preset = new URLSearchParams(location.search).get("act");
+if (["expiry", "normal", "late", "relay"].includes(preset))
+  document.querySelector(`[data-act="${preset}"]`).click();
+$("query").addEventListener("input", () => {
+  for (const option of document.querySelectorAll("[data-act]"))
+    option.setAttribute(
+      "aria-pressed",
+      String(option.dataset.act === $("query").value.trim().toLowerCase()),
+    );
+});

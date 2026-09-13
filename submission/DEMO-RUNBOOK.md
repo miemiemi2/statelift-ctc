@@ -1,19 +1,11 @@
-# StateLift demo recording runbook
+# StateLift demonstration
 
-The engineering work is complete. Record this read-only replay from the project root; it does not spend funds or require a wallet.
+Open https://miemiemi2.github.io/statelift-ctc/web/demo.html .
 
-```bash
-npm ci
-node scripts/showcase.mjs
-```
+Use **Next scene** to move through the three independently recorded cases: same-goal handoff, late settlement from dedicated guarantee, and unfilled expiry. **Previous** revisits a scene; the final button restarts the demonstration.
 
-Suggested narration:
+The page loads saved testnet evidence. It does not send transactions. Case A, B and C have different goal IDs; they must not be presented as one continuous payment history. A credit is withdrawable escrow ownership, not evidence of a completed withdrawal.
 
-1. “StateLift protects one payment goal G. The source router allows at most one compliant USDC payment.”
-2. “In the normal path, the proof moves the executor’s reward from R and releases B.”
-3. “In the late path, the operator has already recovered R at D. The authenticated proof moves the winner’s reward from that round’s B.”
-4. “In the handoff path, the old executor never paid. A second executor pays the same G, and the old B is released.”
-5. “A separate validly signed duplicate payment was mined and reverted, with both USDC balances unchanged.”
-6. “The audit re-queries the historical Creditcoin states before and after settlement, then shows the final escrow balance is zero.”
+In the expiry outcome scene, **Verify expiry live** queries public RPC and calls the deployed verifier. Success is shown only after the live checks pass. If RPC is unavailable, the page reports an incomplete live check separately from the recorded outcome; retry when available.
 
-The output uses confirmed testnet transaction hashes and links. It is a replay of completed evidence, not a claim that a new transaction is being sent during recording.
+Each case has expandable transaction links and a link to the full verifier. For a local copy, serve the repository root with `python3 -m http.server 8080` and open `http://localhost:8080/web/demo.html`.

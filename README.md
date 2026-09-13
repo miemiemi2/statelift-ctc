@@ -6,6 +6,8 @@ StateLift protects a Creditcoin payment operator when an Ethereum USDC payment's
 
 [中文说明](README.zh-CN.md) · [Whitepaper PDF](submission/StateLift-whitepaper.pdf) · [Technical integration](docs/TESTNET-INTEGRATION.md) · [Underwriting economics](research/underwriting-model.md)
 
+[Watch the evidence-backed walkthrough](https://miemiemi2.github.io/statelift-ctc/web/demo.html) for the three-case product story. Each case is a separate completed testnet record; the expiry scene also offers live RPC verification.
+
 [Open the public verifier](https://miemiemi2.github.io/statelift-ctc/web/verifier.html): re-run a published flow’s proof and compare historical R/B/credit balances through public RPC. Supports `expiry`, `normal`, `late`, `relay`, or their published transaction hashes / goal IDs. No wallet required. Locally, run `python3 -m http.server 8080` from the repository root and visit `http://localhost:8080/web/verifier.html`.
 
 ## Real testnet results

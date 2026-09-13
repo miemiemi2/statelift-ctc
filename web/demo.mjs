@@ -319,7 +319,6 @@ async function initialise() {
     ];
     position = 0;
     render();
-    if (scenes[position].act === "expiry") void startLive("expiry");
   } catch (error) {
     $("error").hidden = false;
     $("error").textContent = `Cannot load the demonstration: ${error.message}`;
@@ -370,14 +369,12 @@ $("next").onclick = () => {
   if (!busy) {
     position = (position + 1) % scenes.length;
     render();
-    if (scenes[position].act === "expiry") void startLive("expiry");
   }
 };
 $("back").onclick = () => {
   if (!busy && position > 0) {
     position--;
     render();
-    if (scenes[position].act === "expiry") void startLive("expiry");
   }
 };
 $("retry").onclick = initialise;

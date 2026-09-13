@@ -13,7 +13,7 @@ const {
 const { compile, environment, deploy } = require("../helpers.cjs");
 const observed = JSON.parse(
   fs.readFileSync(
-    path.resolve(__dirname, "../../evidence/testnet/usdc-manifest-probe.json"),
+    path.resolve(__dirname, "../../evidence/testnet/usdc-manifest.json"),
     "utf8",
   ),
 );

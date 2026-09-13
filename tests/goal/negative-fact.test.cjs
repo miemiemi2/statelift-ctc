@@ -317,6 +317,47 @@ test("a round retired by an expiry proof lets a replacement open immediately", a
   await s.invariant();
 });
 
+test("two expired rounds keep their guarantees independent while the same goal relays", async (t) => {
+  const s = await setup();
+  t.after(s.close);
+
+  // Each round is retired by its own post-T source absence fact.  The CTC
+  // clock need not advance between these operations: expiry is a source fact,
+  // and retiring a round is what permits the next relay.
+  const e1 = await openE(s, 1);
+  const p1 = await s.proveUnfilledAt(s.g.goalId, e1.quote.payBy);
+  await s.releaseByExpiry(e1.roundId, p1.encoded);
+  assert.equal(await s.escrow.capitalLocked(s.guarantorAddress), 0n);
+
+  const e2 = await openE(s, 2);
+  assert.equal(await s.escrow.capitalLocked(s.guarantorAddress), DEMO_B);
+  const p2 = await s.proveUnfilledAt(s.g.goalId, e2.quote.payBy);
+  await s.releaseByExpiry(e2.roundId, p2.encoded);
+  assert.equal(await s.escrow.capitalLocked(s.guarantorAddress), 0n);
+
+  // Both old rounds are released, while G remains open and a third round can
+  // still win normally.  No round's B was reused to settle another round.
+  const goalBefore = await s.escrow.getGoal(s.g.goalId);
+  assert.equal(goalBefore.state, 1n, "goal remains Open after both expiries");
+  const e3 = await openE(s, 3);
+  const filled3 = await s.fillAndProve({
+    goal: s.g.ref,
+    roundNumber: 3,
+    payBy: e3.quote.payBy,
+    executorIndex: EXECUTOR,
+  });
+  await s.settle(e3.roundId, filled3.encoded);
+
+  assert.equal(await s.token.balanceOf(s.g.terms.recipient), AMOUNT);
+  assert.equal(await s.escrow.credits(filled3.winner), DEMO_R);
+  assert.equal(await s.escrow.capitalLocked(s.guarantorAddress), 0n);
+  assert.equal(await s.escrow.capitalAvailable(s.guarantorAddress), DEMO_B * 3n);
+  assert.equal((await s.escrow.getRound(e1.roundId)).state, 5n);
+  assert.equal((await s.escrow.getRound(e2.roundId)).state, 5n);
+  assert.equal((await s.escrow.getRound(e3.roundId)).state, 4n, "winner paid");
+  await s.invariant();
+});
+
 test("a still-live previous round is not retired, so relay still waits", async (t) => {
   const s = await setup();
   t.after(s.close);

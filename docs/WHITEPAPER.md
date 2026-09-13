@@ -111,7 +111,7 @@ Production work would require measured latency/loss distributions, correlated ex
 - evidence/full-recheck.log: 107/107 baseline; multi-round-validation.log: updated negative-fact suite, 13/13.
 - evidence/three-acts.md and three-acts-transitions.json: local demonstration, explicitly mock-labelled.
 - evidence/testnet/deployment.json: six production deployments and runtime code hashes.
-- evidence/testnet/flow-normal.json, flow-late.json, flow-relay.json: exact transactions and per-role accounting.
+- evidence/testnet/flow-{normal,late,relay,expiry}.json: transactions and per-role accounting.
 - docs/TESTNET-INTEGRATION.md: official endpoints, proof pipeline and resumption commands.
 - research/underwriting-model.md: pricing assumptions and correlated-loss examples.
 - docs/COMPETITIVE-POSITION.md: index41, CrossCredit and ProofPay comparisons with public source links.
